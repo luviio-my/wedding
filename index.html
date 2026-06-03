@@ -2569,31 +2569,95 @@
             loadInvitationsTable();
         });
 
-        async function viewInvitation(id) {
-            const allData = await window.FireDB.getAll();
-            const inv = allData.find(item => item.id === id);
-            if (!inv) return;
-            
-            document.getElementById('viewModalContent').innerHTML = `
-                <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div><span class="text-xs text-gray-500">Code / Kod</span><p class="font-mono font-bold">${inv.inviteCode || '-'}</p></div>
-                        <div><span class="text-xs text-gray-500">Family / Keluarga</span><p class="font-bold">${inv.familyName || '-'}</p></div>
-                        <div><span class="text-xs text-gray-500">Side / Pihak</span><p>${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</p></div>
-                        <div><span class="text-xs text-gray-500">Status</span><p class="status-badge ${inv.status === 'confirmed' ? 'status-confirmed' : 'status-pending'}">${inv.status || 'pending'}</p></div>
-                    </div>
-                    <div class="grid grid-cols-3 gap-4 pt-4 border-t">
-                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.adults || 0}</div><div class="text-xs text-gray-500">Adults / Dewasa</div></div>
-                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.kids || 0}</div><div class="text-xs text-gray-500">Kids / Kanak-kanak</div></div>
-                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.babies || 0}</div><div class="text-xs text-gray-500">Babies / Bayi</div></div>
-                    </div>
-                    <div class="pt-4 border-t"><span class="text-xs text-gray-500">Quota / Kuasa</span><p class="font-bold">${inv.quota || 8} guests maximum / maksimum orang tetamu</p></div>
-                    ${inv.checkedIn ? '<div class="mt-4 p-3 rounded-xl bg-green-50 text-green-700 text-sm font-medium">Checked In / Telah Daftar Masuk</div>' : ''}
-                    ${inv.rsvpedAt ? `<div class="mt-2 text-xs text-gray-400">RSVP submitted: ${new Date(inv.rsvpedAt).toLocaleString()}</div>` : ''}
+        // Copy to Clipboard Function
+function copyToClipboard(text) {
+    if (!text) return;
+    
+    navigator.clipboard.writeText(text).then(() => {
+        // Show temporary tooltip or alert
+        const toast = document.createElement('div');
+        toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-[200] text-sm animate-pulse';
+        toast.textContent = `Copied: ${text}`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.remove();
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        // Fallback for older browsers
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+        alert(`Copied: ${text}`);
+    });
+}
+
+async function viewInvitation(id) {
+    const allData = await window.FireDB.getAll();
+    const inv = allData.find(item => item.id === id);
+    if (!inv) return;
+    
+    document.getElementById('viewModalContent').innerHTML = `
+        <div class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div><span class="text-xs text-gray-500">Code / Kod</span><p class="font-mono font-bold">${inv.inviteCode || '-'}</p></div>
+                <div><span class="text-xs text-gray-500">Family / Keluarga</span><p class="font-bold">${inv.familyName || '-'}</p></div>
+                <div>
+                    <span class="text-xs text-gray-500">Phone Number<br><span class="text-[9px]">Nombor Telefon</span></span>
+                    <p class="font-bold flex items-center gap-1">
+                        ${inv.contactNumber || inv.contact || '-'}
+                        ${inv.contactNumber || inv.contact ? `
+                            <a href="tel:${inv.contactNumber || inv.contact}" 
+                               class="ml-1 p-1 hover:bg-green-100 rounded-full transition-colors" 
+                               title="Call / Panggil"
+                               onclick="event.stopPropagation();">
+                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </a>
+                            <button onclick="copyToClipboard('${inv.contactNumber || inv.contact}')" 
+                                    class="ml-1 p-1 hover:bg-blue-100 rounded-full transition-colors" 
+                                    title="Copy / Salin"
+                                    onclick="event.stopPropagation();">
+                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
+                            </button>
+                        ` : ''}
+                    </p>
                 </div>
-            `;
-            openModal('viewModal');
-        }
+                <div><span class="text-xs text-gray-500">Side / Pihak</span><p>${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</p></div>
+            </div>
+            
+            <!-- Rest of your existing code remains below -->
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t">
+                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.adults || 0}</div><div class="text-xs text-gray-500">Adults / Dewasa</div></div>
+                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.kids || 0}</div><div class="text-xs text-gray-500">Kids / Kanak-kanak</div></div>
+                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.babies || 0}</div><div class="text-xs text-gray-500">Babies / Bayi</div></div>
+            </div>
+            
+            <div class="pt-4 border-t space-y-2">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-gray-500">Quota / Kuasa</span>
+                    <span class="font-bold">${inv.quota || 8} guests maximum</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-xs text-gray-500">Total Guests / Jumlah Tetamu</span>
+                    <span class="font-mono font-bold text-lg" style="color: var(--primary-color);">${inv.totalGuests || 0}</span>
+                </div>
+            </div>
+
+            ${inv.checkedIn ? '<div class="mt-4 p-3 rounded-xl bg-green-50 text-green-700 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Checked In / Telah Daftar Masuk</div>' : ''}
+            
+            ${inv.rsvpedAt ? `<div class="mt-2 text-xs text-gray-400 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>RSVP submitted: ${new Date(inv.rsvpedAt).toLocaleString('en-MY', { dateStyle: 'medium', timeStyle: 'short' })}</div>` : ''}
+        </div>
+    `;
+    openModal('viewModal');
+}
 
         async function editInvitation(id) {
             const allData = await window.FireDB.getAll();
