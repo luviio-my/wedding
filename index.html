@@ -1757,31 +1757,42 @@
         let currentView = 'home';
         let isAdminAuthenticated = false;
 
-        function navigateTo(view) {
-            // Hide all views
-            document.querySelectorAll('.route-view').forEach(v => v.classList.remove('active'));
-            
-            currentView = view;
-            
-            if (view === 'admin') {
-                document.getElementById('view-admin').classList.add('active');
-                if (!isAdminAuthenticated) {
-                    document.getElementById('adminLoginOverlay').classList.remove('hidden');
-                    document.getElementById('adminDashboard').classList.add('hidden');
-                } else {
-                    document.getElementById('adminLoginOverlay').classList.add('hidden');
-                    document.getElementById('adminDashboard').classList.remove('hidden');
-                }
-            } else if (view === 'rsvp') {
-                document.getElementById('view-rsvp').classList.add('active');
-                resetWizard();
-            } else {
-                document.getElementById('view-home').classList.add('active');
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            window.location.hash = view;
+function navigateTo(view) {
+    // Hide all views
+    document.querySelectorAll('.route-view').forEach(v => v.classList.remove('active'));
+    
+    currentView = view;
+    
+    if (view === 'admin') {
+        document.getElementById('view-admin').classList.add('active');
+        
+        // CRITICAL FIX: Check session again here (handles refresh/hash navigation)
+        if (sessionStorage.getItem('isAdminAuth') === 'true') {
+            isAdminAuthenticated = true;
         }
+        
+        if (!isAdminAuthenticated) {
+            // Show Login Form
+            document.getElementById('adminLoginOverlay').classList.remove('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+        } else {
+            // Show Dashboard Directly (Skip Login)
+            document.getElementById('adminLoginOverlay').classList.add('hidden');
+            document.getElementById('adminDashboard').classList.remove('hidden');
+            
+            // CRITICAL: Load data when showing dashboard (fixes empty table on refresh)
+            loadInvitationsTable();
+        }
+    } else if (view === 'rsvp') {
+        document.getElementById('view-rsvp').classList.add('active');
+        resetWizard();
+    } else {
+        document.getElementById('view-home').classList.add('active');
+    }
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.hash = view;
+}
 
         // Handle browser back/forward
         window.addEventListener('hashchange', () => {
@@ -1825,7 +1836,7 @@
             if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
                 isAdminAuthenticated = true;
                 // Save to session storage (persists until browser/tab closed)
-                sessionStorage.setItem('isAdminAuth', 'true');
+                localStorage.setItem('isAdminAuth', 'true');
                 sessionStorage.setItem('adminEmail', email);
                 sessionStorage.setItem('adminLoginTime', new Date().toISOString());
                 
@@ -2804,24 +2815,51 @@ Padam undangan untuk "${name}"?`)) return;
             document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
         }
 
-        // ============================================
-        // INITIALIZATION
-        // ============================================
+// ============================================
+// INITIALIZATION
+// ============================================
 
-        setTheme('groom');
-        loadInvitationsTable();
+// 1. Check Admin Session FIRST (before any routing)
+checkAdminSession();
+
+// 2. Set Theme
+setTheme('groom');
+
+// 3. Initialize Route from URL Hash (handles F5 refresh on #admin page)
+if (window.location.hash) {
+    const hash = window.location.hash.replace('#', '');
+    // Small delay to ensure DOM is ready for admin dashboard rendering
+    setTimeout(() => {
+        navigateTo(hash);
+    }, 100);
+} else {
+    // Default to home if no hash
+    navigateTo('home');
+}
+
+// 4. Initial Data Load (for home page stats)
+loadInvitationsTable();
+
+// 5. Set up real-time listener if available
+if (window.FireDB.onSnapshot) {
+    window.FireDB.onSnapshot((data) => {
+        allInvitations = data;
+        renderTable(data);
+        updateStatistics(data);
         
-        // Set up real-time listener if available
-        if (window.FireDB.onSnapshot) {
-            window.FireDB.onSnapshot((data) => {
-                allInvitations = data;
-                renderTable(data);
-                updateStatistics(data);
-                
-                // If on RSVP page and data changes, we could refresh wizard state here if needed
-                console.log('Real-time update received:', data.length, 'records');
-            });
+        // Auto-refresh admin table if visible
+        if (currentView === 'admin' && isAdminAuthenticated) {
+            renderTable(data);
         }
+        
+        console.log('Real-time update received:', data.length, 'records');
+    });
+}
+
+console.log('Wedding Reception System v2.1 Initialized [Persistent Auth Enabled]');
+console.log('Routes: #home | #rsvp | #admin');
+console.log('Secret: Click "B & D" logo 3x for admin access');
+console.log('Session persistence: Active (refresh-safe)');
 
         // Initialize wizard calculations
         calculateWizardTotal();
