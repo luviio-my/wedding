@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella & Danial - Wedding Reception | Majlis Perkahwinan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900&family=Space+Mono:wght@700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'groom': '#800020',
+                        'groom-dark': '#5c0017',
+                        'bride': '#426637',
+                        'bride-dark': '#2d4426',
+                        'cream': '#FDF8F3',
+                        'beige': '#E8DCC8',
+                        'champagne': '#D4AF37',
+                        'sage': '#87A96B',
+                        'burgundy': '#800020',
+                    },
+                    fontFamily: {
+                        'dm': ['DM Sans', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'sans-serif'],
+                        'mono': ['"Space Mono"', '"Courier New"', 'monospace'],
+                        'serif': ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #800020;
+            --primary-dark: #5c0017;
+            --theme-name: 'Groom';
+            --bg-cream: #FDF8F3;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.35);
+            --glass-shadow: rgba(31, 38, 135, 0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, #f5ebe0 50%, #e8d5c4 100%);
+            color: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Liquid Glass Effects */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Fixed/Static card for forms - no hover movement */
+        .glass-card-static {
+            background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.25) 100%);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card-static:hover {
+            transform: none !important;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* Allow normal hover for non-form cards */
+        .glass-card:not(.glass-card-static):hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-nav {
+            background: rgba(253, 248, 243, 0.75);
+            backdrop-filter: blur(24px) saturate(200%);
+            -webkit-backdrop-filter: blur(24px) saturate(200%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Theme Colors */
+        .theme-primary { background-color: var(--primary-color); }
+        .theme-primary-text { color: var(--primary-color); }
+        .theme-border { border-color: var(--primary-color); }
+        .theme-glow { box-shadow: 0 0 30px color-mix(in srgb, var(--primary-color) 30%, transparent); }
+
+        /* Progress Bars */
+        .progress-bar {
+            height: 10px;
+            border-radius: 9999px;
+            background: rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--primary-color), color-mix(in srgb, var(--primary-color) 70%, white));
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Focus States */
+        .focus-ring:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 4px;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px color-mix(in srgb, var(--primary-color) 40%, transparent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px color-mix(in srgb, var(--primary-color) 50%, transparent);
+        }
+
+        .btn-primary:hover::before { left: 100%; }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            color: var(--primary-color);
+            padding: 14px 28px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Input Styles */
+        .input-field {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary-color) 15%, transparent);
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .input-field.error {
+            border-color: #dc2626;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        /* Badge */
+        .badge {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            display: inline-block;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Countdown Timer */
+        .countdown-item {
+            background: linear-gradient(145deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 20px 16px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+        }
+
+        .countdown-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .countdown-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-top: 6px;
+        }
+
+        /* Color Swatch */
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .color-swatch:hover { transform: scale(1.15) rotate(5deg); }
+
+        /* QR Code Container */
+        .qr-container {
+            background: white;
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open { max-height: 500px; }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .stagger-1 { transition-delay: 0ms; }
+        .stagger-2 { transition-delay: 100ms; }
+        .stagger-3 { transition-delay: 200ms; }
+        .stagger-4 { transition-delay: 300ms; }
+        .stagger-5 { transition-delay: 400ms; }
+        .stagger-6 { transition-delay: 500ms; }
+
+        /* Hero Animation */
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .hero-float { animation: heroFloat 6s ease-in-out infinite; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-animate { animation: fadeInUp 0.8s ease forwards; }
+        .hero-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .hero-delay-2 { animation-delay: 0.25s; opacity: 0; }
+        .hero-delay-3 { animation-delay: 0.4s; opacity: 0; }
+        .hero-delay-4 { animation-delay: 0.55s; opacity: 0; }
+
+        /* Stats Card Pulse */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .stat-pulse { animation: pulse 2s ease-in-out infinite; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(30px);
+            border-radius: 28px;
+            padding: 32px;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table th:first-child { border-radius: 12px 0 0 0; }
+        .data-table th:last-child { border-radius: 0 12px 0 0; }
+
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 14px;
+        }
+
+        .data-table tr:hover td { background: rgba(128, 0, 32, 0.04); }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            .hero-animate { opacity: 1; animation: none; }
+            .hero-delay-1, .hero-delay-2, .hero-delay-3, .hero-delay-4 { opacity: 1; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--primary-color), var(--primary-dark)); 
+            border-radius: 4px; 
+        }
+
+        /* Decorative Elements */
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Check-in Status */
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-confirmed { background: #dcfce7; color: #166534; }
+        .status-checkedin { background: #dbeafe; color: #1e40af; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+
+        /* ============================================ */
+        /* NEW STYLES FOR ROUTING & WIZARD             */
+        /* ============================================ */
+
+        /* Route Views */
+        .route-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .route-view.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Wizard Steps */
+        .wizard-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .step-dot {
+            width: 48px;
+            height: 6px;
+            border-radius: 99px;
+            background: rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .step-dot.active {
+            background: var(--primary-color);
+            width: 64px;
+            box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 40%, transparent);
+        }
+
+        .step-dot.completed {
+            background: var(--primary-color);
+        }
+
+        .wizard-step {
+            display: none;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .wizard-step.active { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Option Card - Enhanced for Side & Status selection */
+        .option-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card:hover {
+            transform: none !important; /* Prevent movement for form elements */
+            border-color: rgba(128, 0, 32, 0.2);
+        }
+
+        .option-card.selected,
+        .option-card:has(input:checked) {
+            border-color: var(--primary-color);
+            background: color-mix(in srgb, var(--primary-color) 8%, white);
+            box-shadow: 0 8px 24px color-mix(in srgb, var(--primary-color) 15%, transparent);
+        }
+
+        /* Specific side colors for borders */
+        .option-card-groom.selected,
+        .option-card-groom:has(input:checked) {
+            border-color: #800020;
+            background: color-mix(in srgb, #800020 8%, white);
+            box-shadow: 0 8px 24px color-mix(in srgb, #800020 15%, transparent);
+        }
+
+        .option-card-bride.selected,
+        .option-card-bride:has(input:checked) {
+            border-color: #426637;
+            background: color-mix(in srgb, #426637 8%, white);
+            box-shadow: 0 8px 24px color-mix(in srgb, #426637 15%, transparent);
+        }
+
+        /* Admin Login Overlay */
+        .auth-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--bg-cream) 0%, #f5ebe0 100%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+            backdrop-filter: blur(30px);
+            border-radius: 32px;
+            padding: 48px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 25px 80px rgba(128, 0, 32, 0.15);
+            text-align: center;
+        }
+
+        .auth-input {
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* Code Display */
+        .code-display {
+            font-family: 'Space Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            background: linear-gradient(135deg, rgba(128,0,32,0.05) 0%, rgba(128,0,32,0.02) 100%);
+            padding: 16px 24px;
+            border-radius: 16px;
+            border: 2px dashed color-mix(in srgb, var(--primary-color) 30%, transparent);
+            display: inline-block;
+        }
+
+        /* Success Animation */
+        @keyframes successPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-pop { animation: successPop 0.6s ease forwards; }
+
+        /* BM Subtitle Style */
+        .bm-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            display: block;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* Quota Display */
+        .quota-display {
+            background: linear-gradient(135deg, rgba(128,0,32,0.05) 0%, rgba(128,0,32,0.02) 100%);
+            border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .quota-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Secret Admin Hint */
+        .logo-secret {
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        .logo-secret:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <nav class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
+            <div class="flex items-center justify-between h-[72px]">
+                <a href="#home" id="mainLogo" class="font-serif text-2xl font-bold focus-ring rounded-lg nav-link logo-secret" style="color: var(--primary-color);" title="Click 3x for Admin">
+                    B & D
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Home<br><span class="bm-text text-[10px]">Utama</span></a>
+                    <a href="#rsvp" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">RSVP<br><span class="bm-text text-[10px]">Tempah</span></a>
+                    <a href="#stats" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Statistics<br><span class="bm-text text-[10px]">Statistik</span></a>
+                    <a href="#dresscode" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Dress Code<br><span class="bm-text text-[10px]">Kod Pakaian</span></a>
+                    <!-- Admin link hidden - access via logo click -->
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <!-- Theme Switcher -->
+                    <div class="hidden sm:flex items-center gap-2 glass px-3 py-2 rounded-xl">
+                        <button id="groomThemeBtn" class="w-6 h-6 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Groom Theme / Tema Pengantin Lelaki"></button>
+                        <button id="brideThemeBtn" class="w-6 h-6 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Bride Theme / Tema Pengantin Perempuan"></button>
+                    </div>
+                    
+                    <button id="mobileMenuBtn" class="md:hidden p-2 glass rounded-xl focus-ring" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobileMenu" class="mobile-menu md:hidden pb-4">
+                <div class="flex flex-col gap-2 pt-4 border-t border-white/30 mt-2">
+                    <a href="#home" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Home / Utama</a>
+                    <a href="#rsvp" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">RSVP / Tempah</a>
+                    <a href="#stats" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Statistics / Statistik</a>
+                    <a href="#dresscode" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Dress Code / Kod Pakaian</a>
+                    <div class="flex items-center justify-center gap-3 pt-4 px-4">
+                        <span class="text-xs font-semibold">Theme / Tema:</span>
+                        <button onclick="setTheme('groom')" class="w-8 h-8 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring"></button>
+                        <button onclick="setTheme('bride')" class="w-8 h-8 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring"></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME VIEW -->
+        <section id="view-home" class="route-view active">
+            <!-- Hero Section -->
+            <section id="home" class="relative min-h-screen pt-[72px] overflow-hidden">
+                <!-- Decorative Background -->
+                <div class="decorative-circle w-[600px] h-[600px] bg-[#800020] top-[-200px] right-[-150px]" style="background: var(--primary-color);" aria-hidden="true"></div>
+                <div class="decorative-circle w-[400px] h-[400px] bottom-[-100px] left-[-100px]" style="background: var(--primary-color); opacity: 0.2;" aria-hidden="true"></div>
+                
+                <div class="relative max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
+                    <div class="max-w-[900px] mx-auto text-center relative z-10">
+                        <!-- Badge -->
+                        <div class="hero-animate hero-delay-1 mb-6">
+                            <span class="badge">Wedding Reception<br><span class="text-[9px] normal-case tracking-normal opacity-80">Majlis Perkahwinan</span></span>
+                        </div>
+
+                        <!-- Names -->
+                        <h1 class="hero-animate hero-delay-2 font-serif text-[56px] md:text-[88px] lg:text-[100px] font-bold leading-[1.1] tracking-tight mb-4">
+                            Bella
+                            <span class="block text-[40px] md:text-[56px] font-normal italic text-gray-500 my-2">&</span>
+                            Danial
+                        </h1>
+
+                        <!-- Date & Time -->
+                        <p class="hero-animate hero-delay-3 font-dm text-lg md:text-xl text-gray-600 mb-8">
+                            Majlis Sanding | 3 July 2027 | 6:00 PM – 11:00 PM
+                            <span class="bm-text">Majlis Bersanding | 3 Julai 2027 | 6:00 PTG – 11:00 MLM</span>
+                        </p>
+
+                        <!-- Venue -->
+                        <div class="hero-animate hero-delay-3 glass-card inline-block px-8 py-5 rounded-2xl mb-10">
+                            <p class="font-semibold text-lg" style="color: var(--primary-color);">Rumah Abang Jamil Prai</p>
+                            <p class="text-sm text-gray-600 mt-1">3344, Jalan Kampung Sungai Limau,<br>Kampung Seberang Sungai, 09600 Lunas, Kedah</p>
+                        </div>
+
+                        <!-- Countdown Timer -->
+                        <div class="hero-animate hero-delay-4 flex justify-center gap-3 md:gap-5 mb-12">
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="countDays">000</div>
+                                <div class="countdown-label">Days<br><span class="text-[9px] normal-case">Hari</span></div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="countHours">00</div>
+                                <div class="countdown-label">Hours<br><span class="text-[9px] normal-case">Jam</span></div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="countMinutes">00</div>
+                                <div class="countdown-label">Minutes<br><span class="text-[9px] normal-case">Minit</span></div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-number" id="countSeconds">00</div>
+                                <div class="countdown-label">Seconds<br><span class="text-[9px] normal-case">Saat</span></div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="hero-animate hero-delay-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <button onclick="navigateTo('rsvp')" class="btn-primary focus-ring rounded-2xl">RSVP Now<br><span class="text-xs font-normal opacity-90">Tempah Sekarang</span></button>
+                            <a href="#stats" class="btn-secondary focus-ring rounded-2xl">View Statistics<br><span class="text-xs font-normal opacity-90">Lihat Statistik</span></a>
+                        </div>
+                    </div>
+
+                    <!-- Live Stats Preview -->
+                    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[900px] mx-auto">
+                        <div class="glass-card p-5 text-center stat-pulse">
+                            <div class="font-mono text-3xl md:text-4xl font-bold" style="color: var(--primary-color);" id="statTotalConfirmed">0</div>
+                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Confirmed<br><span class="normal-case text-[10px]">Sah Hadir</span></div>
+                        </div>
+                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.2s;">
+                            <div class="font-mono text-3xl md:text-4xl font-bold" style="color: var(--primary-color);" id="statRemaining">500</div>
+                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Remaining<br><span class="normal-case text-[10px]">Baki</span></div>
+                        </div>
+                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.4s;">
+                            <div class="font-mono text-3xl md:text-4xl font-bold text-green-700" id="statGroomSide">0</div>
+                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Groom Side<br><span class="normal-case text-[10px]">Pihak Pengantin Lelaki</span></div>
+                        </div>
+                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.6s;">
+                            <div class="font-mono text-3xl md:text-4xl font-bold text-emerald-700" id="statBrideSide">0</div>
+                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Bride Side<br><span class="normal-case text-[10px]">Pihak Pengantin Perempuan</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section (Visible on Home) -->
+            <section id="stats" class="py-[80px] md:py-[120px]" style="background: linear-gradient(180deg, transparent 0%, rgba(128,0,32,0.03) 50%, transparent 100%);">
+                <div class="max-w-[1400px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
+                    <div class="text-center mb-12 reveal">
+                        <span class="badge mb-4 inline-block">Live Statistics<br><span class="text-[9px] normal-case opacity-80">Statistik Langsung</span></span>
+                        <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+                            Attendance Overview<br>
+                            <span class="text-2xl md:text-3xl font-normal text-gray-500">Gambaran Kehadiran</span>
+                        </h2>
+                        <p class="text-lg text-gray-600">Real-time guest statistics updated automatically<br><span class="text-sm">Statistik tetamu dikemaskini secara automatik</span></p>
+                    </div>
+
+                    <!-- Main Stats Grid -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-1">
+                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Total Capacity<br><span class="normal-case text-[10px]">Kapasiti Jumlah</span></div>
+                            <div class="font-mono text-4xl md:text-5xl font-bold" style="color: var(--primary-color);">500</div>
+                            <div class="text-xs text-gray-400 mt-1">Maximum Pax<br><span class="normal-case">Maksimum Orang</span></div>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-2">
+                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Confirmed Guests<br><span class="normal-case text-[10px]">Tetamu Sah</span></div>
+                            <div class="font-mono text-4xl md:text-5xl font-bold" style="color: var(--primary-color);" id="statsConfirmed">0</div>
+                            <div class="text-xs text-gray-400 mt-1">RSVP Confirmed<br><span class="normal-case">RSVP Disahkan</span></div>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-3">
+                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Checked In<br><span class="normal-case text-[10px]">Daftar Masuk</span></div>
+                            <div class="font-mono text-4xl md:text-5xl font-bold text-blue-600" id="statsCheckedIn">0</div>
+                            <div class="text-xs text-gray-400 mt-1">Arrived<br><span class="normal-case">Tiba</span></div>
+                        </div>
+                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-4">
+                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Remaining Seats<br><span class="normal-case text-[10px]">Baki Tempat</span></div>
+                            <div class="font-mono text-4xl md:text-5xl font-bold text-green-600" id="statsRemainingSeats">500</div>
+                            <div class="text-xs text-gray-400 mt-1">Available<br><span class="normal-case">Tersedia</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Bars -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="glass-card p-6 md:p-8 reveal stagger-5">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-bold">Overall Capacity<br><span class="text-xs font-normal text-gray-500">Kapasiti Keseluruhan</span></span>
+                                <span class="font-mono font-bold" style="color: var(--primary-color);" id="overallPercent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="overallProgress" style="width: 0%;"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0</span>
+                                <span>500 pax</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 md:p-8 reveal stagger-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="font-bold">Check-in Rate<br><span class="text-xs font-normal text-gray-500">Kadar Daftar Masuk</span></span>
+                                <span class="font-mono font-bold text-blue-600" id="checkinPercent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="checkinProgress" style="width: 0%; background: linear-gradient(90deg, #2563eb, #60a5fa);"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0 checked in</span>
+                                <span>of confirmed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Breakdown -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <!-- Groom Side -->
+                        <div class="glass-card p-6 md:p-8 reveal">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 rounded-xl bg-[#800020] flex items-center justify-center text-white font-bold text-lg shadow-lg">G</div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Groom Side<br><span class="text-sm font-normal text-gray-500">Pihak Pengantin Lelaki</span></h3>
+                                    <p class="text-sm text-gray-500">Maximum: 250 pax<br><span class="text-xs">Maksimum: 250 orang</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-600">Confirmed<br><span class="text-[10px]">Disahkan</span></span>
+                                        <span class="font-mono font-bold" id="groomConfirmedNum">0 / 250</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="groomProgress" style="width: 0%; background: linear-gradient(90deg, #800020, #a3153a);"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-3 pt-4">
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomAdults">0</div>
+                                        <div class="text-xs text-gray-500">Adults<br><span class="text-[9px]">Dewasa</span></div>
+                                    </div>
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomKids">0</div>
+                                        <div class="text-xs text-gray-500">Kids<br><span class="text-[9px]">Kanak-kanak</span></div>
+                                    </div>
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomBabies">0</div>
+                                        <div class="text-xs text-gray-500">Babies<br><span class="text-[9px]">Bayi</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bride Side -->
+                        <div class="glass-card p-6 md:p-8 reveal">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="w-12 h-12 rounded-xl bg-[#426637] flex items-center justify-center text-white font-bold text-lg shadow-lg">B</div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Bride Side<br><span class="text-sm font-normal text-gray-500">Pihak Pengantin Perempuan</span></h3>
+                                    <p class="text-sm text-gray-500">Maximum: 250 pax<br><span class="text-xs">Maksimum: 250 orang</span></p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-600">Confirmed<br><span class="text-[10px]">Disahkan</span></span>
+                                        <span class="font-mono font-bold" id="brideConfirmedNum">0 / 250</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="brideProgress" style="width: 0%; background: linear-gradient(90deg, #426637, #5a8a4a);"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-3 gap-3 pt-4">
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideAdults">0</div>
+                                        <div class="text-xs text-gray-500">Adults<br><span class="text-[9px]">Dewasa</span></div>
+                                    </div>
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideKids">0</div>
+                                        <div class="text-xs text-gray-500">Kids<br><span class="text-[9px]">Kanak-kanak</span></div>
+                                    </div>
+                                    <div class="text-center p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideBabies">0</div>
+                                        <div class="text-xs text-gray-500">Babies<br><span class="text-[9px]">Bayi</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dress Code Section -->
+            <section id="dresscode" class="py-[80px] md:py-[120px]">
+                <div class="max-w-[1200px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
+                    <div class="text-center mb-12 reveal">
+                        <span class="badge mb-4 inline-block">Attire Guide<br><span class="text-[9px] normal-case opacity-80">Panduan Berpakaian</span></span>
+                        <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+                            Dress Code & Mood Board<br>
+                            <span class="text-2xl md:text-3xl font-normal text-gray-500">Kod Pakaian & Papan Warna</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
+                            We kindly request our guests to dress in harmony with our wedding color palette.<br>
+                            <span class="text-sm">Kami memohon tetamu kami berpakaian selaras dengan palet warna perkahwinan kami.</span>
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-8 md:p-12 reveal">
+                        <h3 class="font-bold text-xl mb-6 text-center">Color Palette<br><span class="text-sm font-normal text-gray-500">Palet Warna</span></h3>
+                        
+                        <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-10">
+                            <div class="text-center">
+                                <div class="color-swatch bg-[#FDF8F3] border-2 border-gray-200" title="Cream"></div>
+                                <p class="text-xs font-semibold mt-2">Cream<br><span class="text-[10px] text-gray-400">Krim</span></p>
+                                <p class="text-xs text-gray-400">#FDF8F3</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="color-swatch bg-[#E8DCC8]" title="Beige"></div>
+                                <p class="text-xs font-semibold mt-2">Beige<br><span class="text-[10px] text-gray-400">Beige</span></p>
+                                <p class="text-xs text-gray-400">#E8DCC8</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="color-swatch bg-[#426637]" title="Sage Green"></div>
+                                <p class="text-xs font-semibold mt-2">Sage Green<br><span class="text-[10px] text-gray-400">Hijau Sage</span></p>
+                                <p class="text-xs text-gray-400">#426637</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="color-swatch bg-[#800020]" title="Burgundy"></div>
+                                <p class="text-xs font-semibold mt-2">Burgundy<br><span class="text-[10px] text-gray-400">Marun</span></p>
+                                <p class="text-xs text-gray-400">#800020</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="color-swatch bg-[#D4AF37]" title="Champagne Gold"></div>
+                                <p class="text-xs font-semibold mt-2">Gold<br><span class="text-[10px] text-gray-400">Emas</span></p>
+                                <p class="text-xs text-gray-400">#D4AF37</p>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="p-6 rounded-2xl bg-white/40">
+                                <h4 class="font-bold mb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5" style="color: var(--primary-color);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    Recommended Attire<br><span class="text-xs font-normal text-gray-500">Pakaian Dicadangkan</span>
+                                </h4>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Formal or Semi-formal wear<br><span class="text-xs">Formal atau separa formal</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Traditional Malay attire encouraged (Baju Melayu/Kebaya)<br><span class="text-xs">Pakaian tradisional Melayu digalakkan</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Colors from the palette above preferred<br><span class="text-xs">Warna dari palet di atas digalakkan</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Modest and elegant dressing<br><span class="text-xs">Berpakaian sopan dan elegan</span></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-white/40">
+                                <h4 class="font-bold mb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg>
+                                    Please Avoid<br><span class="text-xs font-normal text-gray-500">Sila Elakkan</span>
+                                </h4>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> White clothing (reserved for bride)<br><span class="text-xs">Pakaian putih (dikhaskan untuk pengantin perempuan)</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Excessively casual wear (slippers, shorts)<br><span class="text-xs">Pakaian terlalu kasual (selipar, seluar pendek)</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Neon or overly bright colors<br><span class="text-xs">Warna neon atau terlalu terang</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Revealing or inappropriate outfits<br><span class="text-xs">Pakaian yang mendedahkan atau tidak sesuai</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- RSVP VIEW (Step-by-Step Wizard) -->
+        <section id="view-rsvp" class="route-view pt-[72px] min-h-screen">
+            <div class="max-w-[1200px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
+                
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 mb-6 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        Back to Home<br><span class="text-xs">Kembali ke Utama</span>
+                    </button>
+                    <span class="badge mb-4 inline-block">Reservation<br><span class="text-[9px] normal-case opacity-80">Tempahan</span></span>
+                    <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+                        Reserve Your Seat<br>
+                        <span class="text-2xl md:text-3xl font-normal text-gray-500">Tempah Tempat Duduk Anda</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
+                        Complete the following steps to confirm your attendance at our wedding reception.<br>
+                        <span class="text-sm">Lengkapkan langkah berikut untuk mengesahkan kehadiran anda di majlis perkahwinan kami.</span>
+                    </p>
+                </div>
+
+                <!-- Wizard Container -->
+                <div class="wizard-container">
+                    <!-- Progress Indicator -->
+                    <div class="step-indicator mb-12">
+                        <div class="step-dot active" data-step="1"></div>
+                        <div class="step-dot" data-step="2"></div>
+                        <div class="step-dot" data-step="3"></div>
+                        <div class="step-dot" data-step="4"></div>
+                    </div>
+
+                    <!-- Step 1: Invitation Code -->
+                    <div class="wizard-step active" id="step1">
+                        <div class="glass-card-static p-8 md:p-12 text-center">
+                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-xl">
+                                1
+                            </div>
+                            <h3 class="font-serif text-2xl md:text-3xl font-bold mb-3">Enter Your Invitation Code<br><span class="text-lg font-normal text-gray-500">Masukkan Kod Undangan Anda</span></h3>
+                            <p class="text-gray-500 mb-8 max-w-md mx-auto">
+                                Please enter the unique invitation code provided to you. This helps us identify your reservation.<br>
+                                <span class="text-sm">Sila masukkan kod undangan unik yang diberikan kepada anda. Ini membantu kami mengenal pasti tempahan anda.</span>
+                            </p>
+                            
+                            <div class="max-w-md mx-auto space-y-4">
+                                <input type="text" id="wizardInviteCode" 
+                                    class="input-field focus-ring text-center text-lg font-mono tracking-widest uppercase" 
+                                    placeholder="DD2027XXX or NN2027XXX"
+                                    maxlength="20">
+                                
+                                <div id="codeLookupResult" class="hidden p-4 rounded-xl text-left text-sm"></div>
+                                
+                                <div class="flex gap-3 pt-4">
+                                    <button onclick="verifyInvitationCode()" class="btn-primary flex-1 py-4 text-base">
+                                        Verify Code →<br><span class="text-xs font-normal opacity-90">Sahkan Kod</span>
+                                    </button>
+                                </div>
+                                
+                                <p class="text-xs text-gray-400 mt-4">
+                                    Don't have a code? Contact the wedding organizer.<br>
+                                    <span>Tiada kod? Hubungi penganjur perkahwinan.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Family Details -->
+                    <div class="wizard-step" id="step2">
+                        <div class="glass-card-static p-8 md:p-12">
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                    2
+                                </div>
+                                <h3 class="font-serif text-2xl font-bold mb-2">Family Details<br><span class="text-lg font-normal text-gray-500">Butiran Keluarga</span></h3>
+                                <p class="text-gray-500">Tell us about your family group<br><span class="text-sm">Beritahu kami tentang kumpulan keluarga anda</span></p>
+                            </div>
+
+                            <div class="max-w-lg mx-auto space-y-6">
+                                <div>
+                                    <label class="block text-sm font-bold mb-2" for="wizardFamilyName">Family Name *<br><span class="text-xs font-normal text-gray-500">Nama Keluarga</span></label>
+                                    <input type="text" id="wizardFamilyName" class="input-field focus-ring" placeholder="e.g., Ahmad Family / Keluarga Ahmad">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold mb-2" for="wizardContact">Contact Number *<br><span class="text-xs font-normal text-gray-500">Nombor Hubungi</span></label>
+                                    <input type="tel" id="wizardContact" class="input-field focus-ring" placeholder="+60 12-345 6789">
+                                </div>
+
+                                <div class="pt-4 flex gap-3">
+                                    <button onclick="goToStep(1)" class="btn-secondary py-3 flex-1">← Back<br><span class="text-xs font-normal">Kembali</span></button>
+                                    <button onclick="goToStep(3)" class="btn-primary py-3 flex-1">Continue →<br><span class="text-xs font-normal opacity-90">Teruskan</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Side Selection & Guests -->
+                    <div class="wizard-step" id="step3">
+                        <div class="glass-card-static p-8 md:p-12">
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                    3
+                                </div>
+                                <h3 class="font-serif text-2xl font-bold mb-2">Side & Guest Count<br><span class="text-lg font-normal text-gray-500">Pihak & Bilangan Tetamu</span></h3>
+                                <p class="text-gray-500">Select which side you're attending from and number of guests<br><span class="text-sm">Pilih pihak mana anda hadiri dan bilangan tetamu</span></p>
+                            </div>
+
+                            <div class="max-w-lg mx-auto space-y-8">
+                                <!-- Side Selection -->
+                                <div>
+                                    <label class="block text-sm font-bold mb-3">Which side are you from? *<br><span class="text-xs font-normal text-gray-500">Anda dari pihak mana?</span></label>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="wizardSide" value="groom" class="sr-only peer" checked>
+                                            <div class="option-card option-card-groom glass-card-static p-5 text-center rounded-2xl transition-all">
+                                                <div class="w-14 h-14 rounded-full bg-[#800020] mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl shadow-lg">G</div>
+                                                <span class="font-bold text-base">Groom's Side<br><span class="text-xs font-normal text-gray-500">Pihak Pengantin Lelaki</span></span>
+                                                <p class="text-xs text-gray-500 mt-1">Danial's Family & Friends</p>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="wizardSide" value="bride" class="sr-only peer">
+                                            <div class="option-card option-card-bride glass-card-static p-5 text-center rounded-2xl transition-all">
+                                                <div class="w-14 h-14 rounded-full bg-[#426637] mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl shadow-lg">B</div>
+                                                <span class="font-bold text-base">Bride's Side<br><span class="text-xs font-normal text-gray-500">Pihak Pengantin Perempuan</span></span>
+                                                <p class="text-xs text-gray-500 mt-1">Bella's Family & Friends</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Attendance Status - Changed to Card Selection with Icons -->
+                                <div>
+                                    <label class="block text-sm font-bold mb-3">Attendance Status *<br><span class="text-xs font-normal text-gray-500">Status Kehadiran</span></label>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="wizardStatusCard" value="confirmed" class="sr-only peer" checked onchange="handleStatusChange('confirmed')">
+                                            <div class="option-card glass-card-static p-5 text-center rounded-2xl transition-all border-2 border-transparent peer-checked:border-green-500 peer-checked:bg-green-50">
+                                                <svg class="w-10 h-10 mx-auto mb-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"/>
+                                                </svg>
+                                                <span class="font-bold text-base text-green-700">Yes, I will attend<br><span class="text-xs font-normal text-green-600">Ya, saya akan hadir</span></span>
+                                            </div>
+                                        </label>
+                                        <label class="cursor-pointer">
+                                            <input type="radio" name="wizardStatusCard" value="declined" class="sr-only peer" onchange="handleStatusChange('declined')">
+                                            <div class="option-card glass-card-static p-5 text-center rounded-2xl transition-all border-2 border-transparent peer-checked:border-red-500 peer-checked:bg-red-50">
+                                                <svg class="w-10 h-10 mx-auto mb-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                                    <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"/>
+                                                </svg>
+                                                <span class="font-bold text-base text-red-700">Sorry, cannot attend<br><span class="text-xs font-normal text-red-600">Maaf, tidak dapat hadir</span></span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <!-- Hidden select to maintain compatibility -->
+                                    <select id="wizardStatus" class="hidden">
+                                        <option value="confirmed">Yes</option>
+                                        <option value="declined">No</option>
+                                    </select>
+                                </div>
+
+                                <!-- Guest Counts (Only show if confirmed) -->
+                                <div id="guestCountSection">
+                                    <label class="block text-sm font-bold mb-3">Number of Guests<br><span class="text-xs font-normal text-gray-500">Bilangan Tetamu</span></label>
+                                    
+                                    <!-- Quota Info Display -->
+                                    <div class="quota-display mb-4">
+                                        <div class="text-xs text-gray-500 mb-1">Quota / Baki Tempat</div>
+                                        <div class="flex items-center justify-center gap-2">
+                                            <span id="currentGuestCount" class="quota-number">1</span>
+                                            <span class="text-2xl text-gray-400">/</span>
+                                            <span id="maxQuotaDisplay" class="quota-number text-gray-400">8</span>
+                                        </div>
+                                        <div class="text-xs mt-1">
+                                            <span id="remainingQuotaText" class="font-semibold text-green-600">7 seats remaining</span>
+                                            <span class="text-gray-400"> | <span class="bm-text inline">tempat tinggal</span></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div class="text-center">
+                                            <label class="text-xs text-gray-500 mb-1 block">Adults<br><span class="text-[9px]">Dewasa</span></label>
+                                            <input type="number" id="wizardAdults" class="input-field focus-ring text-center text-xl font-mono" min="0" max="50" value="1">
+                                        </div>
+                                        <div class="text-center">
+                                            <label class="text-xs text-gray-500 mb-1 block">Kids (5-12)<br><span class="text-[9px]">Kanak-kanak</span></label>
+                                            <input type="number" id="wizardKids" class="input-field focus-ring text-center text-xl font-mono" min="0" max="20" value="0">
+                                        </div>
+                                        <div class="text-center">
+                                            <label class="text-xs text-gray-500 mb-1 block">Babies (&lt;5)<br><span class="text-[9px]">Bayi</span></label>
+                                            <input type="number" id="wizardBabies" class="input-field focus-ring text-center text-xl font-mono" min="0" max="10" value="0">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4 glass p-4 rounded-xl text-center">
+                                        <span class="text-sm text-gray-600">Total Guests / Jumlah Tetamu: </span>
+                                        <span id="wizardTotalDisplay" class="font-mono text-3xl font-bold" style="color: var(--primary-color);">1</span>
+                                    </div>
+                                    
+                                    <p id="quotaWarning" class="text-xs text-orange-600 mt-2 text-center hidden font-semibold"></p>
+                                </div>
+
+                                <div class="flex gap-3 pt-4">
+                                    <button onclick="goToStep(2)" class="btn-secondary py-3 flex-1">← Back<br><span class="text-xs font-normal">Kembali</span></button>
+                                    <button onclick="goToStep(4)" class="btn-primary py-3 flex-1">Review →<br><span class="text-xs font-normal opacity-90">Semak</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Confirmation & QR Code -->
+                    <div class="wizard-step" id="step4">
+                        <div class="glass-card-static p-8 md:p-12">
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                    ✓
+                                </div>
+                                <h3 class="font-serif text-2xl font-bold mb-2">Confirmation<br><span class="text-lg font-normal text-gray-500">Pengesahan</span></h3>
+                                <p class="text-gray-500">Review your details and get your QR code<br><span class="text-sm">Semak butiran anda dan dapatkan kod QR anda</span></p>
+                            </div>
+
+                            <!-- Summary Card -->
+                            <div class="max-w-lg mx-auto mb-8 p-6 rounded-2xl bg-white/50 border border-white/60 space-y-3">
+                                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
+                                    <span class="text-sm text-gray-500">Invitation Code<br><span class="text-[10px]">Kod Undangan</span></span>
+                                    <span id="summaryCode" class="code-display text-lg">-</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">Family Name<br><span class="text-[10px]">Nama Keluarga</span></span>
+                                    <span id="summaryFamily" class="font-semibold">-</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">Contact<br><span class="text-[10px]">Hubungi</span></span>
+                                    <span id="summaryContact" class="font-semibold">-</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">Side<br><span class="text-[10px]">Pihak</span></span>
+                                    <span id="summarySide" class="font-semibold">-</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">Status<br><span class="text-[10px]">Status</span></span>
+                                    <span id="summaryStatus" class="status-badge status-confirmed">-</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-3 border-t border-gray-200">
+                                    <span class="text-sm font-bold text-gray-700">Total Guests<br><span class="text-[10px] font-normal">Jumlah Tetamu</span></span>
+                                    <span id="summaryGuests" class="font-mono text-xl font-bold" style="color: var(--primary-color);">0</span>
+                                </div>
+                            </div>
+
+                            <!-- QR Code Area -->
+                            <div id="qrSuccessArea" class="hidden text-center">
+                                <div class="qr-container inline-block mb-6">
+                                    <canvas id="qrCanvasFinal"></canvas>
+                                </div>
+                                <p class="text-sm text-green-600 font-semibold mb-6 success-pop">
+                                    ✓ RSVP Confirmed! Save this QR code for check-in.<br>
+                                    <span class="text-xs font-normal text-gray-500">RSVP Disediakan! Simpan kod QR ini untuk daftar masuk.</span>
+                                </p>
+                            </div>
+
+                            <div class="flex gap-3 max-w-lg mx-auto">
+                                <button onclick="goToStep(3)" class="btn-secondary py-3 flex-1">← Edit<br><span class="text-xs font-normal">Edit</span></button>
+                                <button onclick="submitFinalRSVP()" id="submitFinalBtn" class="btn-primary py-3 flex-1">
+                                    Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>
+                                </button>
+                            </div>
+                            
+                            <div class="text-center mt-6">
+                                <button onclick="navigateTo('home')" class="text-sm text-gray-500 hover:text-gray-800 underline">
+                                    Return to Home / Kembali ke Utama
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADMIN VIEW (Protected) -->
+        <section id="view-admin" class="route-view pt-[72px] min-h-screen">
+            <!-- Login Overlay (shown when not authenticated) -->
+            <div id="adminLoginOverlay" class="auth-overlay">
+                <div class="auth-card">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-xl">
+                        🔒
+                    </div>
+                    <h2 class="font-serif text-3xl font-bold mb-2">Admin Access<br><span class="text-lg font-normal text-gray-500">Akses Pentadbir</span></h2>
+                    <p class="text-gray-500 mb-8">Enter credentials to access management panel<br><span class="text-sm">Masukkan kredensial untuk mengakses panel pengurusan</span></p>
+                    
+                    <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                        <div>
+                            <input type="email" id="adminEmail" class="input-field focus-ring auth-input" placeholder="Email Address / Alamat Emel" required autocomplete="email">
+                        </div>
+                        <div>
+                            <input type="password" id="adminPassword" class="input-field focus-ring auth-input" placeholder="Password / Kata Laluan" required autocomplete="current-password">
+                        </div>
+                        <div id="loginError" class="hidden p-3 rounded-xl bg-red-50 text-red-700 text-sm text-left"></div>
+                        <button type="submit" class="btn-primary w-full py-4 text-base">
+                            Unlock Dashboard →<br><span class="text-xs font-normal opacity-90">Buka Papan Pemuka</span>
+                        </button>
+                    </form>
+                    
+                    <button onclick="navigateTo('home')" class="mt-6 text-sm text-gray-500 hover:text-gray-800 underline block mx-auto">
+                        ← Back to Public Site / Kembali ke Laman Awam
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard (shown when authenticated) -->
+            <div id="adminDashboard" class="hidden">
+                <div class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
+                    <!-- Header with Logout -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+                        <div>
+                            <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 mb-2 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                Back to Home / Kembali ke Utama
+                            </button>
+                            <span class="badge mb-2 inline-block">Management Panel<br><span class="text-[9px] normal-case opacity-80">Panel Pengurusan</span></span>
+                            <h2 class="font-serif text-[40px] md:text-[48px] font-bold leading-tight">
+                                Admin Dashboard<br>
+                                <span class="text-2xl md:text-3xl font-normal text-gray-500">Papan Pemuka Pentadbir</span>
+                            </h2>
+                        </div>
+                        <button onclick="handleAdminLogout()" class="btn-secondary text-sm py-2 px-4 rounded-xl flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                            Logout / Log Keluar
+                        </button>
+                    </div>
+
+                    <!-- Admin Controls -->
+                    <div class="glass-card p-6 md:p-8 mb-8 reveal">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+                            <div class="flex flex-wrap items-center gap-3">
+                                <button onclick="openModal('createModal')" class="btn-primary focus-ring rounded-xl text-sm py-3">
+                                    + Create Invitation<br><span class="text-xs font-normal opacity-90">Cipta Undangan</span>
+                                </button>
+                                <button onclick="exportData('csv')" class="btn-secondary focus-ring rounded-xl text-sm py-3">
+                                    Export CSV
+                                </button>
+                                <button onclick="exportData('excel')" class="btn-secondary focus-ring rounded-xl text-sm py-3">
+                                    Export Excel
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto">
+                                <input type="text" id="searchInput" class="input-field focus-ring rounded-xl text-sm py-3" placeholder="Search by name or code... / Cari..." oninput="searchInvitations()">
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-2xl font-bold" style="color: var(--primary-color);" id="adminTotalInvitations">0</div>
+                                <div class="text-xs text-gray-500">Total Invitations<br><span class="text-[9px]">Jumlah Undangan</span></div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-2xl font-bold text-green-600" id="adminConfirmedCount">0</div>
+                                <div class="text-xs text-gray-500">Confirmed<br><span class="text-[9px]">Disahkan</span></div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-2xl font-bold text-blue-600" id="adminCheckedInCount">0</div>
+                                <div class="text-xs text-gray-500">Checked In<br><span class="text-[9px]">Daftar Masuk</span></div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-2xl font-bold text-orange-600" id="adminDeclinedCount">0</div>
+                                <div class="text-xs text-gray-500">Declined<br><span class="text-[9px]">Menolak</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="glass-card overflow-hidden reveal">
+                        <div class="overflow-x-auto">
+                            <table class="data-table" id="invitationsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Code<br><span class="text-[9px] font-normal">Kod</span></th>
+                                        <th>Family Name<br><span class="text-[9px] font-normal">Nama Keluarga</span></th>
+                                        <th>Side<br><span class="text-[9px] font-normal">Pihak</span></th>
+                                        <th>Status<br><span class="text-[9px] font-normal">Status</span></th>
+                                        <th>Guests<br><span class="text-[9px] font-normal">Tetamu</span></th>
+                                        <th>Checked In<br><span class="text-[9px] font-normal">Daftar Masuk</span></th>
+                                        <th>Actions<br><span class="text-[9px] font-normal">Tindakan</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-8 text-gray-500">Loading data... / Memuatkan data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Check-in Quick Access -->
+                    <div class="glass-card p-6 md:p-8 mt-8 reveal">
+                        <h3 class="font-bold text-xl mb-6">Quick Check-In<br><span class="text-sm font-normal text-gray-500">Daftar Masuk Pantas</span></h3>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input type="text" id="checkinInput" class="input-field focus-ring rounded-xl flex-1" placeholder="Enter invitation code to check in... / Masukkan kod undangan untuk daftar masuk...">
+                            <button onclick="performCheckIn()" class="btn-primary focus-ring rounded-xl whitespace-nowrap">
+                                Check In Guest<br><span class="text-xs font-normal opacity-90">Daftar Masuk</span>
+                            </button>
+                        </div>
+                        <div id="checkinResult" class="mt-4 hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/30" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));">
+        <div class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] text-center text-white">
+            <p class="font-serif text-3xl font-bold mb-2">Bella & Danial</p>
+            <p class="text-white/70 text-sm">3 July 2027 | Rumah Abang Jamil Prai, Lunas Kedah<br><span class="text-xs">3 Julai 2027</span></p>
+            <p class="text-white/50 text-xs mt-6">With love and blessings<br><span>Dengan cinta dan restu</span></p>
+        </div>
+    </footer>
+
+    <!-- Create/Edit Modal -->
+    <div id="createModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h3 id="modalTitle" class="font-serif text-2xl font-bold">Create Invitation<br><span class="text-base font-normal text-gray-500">Cipta Undangan</span></h3>
+                <button onclick="closeModal('createModal')" class="p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="Close modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            
+            <form id="invitationForm" class="space-y-5">
+                <input type="hidden" id="editId" value="">
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2" for="modalInviteCode">Invitation Code * <span class="text-xs font-normal text-gray-500">(Auto-generated or custom / Auto atau tersuai)</span></label>
+                    <div class="flex gap-2">
+                        <input type="text" id="modalInviteCode" class="input-field focus-ring flex-1" required>
+                        <button type="button" onclick="autoGenerateCode()" class="btn-secondary px-4 rounded-xl text-sm whitespace-nowrap" title="Auto Generate">
+                            Auto
+                        </button>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1">Format: DD2027[Name] (Groom) or NN2027[Name] (Bride)</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2" for="modalFamilyName">Family Name *<br><span class="text-xs font-normal text-gray-500">Nama Keluarga</span></label>
+                    <input type="text" id="modalFamilyName" class="input-field focus-ring" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2" for="modalContact">Contact Number<br><span class="text-xs font-normal text-gray-500">Nombor Hubungi</span></label>
+                    <input type="tel" id="modalContact" class="input-field focus-ring">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2" for="modalSide">Side *<br><span class="text-xs font-normal text-gray-500">Pihak</span></label>
+                    <select id="modalSide" class="input-field focus-ring" required onchange="updateCodePreview()">
+                        <option value="groom">Groom Side (DD2027) / Pihak Lelaki</option>
+                        <option value="bride">Bride Side (NN2027) / Pihak Perempuan</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-bold mb-2" for="modalQuota">Maximum Guest Quota *<br><span class="text-xs font-normal text-gray-500">Kuasa Maksimum Tetamu</span></label>
+                    <input type="number" id="modalQuota" class="input-field focus-ring" min="1" max="50" value="8" required>
+                </div>
+                
+                <div class="flex gap-3 pt-4">
+                    <button type="submit" class="btn-primary flex-1 focus-ring rounded-xl">Save Invitation<br><span class="text-xs font-normal opacity-90">Simpan Undangan</span></button>
+                    <button type="button" onclick="closeModal('createModal')" class="btn-secondary flex-1 focus-ring rounded-xl">Cancel<br><span class="text-xs font-normal">Batal</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Details Modal -->
+    <div id="viewModal" class="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="font-serif text-2xl font-bold">Invitation Details<br><span class="text-base font-normal text-gray-500">Butiran Undangan</span></h3>
+                <button onclick="closeModal('viewModal')" class="p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="Close modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div id="viewModalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // FIREBASE CONFIGURATION & INITIALIZATION
+        // ============================================
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7tzpevR9Rn5eGViZha4d_kg0qLx_lk10",
+            authDomain: "wedding-ddnn.firebaseapp.com",
+            projectId: "wedding-ddnn",
+            storageBucket: "wedding-ddnn.firebasestorage.app",
+            messagingSenderId: "506516335241",
+            appId: "1:506516335241:web:0990a112ddffbe38fa7458",
+            measurementId: "G-5V5QKDHJER"
+        };
+
+        let db = null;
+        let invitationsCollection = null;
+
+        try {
+            firebase.initializeApp(firebaseConfig);
+            db = firebase.firestore();
+            invitationsCollection = db.collection('invitations');
+            console.log('Firebase initialized successfully');
+        } catch (error) {
+            console.warn('Firebase initialization failed:', error.message);
+            console.log('Running in demo mode with local data');
+        }
+
+        // ============================================
+        // FIREBASE DATABASE WRAPPER (window.FireDB)
+        // ============================================
+
+        window.FireDB = {
+            async getAll() {
+                if (!db) return getLocalData();
+                try {
+                    const snapshot = await invitationsCollection.get();
+                    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                } catch (error) {
+                    console.error('getAll error:', error);
+                    return getLocalData();
+                }
+            },
+
+            async add(data) {
+                if (!db) return addLocalData(data);
+                try {
+                    const docRef = await invitationsCollection.add({
+                        ...data,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    return { id: docRef.id, ...data };
+                } catch (error) {
+                    console.error('add error:', error);
+                    return addLocalData(data);
+                }
+            },
+
+            async update(id, data) {
+                if (!db) return updateLocalData(id, data);
+                try {
+                    await invitationsCollection.doc(id).update({
+                        ...data,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    return true;
+                } catch (error) {
+                    console.error('update error:', error);
+                    return updateLocalData(id, data);
+                }
+            },
+
+            async remove(id) {
+                if (!db) return removeLocalData(id);
+                try {
+                    await invitationsCollection.doc(id).delete();
+                    return true;
+                } catch (error) {
+                    console.error('remove error:', error);
+                    return removeLocalData(id);
+                }
+            },
+
+            onSnapshot(callback) {
+                if (!db) {
+                    callback(getLocalData());
+                    return () => {};
+                }
+                
+                return invitationsCollection.onSnapshot(
+                    (snapshot) => {
+                        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                        callback(data);
+                    },
+                    (error) => {
+                        console.error('Snapshot listener error:', error);
+                        callback(getLocalData());
+                    }
+                );
+            }
+        };
+
+        // Local Storage Fallback
+        function getLocalData() {
+            const data = localStorage.getItem('wedding_invitations');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveLocalData(data) {
+            localStorage.setItem('wedding_invitations', JSON.stringify(data));
+        }
+
+        function addLocalData(data) {
+            const allData = getLocalData();
+            const newItem = { id: 'local_' + Date.now(), ...data, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+            allData.push(newItem);
+            saveLocalData(allData);
+            return newItem;
+        }
+
+        function updateLocalData(id, data) {
+            const allData = getLocalData();
+            const index = allData.findIndex(item => item.id === id);
+            if (index !== -1) {
+                allData[index] = { ...allData[index], ...data, updatedAt: new Date().toISOString() };
+                saveLocalData(allData);
+                return true;
+            }
+            return false;
+        }
+
+        function removeLocalData(id) {
+            const allData = getLocalData();
+            const filtered = allData.filter(item => item.id !== id);
+            saveLocalData(filtered);
+            return true;
+        }
+
+        // ============================================
+        // THEME MANAGEMENT
+        // ============================================
+
+        const themes = {
+            groom: { primary: '#800020', dark: '#5c0017', name: 'Burgundy' },
+            bride: { primary: '#426637', dark: '#2d4426', name: 'Sage Green' }
+        };
+
+        let currentTheme = 'groom';
+
+        function setTheme(themeName) {
+            if (!themes[themeName]) return;
+            
+            currentTheme = themeName;
+            const theme = themes[themeName];
+            
+            document.documentElement.style.setProperty('--primary-color', theme.primary);
+            document.documentElement.style.setProperty('--primary-dark', theme.dark);
+            
+            document.querySelectorAll('.theme-primary').forEach(el => el.style.backgroundColor = theme.primary);
+            document.querySelectorAll('.theme-primary-text').forEach(el => el.style.color = theme.primary);
+            document.querySelectorAll('.theme-border').forEach(el => el.style.borderColor = theme.primary);
+            document.querySelectorAll('.theme-glow').forEach(el => el.style.boxShadow = `0 0 30px ${theme.primary}4d`);
+            
+            document.querySelectorAll('.countdown-number').forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${theme.primary}, ${theme.dark})`;
+                el.style.webkitBackgroundClip = 'text';
+                el.style.backgroundClip = 'text';
+            });
+
+            console.log(`Theme switched to: ${theme.name}`);
+        }
+
+        document.getElementById('groomThemeBtn')?.addEventListener('click', () => setTheme('groom'));
+        document.getElementById('brideThemeBtn')?.addEventListener('click', () => setTheme('bride'));
+
+        // ============================================
+        // SECRET ADMIN ACCESS (3 Clicks on Logo)
+        // ============================================
+
+        let logoClickCount = 0;
+        let lastLogoClickTime = 0;
+        const ADMIN_CLICK_THRESHOLD = 3000; // 3 seconds window
+        const REQUIRED_CLICKS = 3;
+
+        document.getElementById('mainLogo')?.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default navigation
+            
+            const now = Date.now();
+            
+            // Reset counter if too much time passed
+            if (now - lastLogoClickTime > ADMIN_CLICK_THRESHOLD) {
+                logoClickCount = 1;
+            } else {
+                logoClickCount++;
+            }
+            
+            lastLogoClickTime = now;
+            
+            // Visual feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            if (logoClickCount >= REQUIRED_CLICKS) {
+                navigateTo('admin');
+                logoClickCount = 0;
+                // Optional: Show subtle notification
+                console.log('🔓 Admin mode activated via secret click sequence');
+            } else if (logoClickCount > 1) {
+                // Optional: Show hint near cursor or console
+                console.log(`Admin access: ${logoClickCount}/${REQUIRED_CLICKS} clicks`);
+            }
+        });
+
+        // ============================================
+        // ROUTING SYSTEM
+        // ============================================
+
+        let currentView = 'home';
+        let isAdminAuthenticated = false;
+
+        function navigateTo(view) {
+            // Hide all views
+            document.querySelectorAll('.route-view').forEach(v => v.classList.remove('active'));
+            
+            currentView = view;
+            
+            if (view === 'admin') {
+                document.getElementById('view-admin').classList.add('active');
+                if (!isAdminAuthenticated) {
+                    document.getElementById('adminLoginOverlay').classList.remove('hidden');
+                    document.getElementById('adminDashboard').classList.add('hidden');
+                } else {
+                    document.getElementById('adminLoginOverlay').classList.add('hidden');
+                    document.getElementById('adminDashboard').classList.remove('hidden');
+                }
+            } else if (view === 'rsvp') {
+                document.getElementById('view-rsvp').classList.add('active');
+                resetWizard();
+            } else {
+                document.getElementById('view-home').classList.add('active');
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.location.hash = view;
+        }
+
+        // Handle browser back/forward
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['home', 'rsvp', 'admin'].includes(hash)) {
+                navigateTo(hash);
+            }
+        });
+
+        // Initialize route from URL
+        if (window.location.hash) {
+            navigateTo(window.location.hash.replace('#', ''));
+        }
+
+        // Nav link handlers
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't intercept the main logo click here (handled separately for secret admin)
+                if (this.id === 'mainLogo') return;
+                
+                e.preventDefault();
+                const href = this.getAttribute('href').replace('#', '');
+                navigateTo(href || 'home');
+            });
+        });
+
+        // ============================================
+        // ADMIN AUTHENTICATION
+        // ============================================
+
+        const ADMIN_CREDENTIALS = {
+            email: 'danial@luviio.com',
+            password: 'ddnn'
+        };
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value.trim();
+            const password = document.getElementById('adminPassword').value;
+            const errorEl = document.getElementById('loginError');
+
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                isAdminAuthenticated = true;
+                sessionStorage.setItem('isAdminAuth', 'true');
+                document.getElementById('adminLoginOverlay').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                errorEl.classList.add('hidden');
+                loadInvitationsTable();
+            } else {
+                errorEl.textContent = 'Invalid credentials. Please try again.Kredensial tidak sah. Sila cuba lagi.';
+                errorEl.classList.remove('hidden');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function handleAdminLogout() {
+            isAdminAuthenticated = false;
+            sessionStorage.removeItem('isAdminAuth');
+            navigateTo('home');
+        }
+
+        // Check session on load
+        if (sessionStorage.getItem('isAdminAuth') === 'true') {
+            isAdminAuthenticated = true;
+        }
+
+        // ============================================
+        // CODE GENERATION (DD2027 / NN2027)
+        // ============================================
+
+        function generateInvitationCode(side, familyName) {
+            const prefix = side === 'groom' ? 'DD2027' : 'NN2027';
+            const namePart = familyName.replace(/[^a-zA-Z]/g, '').substring(0, 4).toUpperCase();
+            return `${prefix}${namePart}`;
+        }
+
+        function autoGenerateCode() {
+            const side = document.getElementById('modalSide').value;
+            const familyName = document.getElementById('modalFamilyName').value || 'FAMILY';
+            document.getElementById('modalInviteCode').value = generateInvitationCode(side, familyName);
+        }
+
+        function updateCodePreview() {
+            const side = document.getElementById('modalSide').value;
+            const familyName = document.getElementById('modalFamilyName').value;
+            if (familyName) {
+                document.getElementById('modalInviteCode').value = generateInvitationCode(side, familyName);
+            }
+        }
+
+        document.getElementById('modalFamilyName')?.addEventListener('input', updateCodePreview);
+
+        // ============================================
+        // COUNTDOWN TIMER
+        // ============================================
+
+        const WEDDING_DATE = new Date('2027-07-03T18:00:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = WEDDING_DATE - now;
+            
+            if (diff <= 0) {
+                document.getElementById('countDays').textContent = '00';
+                document.getElementById('countHours').textContent = '00';
+                document.getElementById('countMinutes').textContent = '00';
+                document.getElementById('countSeconds').textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('countDays').textContent = String(days).padStart(3, '0');
+            document.getElementById('countHours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('countMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('countSeconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // ============================================
+        // RSVP WIZARD LOGIC
+        // ============================================
+
+        let currentWizardStep = 1;
+        let wizardData = {
+            inviteCode: '',
+            familyName: '',
+            contact: '',
+            side: 'groom',
+            status: 'confirmed',
+            adults: 1,
+            kids: 0,
+            babies: 0,
+            quota: 8
+        };
+
+        function goToStep(step) {
+            // Validation before proceeding
+            if (step > currentWizardStep) {
+                if (!validateCurrentStep()) return;
+            }
+
+            // Hide current step
+            document.getElementById(`step${currentWizardStep}`).classList.remove('active');
+            document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.remove('active');
+            document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.add('completed');
+
+            // Show new step
+            currentWizardStep = step;
+            document.getElementById(`step${currentWizardStep}`).classList.add('active');
+            document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.add('active');
+
+            // Special handling for step 4 (review)
+            if (step === 4) populateSummary();
+            
+            window.scrollTo({ top: 200, behavior: 'smooth' });
+        }
+
+        function validateCurrentStep() {
+            switch(currentWizardStep) {
+                case 1:
+                    const code = document.getElementById('wizardInviteCode').value.trim().toUpperCase();
+                    if (!code) {
+                        showCodeError('Please enter an invitation code. Sila masukkan kod undangan.');
+                        return false;
+                    }
+                    return true;
+                case 2:
+                    const name = document.getElementById('wizardFamilyName').value.trim();
+                    const contact = document.getElementById('wizardContact').value.trim();
+                    if (!name) {
+                        alert('Please enter family name. Sila masukkan nama keluarga.');
+                        return false;
+                    }
+                    if (!contact) {
+                        alert('Please enter contact number.Sila masukkan nombor hubungi.');
+                        return false;
+                    }
+                    return true;
+                case 3:
+                    return true;
+                default:
+                    return true;
+            }
+        }
+
+        // Handle status change from card selection
+        function handleStatusChange(status) {
+            document.getElementById('wizardStatus').value = status;
+            wizardData.status = status;
+            
+            const guestSection = document.getElementById('guestCountSection');
+            if (status === 'declined') {
+                guestSection.style.opacity = '0.5';
+                guestSection.style.pointerEvents = 'none';
+                document.getElementById('wizardAdults').value = 0;
+                document.getElementById('wizardKids').value = 0;
+                document.getElementById('wizardBabies').value = 0;
+                calculateWizardTotal();
+            } else {
+                guestSection.style.opacity = '1';
+                guestSection.style.pointerEvents = 'auto';
+                if (parseInt(document.getElementById('wizardAdults').value) === 0) {
+                    document.getElementById('wizardAdults').value = 1;
+                }
+                calculateWizardTotal();
+            }
+        }
+
+        async function verifyInvitationCode() {
+            const codeInput = document.getElementById('wizardInviteCode');
+            const code = codeInput.value.trim().toUpperCase();
+            const resultDiv = document.getElementById('codeLookupResult');
+            
+            if (!code) {
+                showCodeError('Please enter an invitation code. Sila masukkan kod undangan.');
+                return;
+            }
+
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = '<div class="text-blue-600">Verifying code... / Menyemak kod...</div>';
+
+            const allData = await window.FireDB.getAll();
+            const invitation = allData.find(inv => inv.inviteCode?.toUpperCase() === code);
+
+            if (invitation) {
+                wizardData.inviteCode = code;
+                wizardData.quota = invitation.quota || 8;
+                wizardData.side = invitation.side || 'groom';
+                
+                // Pre-fill if exists
+                if (invitation.familyName) document.getElementById('wizardFamilyName').value = invitation.familyName;
+                if (invitation.contactNumber) document.getElementById('wizardContact').value = invitation.contactNumber;
+
+                // Update quota display immediately
+                updateQuotaDisplay();
+
+                resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-green-50 text-green-700 border border-green-200';
+                resultDiv.innerHTML = `
+                    <strong>✓ Code Found! / Kod Ditemui!</strong><br>
+                    Quota: ${wizardData.quota} guests / Kuasa: ${wizardData.quota} orang tetamu<br>
+                    Side: ${wizardData.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}<br>
+                    <button onclick="goToStep(2)" class="mt-2 btn-primary text-xs py-2 px-4 rounded-lg">Continue → / Teruskan →</button>
+                `;
+                
+                // Set side radio
+                setTimeout(() => {
+                    document.querySelector(`input[name="wizardSide"][value="${wizardData.side}"]`).checked = true;
+                    setTheme(wizardData.side);
+                }, 100);
+            } else {
+                // Allow new registration with this code format
+                wizardData.inviteCode = code;
+                
+                // Detect side from code prefix
+                if (code.startsWith('DD')) {
+                    wizardData.side = 'groom';
+                    document.querySelector(`input[name="wizardSide"][value="groom"]`).checked = true;
+                    setTheme('groom');
+                } else if (code.startsWith('NN')) {
+                    wizardData.side = 'bride';
+                    document.querySelector(`input[name="wizardSide"][value="bride"]`).checked = true;
+                    setTheme('bride');
+                }
+
+                // Default quota for new codes
+                wizardData.quota = 8;
+                updateQuotaDisplay();
+
+                resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-yellow-50 text-yellow-700 border border-yellow-200';
+                resultDiv.innerHTML = `
+                    <strong>New Registration / Pendaftaran Baharu</strong><br>
+                    No existing record found. You can proceed with new registration.<br>
+                    <span class="text-xs">Tiada rekod sedia ada. Anda boleh teruskan dengan pendaftaran baharu.</span><br>
+                    <button onclick="goToStep(2)" class="mt-2 btn-primary text-xs py-2 px-4 rounded-lg">Continue → / Teruskan →</button>
+                `;
+            }
+        }
+
+        function showCodeError(msg) {
+            const resultDiv = document.getElementById('codeLookupResult');
+            resultDiv.classList.remove('hidden');
+            resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-red-50 text-red-700 border border-red-200';
+            resultDiv.innerHTML = `<strong>Error:</strong> ${msg}`;
+        }
+
+        // Guest count calculation
+        const wizardAdultsInput = document.getElementById('wizardAdults');
+        const wizardKidsInput = document.getElementById('wizardKids');
+        const wizardBabiesInput = document.getElementById('wizardBabies');
+        const wizardTotalDisplay = document.getElementById('wizardTotalDisplay');
+
+        function calculateWizardTotal() {
+            const adults = parseInt(wizardAdultsInput.value) || 0;
+            const kids = parseInt(wizardKidsInput.value) || 0;
+            const babies = parseInt(wizardBabiesInput.value) || 0;
+            const total = adults + kids + babies;
+            wizardTotalDisplay.textContent = total;
+            
+            // Update quota display
+            updateQuotaDisplay(total);
+            
+            // Check quota warning
+            const quotaWarning = document.getElementById('quotaWarning');
+            if (total > wizardData.quota) {
+                quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota} guests<br><span class="text-[10px]">Melebihi kuasa ${wizardData.quota} orang tetamu</span>`;
+                quotaWarning.classList.remove('hidden');
+            } else {
+                quotaWarning.classList.add('hidden');
+            }
+        }
+
+        function updateQuotaDisplay(currentTotal) {
+            if (typeof currentTotal === 'undefined') {
+                const adults = parseInt(wizardAdultsInput.value) || 0;
+                const kids = parseInt(wizardKidsInput.value) || 0;
+                const babies = parseInt(wizardBabiesInput.value) || 0;
+                currentTotal = adults + kids + babies;
+            }
+            
+            const remaining = Math.max(0, wizardData.quota - currentTotal);
+            
+            document.getElementById('currentGuestCount').textContent = currentTotal;
+            document.getElementById('maxQuotaDisplay').textContent = wizardData.quota;
+            
+            const remainingText = document.getElementById('remainingQuotaText');
+            if (remaining <= 0) {
+                remainingText.textContent = 'Quota reached! / Kuasa penuh!';
+                remainingText.className = 'font-semibold text-red-600';
+            } else if (remaining <= 2) {
+                remainingText.textContent = `${remaining} seat(s) remaining / ${remaining} tempat tinggal`;
+                remainingText.className = 'font-semibold text-orange-600';
+            } else {
+                remainingText.textContent = `${remaining} seats remaining / ${remaining} tempat tinggal`;
+                remainingText.className = 'font-semibold text-green-600';
+            }
+        }
+
+        wizardAdultsInput.addEventListener('input', calculateWizardTotal);
+        wizardKidsInput.addEventListener('input', calculateWizardTotal);
+        wizardBabiesInput.addEventListener('input', calculateWizardTotal);
+
+        // Side selection changes theme
+        document.querySelectorAll('input[name="wizardSide"]').forEach(input => {
+            input.addEventListener('change', function() {
+                setTheme(this.value);
+                wizardData.side = this.value;
+            });
+        });
+
+        function populateSummary() {
+            wizardData.familyName = document.getElementById('wizardFamilyName').value.trim();
+            wizardData.contact = document.getElementById('wizardContact').value.trim();
+            wizardData.status = document.getElementById('wizardStatus').value;
+            wizardData.adults = parseInt(document.getElementById('wizardAdults').value) || 0;
+            wizardData.kids = parseInt(document.getElementById('wizardKids').value) || 0;
+            wizardData.babies = parseInt(document.getElementById('wizardBabies').value) || 0;
+            wizardData.totalGuests = wizardData.adults + wizardData.kids + wizardData.babies;
+
+            document.getElementById('summaryCode').textContent = wizardData.inviteCode;
+            document.getElementById('summaryFamily').textContent = wizardData.familyName;
+            document.getElementById('summaryContact').textContent = wizardData.contact;
+            document.getElementById('summarySide').textContent = wizardData.side === 'groom' ? "Groom's Side / Pihak Lelaki" : "Bride's Side / Pihak Perempuan";
+            document.getElementById('summaryStatus').textContent = wizardData.status === 'confirmed' ? 'Confirmed / Sah' : 'Declined / Tolak';
+            document.getElementById('summaryStatus').className = `status-badge ${wizardData.status === 'confirmed' ? 'status-confirmed' : 'status-pending'}`;
+            document.getElementById('summaryGuests').textContent = wizardData.totalGuests;
+        }
+
+        async function submitFinalRSVP() {
+            const btn = document.getElementById('submitFinalBtn');
+            btn.disabled = true;
+            btn.textContent = 'Submitting... / Menghantar...';
+
+            try {
+                const finalData = {
+                    inviteCode: wizardData.inviteCode,
+                    familyName: wizardData.familyName,
+                    contactNumber: wizardData.contact,
+                    side: wizardData.side,
+                    status: wizardData.status,
+                    adults: wizardData.adults,
+                    kids: wizardData.kids,
+                    babies: wizardData.babies,
+                    totalGuests: wizardData.totalGuests,
+                    quota: wizardData.quota,
+                    checkedIn: false,
+                    rsvpedAt: new Date().toISOString()
+                };
+
+                // Check if exists
+                const allData = await window.FireDB.getAll();
+                const existingIndex = allData.findIndex(inv => inv.inviteCode?.toUpperCase() === finalData.inviteCode);
+
+                if (existingIndex !== -1) {
+                    await window.FireDB.update(allData[existingIndex].id, finalData);
+                } else {
+                    await window.FireDB.add(finalData);
+                }
+
+                // Generate QR
+                generateQRCode(finalData);
+                
+                document.getElementById('qrSuccessArea').classList.remove('hidden');
+                btn.textContent = '✓ Submitted Successfully! ✓ Berjaya Dihantar!';
+                btn.classList.add('bg-green-600');
+                
+                // Refresh stats
+                loadInvitationsTable();
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Error submitting. Please try again. Ralat semakan. Sila cuba lagi.');
+                btn.disabled = false;
+                btn.textContent = 'Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>';
+            }
+        }
+
+        function resetWizard() {
+            currentWizardStep = 1;
+            wizardData = {
+                inviteCode: '', familyName: '', contact: '', side: 'groom',
+                status: 'confirmed', adults: 1, kids: 0, babies: 0, quota: 8
+            };
+            
+            // Reset UI
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            document.querySelectorAll('.step-dot').forEach(d => {
+                d.classList.remove('active', 'completed');
+            });
+            document.querySelector('.step-dot[data-step="1"]').classList.add('active');
+            
+            document.getElementById('wizardInviteCode').value = '';
+            document.getElementById('wizardFamilyName').value = '';
+            document.getElementById('wizardContact').value = '';
+            document.getElementById('wizardAdults').value = 1;
+            document.getElementById('wizardKids').value = 0;
+            document.getElementById('wizardBabies').value = 0;
+            
+            // Reset status cards
+            document.querySelectorAll('input[name="wizardStatusCard"]').forEach(radio => {
+                radio.checked = radio.value === 'confirmed';
+            });
+            document.getElementById('wizardStatus').value = 'confirmed';
+            
+            document.getElementById('codeLookupResult').classList.add('hidden');
+            document.getElementById('qrSuccessArea').classList.add('hidden');
+            document.getElementById('guestCountSection').style.opacity = '1';
+            document.getElementById('guestCountSection').style.pointerEvents = 'auto';
+            
+            const submitBtn = document.getElementById('submitFinalBtn');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>';
+            submitBtn.classList.remove('bg-green-600');
+            
+            calculateWizardTotal();
+            setTheme('groom');
+        }
+
+        // ============================================
+        // QR CODE GENERATION
+        // ============================================
+
+        function generateQRCode(data) {
+            const canvas = document.getElementById('qrCanvasFinal');
+            const qrColor = currentTheme === 'groom' ? '#800020' : '#426637';
+            
+            QRCode.toCanvas(canvas, JSON.stringify({
+                event: "Bella & Danial Wedding Reception",
+                date: "3 July 2027",
+                code: data.inviteCode,
+                family: data.familyName,
+                guests: data.totalGuests,
+                timestamp: new Date().toISOString()
+            }), {
+                width: 200,
+                margin: 2,
+                color: { dark: qrColor, light: '#ffffff' }
+            }, function(error) {
+                if (error) console.error(error);
+            });
+        }
+
+        // ============================================
+        // STATISTICS UPDATE
+        // ============================================
+
+        function updateStatistics(data) {
+            const MAX_CAPACITY = 500;
+            const MAX_PER_SIDE = 250;
+            
+            const confirmed = data.filter(inv => inv.status === 'confirmed');
+            const checkedIn = data.filter(inv => inv.checkedIn);
+            const groomSide = confirmed.filter(inv => inv.side === 'groom');
+            const brideSide = confirmed.filter(inv => inv.side === 'bride');
+            
+            const totalConfirmed = confirmed.reduce((sum, inv) => sum + (inv.totalGuests || 0), 0);
+            const totalCheckedIn = checkedIn.reduce((sum, inv) => sum + (inv.totalGuests || 0), 0);
+            const groomTotal = groomSide.reduce((sum, inv) => sum + (inv.totalGuests || 0), 0);
+            const brideTotal = brideSide.reduce((sum, inv) => sum + (inv.totalGuests || 0), 0);
+            
+            const groomAdults = groomSide.reduce((sum, inv) => sum + (inv.adults || 0), 0);
+            const groomKids = groomSide.reduce((sum, inv) => sum + (inv.kids || 0), 0);
+            const groomBabies = groomSide.reduce((sum, inv) => sum + (inv.babies || 0), 0);
+            const brideAdults = brideSide.reduce((sum, inv) => sum + (inv.adults || 0), 0);
+            const brideKids = brideSide.reduce((sum, inv) => sum + (inv.kids || 0), 0);
+            const brideBabies = brideSide.reduce((sum, inv) => sum + (inv.babies || 0), 0);
+            
+            animateValue('statTotalConfirmed', totalConfirmed);
+            animateValue('statRemaining', Math.max(0, MAX_CAPACITY - totalConfirmed));
+            animateValue('statGroomSide', groomTotal);
+            animateValue('statBrideSide', brideTotal);
+            animateValue('statsConfirmed', totalConfirmed);
+            animateValue('statsCheckedIn', totalCheckedIn);
+            animateValue('statsRemainingSeats', Math.max(0, MAX_CAPACITY - totalConfirmed));
+            
+            const overallPercent = Math.round((totalConfirmed / MAX_CAPACITY) * 100);
+            const checkinPercent = totalConfirmed > 0 ? Math.round((totalCheckedIn / totalConfirmed) * 100) : 0;
+            const groomPercent = Math.round((groomTotal / MAX_PER_SIDE) * 100);
+            const bridePercent = Math.round((brideTotal / MAX_PER_SIDE) * 100);
+            
+            document.getElementById('overallPercent').textContent = overallPercent + '%';
+            document.getElementById('checkinPercent').textContent = checkinPercent + '%';
+            document.getElementById('overallProgress').style.width = overallPercent + '%';
+            document.getElementById('checkinProgress').style.width = checkinPercent + '%';
+            document.getElementById('groomConfirmedNum').textContent = `${groomTotal} / ${MAX_PER_SIDE}`;
+            document.getElementById('brideConfirmedNum').textContent = `${brideTotal} / ${MAX_PER_SIDE}`;
+            document.getElementById('groomProgress').style.width = groomPercent + '%';
+            document.getElementById('brideProgress').style.width = bridePercent + '%';
+            document.getElementById('groomAdults').textContent = groomAdults;
+            document.getElementById('groomKids').textContent = groomKids;
+            document.getElementById('groomBabies').textContent = groomBabies;
+            document.getElementById('brideAdults').textContent = brideAdults;
+            document.getElementById('brideKids').textContent = brideKids;
+            document.getElementById('brideBabies').textContent = brideBabies;
+            document.getElementById('adminTotalInvitations').textContent = data.length;
+            document.getElementById('adminConfirmedCount').textContent = confirmed.length;
+            document.getElementById('adminCheckedInCount').textContent = checkedIn.length;
+            document.getElementById('adminDeclinedCount').textContent = data.filter(inv => inv.status === 'declined').length;
+        }
+
+        function animateValue(elementId, endValue) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            const startValue = parseInt(element.textContent) || 0;
+            const duration = 500;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                element.textContent = Math.round(startValue + (endValue - startValue) * progress);
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ============================================
+        // ADMIN DASHBOARD FUNCTIONS
+        // ============================================
+
+        let allInvitations = [];
+
+        async function loadInvitationsTable() {
+            allInvitations = await window.FireDB.getAll();
+            renderTable(allInvitations);
+            updateStatistics(allInvitations);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8 text-gray-500">No invitations found / Tiada undangan dijumpai</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = data.map(inv => `
+                <tr>
+                    <td><code class="text-xs bg-gray-100 px-2 py-1 rounded">${inv.inviteCode || '-'}</code></td>
+                    <td class="font-medium">${inv.familyName || '-'}</td>
+                    <td>
+                        <span class="inline-flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full ${inv.side === 'groom' ? 'bg-[#800020]' : 'bg-[#426637]'}"></span>
+                            ${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge ${
+                            inv.status === 'confirmed' ? 'status-confirmed' :
+                            inv.checkedIn ? 'status-checkedin' :
+                            inv.status === 'declined' ? 'status-pending' : 'status-pending'
+                        }">${inv.status || 'pending'}</span>
+                    </td>
+                    <td class="font-mono">${inv.totalGuests || 0}</td>
+                    <td>${inv.checkedIn ? '<span class="text-green-600 font-bold">Yes / Ya</span>' : '<span class="text-gray-400">No / Tidak</span>'}</td>
+                    <td>
+                        <div class="flex items-center gap-2">
+                            <button onclick="viewInvitation('${inv.id}')" class="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="View / Lihat">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </button>
+                            <button onclick="editInvitation('${inv.id}')" class="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Edit / Edit">
+                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
+                            <button onclick="deleteInvitation('${inv.id}', '${inv.familyName || ''}')" class="p-2 hover:bg-red-50 rounded-lg transition-colors" title="Delete / Padam">
+                                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function searchInvitations() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = allInvitations.filter(inv => 
+                (inv.familyName || '').toLowerCase().includes(query) ||
+                (inv.inviteCode || '').toLowerCase().includes(query)
+            );
+            renderTable(filtered);
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (modalId === 'createModal') {
+                document.getElementById('modalTitle').innerHTML = 'Create Invitation<br><span class="text-base font-normal text-gray-500">Cipta Undangan</span>';
+                document.getElementById('invitationForm').reset();
+                document.getElementById('editId').value = '';
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('invitationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const data = {
+                inviteCode: document.getElementById('modalInviteCode').value.trim().toUpperCase(),
+                familyName: document.getElementById('modalFamilyName').value.trim(),
+                contactNumber: document.getElementById('modalContact').value.trim(),
+                side: document.getElementById('modalSide').value,
+                quota: parseInt(document.getElementById('modalQuota').value) || 8,
+                status: 'pending',
+                checkedIn: false
+            };
+            
+            const editId = document.getElementById('editId').value;
+            if (editId) {
+                await window.FireDB.update(editId, data);
+            } else {
+                await window.FireDB.add(data);
+            }
+            
+            closeModal('createModal');
+            loadInvitationsTable();
+        });
+
+        async function viewInvitation(id) {
+            const allData = await window.FireDB.getAll();
+            const inv = allData.find(item => item.id === id);
+            if (!inv) return;
+            
+            document.getElementById('viewModalContent').innerHTML = `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div><span class="text-xs text-gray-500">Code / Kod</span><p class="font-mono font-bold">${inv.inviteCode || '-'}</p></div>
+                        <div><span class="text-xs text-gray-500">Family / Keluarga</span><p class="font-bold">${inv.familyName || '-'}</p></div>
+                        <div><span class="text-xs text-gray-500">Side / Pihak</span><p>${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</p></div>
+                        <div><span class="text-xs text-gray-500">Status</span><p class="status-badge ${inv.status === 'confirmed' ? 'status-confirmed' : 'status-pending'}">${inv.status || 'pending'}</p></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t">
+                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.adults || 0}</div><div class="text-xs text-gray-500">Adults / Dewasa</div></div>
+                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.kids || 0}</div><div class="text-xs text-gray-500">Kids / Kanak-kanak</div></div>
+                        <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.babies || 0}</div><div class="text-xs text-gray-500">Babies / Bayi</div></div>
+                    </div>
+                    <div class="pt-4 border-t"><span class="text-xs text-gray-500">Quota / Kuasa</span><p class="font-bold">${inv.quota || 8} guests maximum / maksimum orang tetamu</p></div>
+                    ${inv.checkedIn ? '<div class="mt-4 p-3 rounded-xl bg-green-50 text-green-700 text-sm font-medium">Checked In / Telah Daftar Masuk</div>' : ''}
+                </div>
+            `;
+            openModal('viewModal');
+        }
+
+        async function editInvitation(id) {
+            const allData = await window.FireDB.getAll();
+            const inv = allData.find(item => item.id === id);
+            if (!inv) return;
+            
+            document.getElementById('modalTitle').innerHTML = 'Edit Invitation<br><span class="text-base font-normal text-gray-500">Edit Undangan</span>';
+            document.getElementById('editId').value = id;
+            document.getElementById('modalInviteCode').value = inv.inviteCode || '';
+            document.getElementById('modalFamilyName').value = inv.familyName || '';
+            document.getElementById('modalContact').value = inv.contactNumber || '';
+            document.getElementById('modalSide').value = inv.side || 'groom';
+            document.getElementById('modalQuota').value = inv.quota || 8;
+            openModal('createModal');
+        }
+
+        async function deleteInvitation(id, name) {
+            if (!confirm(`Delete invitation for "${name}"?
+Padam undangan untuk "${name}"?`)) return;
+            await window.FireDB.remove(id);
+            loadInvitationsTable();
+        }
+
+        function exportData(format) {
+            const headers = ['Code', 'Family Name', 'Contact', 'Side', 'Status', 'Adults', 'Kids', 'Babies', 'Total', 'Checked In'];
+            const rows = allInvitations.map(inv => [
+                inv.inviteCode || '', inv.familyName || '', inv.contactNumber || '', inv.side || '',
+                inv.status || '', inv.adults || 0, inv.kids || 0, inv.babies || 0, inv.totalGuests || 0,
+                inv.checkedIn ? 'Yes' : 'No'
+            ]);
+            
+            let content = format === 'csv' 
+                ? [headers.join(','), ...rows.map(r => r.join(','))].join('')
+                : [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('');
+            
+            downloadFile(content, `wedding_invitations.${format === 'csv' ? 'csv' : 'xls'}`, format === 'csv' ? 'text/csv' : 'application/vnd.ms-excel');
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = filename; a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        async function performCheckIn() {
+            const code = document.getElementById('checkinInput').value.trim().toUpperCase();
+            const resultDiv = document.getElementById('checkinResult');
+            
+            if (!code) {
+                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm">Please enter an invitation code.<br>Sila masukkan kod undangan.</div>';
+                resultDiv.classList.remove('hidden'); return;
+            }
+            
+            const allData = await window.FireDB.getAll();
+            const invitation = allData.find(inv => inv.inviteCode?.toUpperCase() === code);
+            
+            if (!invitation) {
+                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-red-50 text-red-700 text-sm">Invitation not found.<br>Undangan tidak dijumpai.</div>';
+                resultDiv.classList.remove('hidden'); return;
+            }
+            
+            if (invitation.status !== 'confirmed') {
+                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm">This invitation has not been confirmed yet.<br>Undangan ini belum disahkan.</div>';
+                resultDiv.classList.remove('hidden'); return;
+            }
+            
+            if (invitation.checkedIn) {
+                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-blue-50 text-blue-700 text-sm"><strong>${invitation.familyName}</strong> was already checked in.<br><strong>${invitation.familyName}</strong> telah daftar masuk sebelum ini.</div>`;
+                resultDiv.classList.remove('hidden'); return;
+            }
+            
+            await window.FireDB.update(invitation.id, { checkedIn: true, checkinTime: new Date().toISOString() });
+            resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-green-50 text-green-700 text-sm"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) has been checked in successfully!<br><strong>${invitation.familyName}</strong> (${invitation.totalGuests} tetamu) telah berjaya daftar masuk!</div>`;
+            resultDiv.classList.remove('hidden');
+            document.getElementById('checkinInput').value = '';
+            loadInvitationsTable();
+        }
+
+        // ============================================
+        // MOBILE MENU & SCROLL REVEAL
+        // ============================================
+
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('open');
+            this.setAttribute('aria-expanded', menu.classList.contains('open'));
+        });
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+
+        setTheme('groom');
+        loadInvitationsTable();
+        
+        // Set up real-time listener if available
+        if (window.FireDB.onSnapshot) {
+            window.FireDB.onSnapshot((data) => {
+                allInvitations = data;
+                renderTable(data);
+                updateStatistics(data);
+            });
+        }
+
+        // Initialize wizard calculations
+        calculateWizardTotal();
+        
+        console.log('Wedding Reception System v2.1 Initialized');
+        console.log('Routes: #home | #rsvp | #admin');
+        console.log('Secret: Click "B & D" logo 3x for admin access');
+    </script>
+</body>
+</html>
