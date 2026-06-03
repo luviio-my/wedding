@@ -255,21 +255,21 @@
             text-transform: uppercase;
         }
 
-        /* Countdown Timer */
+        /* Countdown Timer - MOBILE OPTIMIZED */
         .countdown-item {
             background: linear-gradient(145deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            padding: 20px 16px;
-            min-width: 80px;
+            border-radius: 16px;
+            padding: 16px 12px;
+            min-width: 65px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
         }
 
         .countdown-number {
             font-family: 'Space Mono', monospace;
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 700;
             line-height: 1;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -279,19 +279,19 @@
         }
 
         .countdown-label {
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             color: #666;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         /* Color Swatch */
         .color-swatch {
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             cursor: pointer;
@@ -302,8 +302,8 @@
         /* QR Code Container */
         .qr-container {
             background: white;
-            padding: 24px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
@@ -369,7 +369,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -383,8 +383,8 @@
         .modal-content {
             background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
             backdrop-filter: blur(30px);
-            border-radius: 28px;
-            padding: 32px;
+            border-radius: 24px;
+            padding: 24px;
             max-width: 480px;
             width: 100%;
             max-height: 90vh;
@@ -403,26 +403,27 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
+            font-size: 13px;
         }
 
         .data-table th {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
-            padding: 14px 16px;
+            padding: 10px 12px;
             text-align: left;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .data-table th:first-child { border-radius: 12px 0 0 0; }
-        .data-table th:last-child { border-radius: 0 12px 0 0; }
+        .data-table th:first-child { border-radius: 10px 0 0 0; }
+        .data-table th:last-child { border-radius: 0 10px 0 0; }
 
         .data-table td {
-            padding: 14px 16px;
+            padding: 10px 12px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .data-table tr:hover td { background: rgba(128, 0, 32, 0.04); }
@@ -440,11 +441,11 @@
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
         ::-webkit-scrollbar-thumb { 
             background: linear-gradient(var(--primary-color), var(--primary-dark)); 
-            border-radius: 4px; 
+            border-radius: 3px; 
         }
 
         /* Decorative Elements */
@@ -459,9 +460,9 @@
 
         /* Check-in Status */
         .status-badge {
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 9999px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -495,13 +496,13 @@
         .step-indicator {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 32px;
+            gap: 6px;
+            margin-bottom: 24px;
         }
 
         .step-dot {
-            width: 48px;
-            height: 6px;
+            width: 40px;
+            height: 5px;
             border-radius: 99px;
             background: rgba(0,0,0,0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -510,7 +511,7 @@
 
         .step-dot.active {
             background: var(--primary-color);
-            width: 64px;
+            width: 56px;
             box-shadow: 0 4px 12px color-mix(in srgb, var(--primary-color) 40%, transparent);
         }
 
@@ -590,15 +591,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
         }
 
         .auth-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
             backdrop-filter: blur(30px);
-            border-radius: 32px;
-            padding: 48px;
-            max-width: 420px;
+            border-radius: 28px;
+            padding: 32px 24px;
+            max-width: 400px;
             width: 100%;
             box-shadow: 0 25px 80px rgba(128, 0, 32, 0.15);
             text-align: center;
@@ -606,20 +607,20 @@
 
         .auth-input {
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 1px;
         }
 
         /* Code Display */
         .code-display {
             font-family: 'Space Mono', monospace;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: var(--primary-color);
             background: linear-gradient(135deg, rgba(128,0,32,0.05) 0%, rgba(128,0,32,0.02) 100%);
-            padding: 16px 24px;
-            border-radius: 16px;
+            padding: 12px 16px;
+            border-radius: 12px;
             border: 2px dashed color-mix(in srgb, var(--primary-color) 30%, transparent);
             display: inline-block;
         }
@@ -635,10 +636,10 @@
 
         /* BM Subtitle Style */
         .bm-text {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #6b7280;
             display: block;
-            margin-top: 2px;
+            margin-top: 1px;
             font-style: italic;
         }
 
@@ -646,14 +647,14 @@
         .quota-display {
             background: linear-gradient(135deg, rgba(128,0,32,0.05) 0%, rgba(128,0,32,0.02) 100%);
             border: 1px solid color-mix(in srgb, var(--primary-color) 20%, transparent);
-            border-radius: 12px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
         }
 
         .quota-number {
             font-family: 'Space Mono', monospace;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
         }
@@ -673,18 +674,106 @@
         .warning-box {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 20px;
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 16px;
             animation: fadeInUp 0.5s ease;
         }
 
         .info-box {
             background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
             border: 2px solid #3b82f6;
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 20px;
+            border-radius: 14px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        /* ============================================ */
+        /* ADMIN-ONLY SECTIONS (Hidden from Public)    */
+        /* ============================================ */
+        
+        .admin-stats-only {
+            display: none !important;
+        }
+
+        body.is-admin .admin-stats-only {
+            display: block !important;
+        }
+
+        body.is-admin .admin-stats-only.flex {
+            display: flex !important;
+        }
+
+        body.is-admin .admin-stats-only.grid {
+            display: grid !important;
+        }
+
+        /* Mobile Specific Optimizations */
+        @media (max-width: 640px) {
+            .hero-title-main {
+                font-size: 2.5rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.8rem !important;
+            }
+            
+            .section-padding-mobile {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+            
+            .mobile-text-sm {
+                font-size: 0.85rem !important;
+            }
+            
+            .mobile-gap-2 {
+                gap: 0.5rem !important;
+            }
+            
+            .countdown-grid {
+                gap: 0.5rem !important;
+            }
+            
+            .stats-grid-mobile {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem !important;
+            }
+            
+            .glass-card-static {
+                padding: 1.5rem !important;
+            }
+            
+            .wizard-padding {
+                padding: 1.5rem !important;
+            }
+            
+            .modal-content {
+                padding: 1.25rem !important;
+                border-radius: 20px !important;
+                margin: 8px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-title-main {
+                font-size: 2rem !important;
+            }
+            
+            .countdown-item {
+                min-width: 55px !important;
+                padding: 10px 8px !important;
+            }
+            
+            .countdown-number {
+                font-size: 22px !important;
+            }
+            
+            .btn-primary, .btn-secondary {
+                padding: 12px 20px !important;
+                font-size: 13px !important;
+            }
         }
     </style>
 </head>
@@ -692,44 +781,42 @@
 
     <!-- Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
-        <nav class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
-            <div class="flex items-center justify-between h-[72px]">
-                <a href="#home" id="mainLogo" class="font-serif text-2xl font-bold focus-ring rounded-lg nav-link logo-secret" style="color: var(--primary-color);" title="Click 3x for Admin">
+        <nav class="max-w-[1440px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px]">
+            <div class="flex items-center justify-between h-[60px] md:h-[72px]">
+                <a href="#home" id="mainLogo" class="font-serif text-xl md:text-2xl font-bold focus-ring rounded-lg nav-link logo-secret" style="color: var(--primary-color);" title="Click 3x for Admin">
                     B & D
                 </a>
 
-                <div class="hidden md:flex items-center gap-8">
+                <div class="hidden md:flex items-center gap-6">
                     <a href="#home" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Home<br><span class="bm-text text-[10px]">Utama</span></a>
                     <a href="#rsvp" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">RSVP<br><span class="bm-text text-[10px]">Tempah</span></a>
-                    <a href="#stats" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Statistics<br><span class="bm-text text-[10px]">Statistik</span></a>
                     <a href="#dresscode" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Dress Code<br><span class="bm-text text-[10px]">Kod Pakaian</span></a>
                 </div>
 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <!-- Theme Switcher -->
-                    <div class="hidden sm:flex items-center gap-2 glass px-3 py-2 rounded-xl">
-                        <button id="groomThemeBtn" class="w-6 h-6 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Groom Theme / Tema Pengantin Lelaki"></button>
-                        <button id="brideThemeBtn" class="w-6 h-6 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Bride Theme / Tema Pengantin Perempuan"></button>
+                    <div class="hidden sm:flex items-center gap-2 glass px-2 py-1.5 rounded-xl">
+                        <button id="groomThemeBtn" class="w-5 h-5 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Groom Theme / Tema Pengantin Lelaki"></button>
+                        <button id="brideThemeBtn" class="w-5 h-5 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring transition-transform hover:scale-110" title="Bride Theme / Tema Pengantin Perempuan"></button>
                     </div>
                     
                     <button id="mobileMenuBtn" class="md:hidden p-2 glass rounded-xl focus-ring" aria-label="Toggle menu">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                     </button>
                 </div>
             </div>
 
-            <div id="mobileMenu" class="mobile-menu md:hidden pb-4">
-                <div class="flex flex-col gap-2 pt-4 border-t border-white/30 mt-2">
-                    <a href="#home" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Home / Utama</a>
-                    <a href="#rsvp" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">RSVP / Tempah</a>
-                    <a href="#stats" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Statistics / Statistik</a>
-                    <a href="#dresscode" class="py-3 px-4 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link">Dress Code / Kod Pakaian</a>
-                    <div class="flex items-center justify-center gap-3 pt-4 px-4">
-                        <span class="text-xs font-semibold">Theme / Tema:</span>
-                        <button onclick="setTheme('groom')" class="w-8 h-8 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring"></button>
-                        <button onclick="setTheme('bride')" class="w-8 h-8 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring"></button>
+            <div id="mobileMenu" class="mobile-menu md:hidden pb-3">
+                <div class="flex flex-col gap-1 pt-3 border-t border-white/30 mt-1">
+                    <a href="#home" class="py-2.5 px-3 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link text-sm">Home / Utama</a>
+                    <a href="#rsvp" class="py-2.5 px-3 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link text-sm">RSVP / Tempah</a>
+                    <a href="#dresscode" class="py-2.5 px-3 font-medium rounded-xl hover:bg-white/30 transition-colors nav-link text-sm">Dress Code / Kod Pakaian</a>
+                    <div class="flex items-center justify-center gap-3 pt-3 px-3">
+                        <span class="text-xs font-semibold">Theme:</span>
+                        <button onclick="setTheme('groom')" class="w-7 h-7 rounded-full bg-[#800020] border-2 border-white shadow-md focus-ring"></button>
+                        <button onclick="setTheme('bride')" class="w-7 h-7 rounded-full bg-[#426637] border-2 border-white shadow-md focus-ring"></button>
                     </div>
                 </div>
             </div>
@@ -740,147 +827,151 @@
         <!-- HOME VIEW -->
         <section id="view-home" class="route-view active">
             <!-- Hero Section -->
-            <section id="home" class="relative min-h-screen pt-[72px] overflow-hidden">
+            <section id="home" class="relative min-h-screen pt-[60px] md:pt-[72px] overflow-hidden">
                 <!-- Decorative Background -->
-                <div class="decorative-circle w-[600px] h-[600px] bg-[#800020] top-[-200px] right-[-150px]" style="background: var(--primary-color);" aria-hidden="true"></div>
-                <div class="decorative-circle w-[400px] h-[400px] bottom-[-100px] left-[-100px]" style="background: var(--primary-color); opacity: 0.2;" aria-hidden="true"></div>
+                <div class="decorative-circle w-[400px] h-[400px] bg-[#800020] top-[-150px] right-[-100px]" style="background: var(--primary-color);" aria-hidden="true"></div>
+                <div class="decorative-circle w-[300px] h-[300px] bottom-[-80px] left-[-80px]" style="background: var(--primary-color); opacity: 0.2;" aria-hidden="true"></div>
                 
-                <div class="relative max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
+                <div class="relative max-w-[1440px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-[40px] md:py-[60px] lg:py-[80px]">
                     <div class="max-w-[900px] mx-auto text-center relative z-10">
                         <!-- Badge -->
-                        <div class="hero-animate hero-delay-1 mb-6">
-                            <span class="badge">Wedding Reception<br><span class="text-[9px] normal-case tracking-normal opacity-80">Majlis Perkahwinan</span></span>
+                        <div class="hero-animate hero-delay-1 mb-4 md:mb-6">
+                            <span class="badge text-[10px]">Wedding Reception<br><span class="text-[8px] normal-case tracking-normal opacity-80">Majlis Perkahwinan</span></span>
                         </div>
 
-                        <!-- Names -->
-                        <h1 class="hero-animate hero-delay-2 font-serif text-[56px] md:text-[88px] lg:text-[100px] font-bold leading-[1.1] tracking-tight mb-4">
+                        <!-- Names - MOBILE OPTIMIZED -->
+                        <h1 class="hero-animate hero-delay-2 font-serif hero-title-main text-[36px] sm:text-[48px] md:text-[64px] lg:text-[80px] xl:text-[96px] font-bold leading-[1.1] tracking-tight mb-3 md:mb-4">
                             Bella
-                            <span class="block text-[40px] md:text-[56px] font-normal italic text-gray-500 my-2">&</span>
+                            <span class="block hero-subtitle text-[28px] sm:text-[36px] md:text-[48px] lg:text-[56px] font-normal italic text-gray-500 my-1.5 md:my-2">&</span>
                             Danial
                         </h1>
 
                         <!-- Date & Time -->
-                        <p class="hero-animate hero-delay-3 font-dm text-lg md:text-xl text-gray-600 mb-8">
+                        <p class="hero-animate hero-delay-3 font-dm text-base md:text-lg text-gray-600 mb-6 md:mb-8 px-2">
                             Majlis Sanding | 3 July 2027 | 6:00 PM – 11:00 PM
-                            <span class="bm-text">Majlis Bersanding | 3 Julai 2027 | 6:00 PTG – 11:00 MLM</span>
+                            <span class="bm-text text-[11px]">Majlis Bersanding | 3 Julai 2027 | 6:00 PTG – 11:00 MLM</span>
                         </p>
 
                         <!-- Venue -->
-                        <div class="hero-animate hero-delay-3 glass-card inline-block px-8 py-5 rounded-2xl mb-10">
-                            <p class="font-semibold text-lg" style="color: var(--primary-color);">Rumah Abang Jamil Prai</p>
-                            <p class="text-sm text-gray-600 mt-1">3344, Jalan Kampung Sungai Limau,<br>Kampung Seberang Sungai, 09600 Lunas, Kedah</p>
+                        <div class="hero-animate hero-delay-3 glass-card inline-block px-6 md:px-8 py-4 md:py-5 rounded-xl md:rounded-2xl mb-6 md:mb-10 max-w-[90%] md:max-w-none">
+                            <p class="font-semibold text-base md:text-lg" style="color: var(--primary-color);">Rumah Abang Jamil Prai</p>
+                            <p class="text-xs md:text-sm text-gray-600 mt-1 leading-relaxed">3344, Jalan Kampung Sungai Limau,<br>Kampung Seberang Sungai, 09600 Lunas, Kedah</p>
                         </div>
 
-                        <!-- Countdown Timer -->
-                        <div class="hero-animate hero-delay-4 flex justify-center gap-3 md:gap-5 mb-12">
+                        <!-- Countdown Timer - COMPACT ON MOBILE -->
+                        <div class="hero-animate hero-delay-4 flex justify-center countdown-grid gap-2 md:gap-5 mb-8 md:mb-12">
                             <div class="countdown-item">
                                 <div class="countdown-number" id="countDays">000</div>
-                                <div class="countdown-label">Days<br><span class="text-[9px] normal-case">Hari</span></div>
+                                <div class="countdown-label">Days<br><span class="text-[8px] normal-case">Hari</span></div>
                             </div>
                             <div class="countdown-item">
                                 <div class="countdown-number" id="countHours">00</div>
-                                <div class="countdown-label">Hours<br><span class="text-[9px] normal-case">Jam</span></div>
+                                <div class="countdown-label">Hours<br><span class="text-[8px] normal-case">Jam</span></div>
                             </div>
                             <div class="countdown-item">
                                 <div class="countdown-number" id="countMinutes">00</div>
-                                <div class="countdown-label">Minutes<br><span class="text-[9px] normal-case">Minit</span></div>
+                                <div class="countdown-label">Minutes<br><span class="text-[8px] normal-case">Minit</span></div>
                             </div>
                             <div class="countdown-item">
                                 <div class="countdown-number" id="countSeconds">00</div>
-                                <div class="countdown-label">Seconds<br><span class="text-[9px] normal-case">Saat</span></div>
+                                <div class="countdown-label">Seconds<br><span class="text-[8px] normal-case">Saat</span></div>
                             </div>
                         </div>
 
                         <!-- CTA Buttons -->
-                        <div class="hero-animate hero-delay-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <button onclick="navigateTo('rsvp')" class="btn-primary focus-ring rounded-2xl">View Your Seat Now<br><span class="text-xs font-normal opacity-90">View seat</span></button>
-                            <a href="#stats" class="btn-secondary focus-ring rounded-2xl">View Statistics<br><span class="text-xs font-normal opacity-90">Lihat Statistik</span></a>
+                        <div class="hero-animate hero-delay-4 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+                            <button onclick="navigateTo('rsvp')" class="btn-primary focus-ring rounded-xl md:rounded-2xl text-sm md:text-base w-full sm:w-auto">
+                                View Your Seat Now<br><span class="text-xs font-normal opacity-90">View seat</span>
+                            </button>
+                            <a href="#dresscode" class="btn-secondary focus-ring rounded-xl md:rounded-2xl text-sm md:text-base w-full sm:w-auto">
+                                Dress Code<br><span class="text-xs font-normal opacity-90">Kod Pakaian</span>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Live Stats Preview -->
-                    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[900px] mx-auto">
-                        <div class="glass-card p-5 text-center stat-pulse">
-                            <div class="font-mono text-3xl md:text-4xl font-bold" style="color: var(--primary-color);" id="statTotalConfirmed">0</div>
-                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Confirmed<br><span class="normal-case text-[10px]">Sah Hadir</span></div>
+                    <!-- LIVE STATS PREVIEW - ADMIN ONLY (Hidden from Public) -->
+                    <div class="mt-12 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-[900px] mx-auto admin-stats-only">
+                        <div class="glass-card p-4 md:p-5 text-center stat-pulse">
+                            <div class="font-mono text-2xl md:text-3xl lg:text-4xl font-bold" style="color: var(--primary-color);" id="statTotalConfirmed">0</div>
+                            <div class="text-[10px] md:text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Confirmed<br><span class="normal-case text-[9px]">Sah Hadir</span></div>
                         </div>
-                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.2s;">
-                            <div class="font-mono text-3xl md:text-4xl font-bold" style="color: var(--primary-color);" id="statRemaining">500</div>
-                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Remaining<br><span class="normal-case text-[10px]">Baki</span></div>
+                        <div class="glass-card p-4 md:p-5 text-center stat-pulse" style="animation-delay: 0.2s;">
+                            <div class="font-mono text-2xl md:text-3xl lg:text-4xl font-bold" style="color: var(--primary-color);" id="statRemaining">500</div>
+                            <div class="text-[10px] md:text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Remaining<br><span class="normal-case text-[9px]">Baki</span></div>
                         </div>
-                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.4s;">
-                            <div class="font-mono text-3xl md:text-4xl font-bold text-green-700" id="statGroomSide">0</div>
-                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Groom Side<br><span class="normal-case text-[10px]">Pihak Pengantin Lelaki</span></div>
+                        <div class="glass-card p-4 md:p-5 text-center stat-pulse" style="animation-delay: 0.4s;">
+                            <div class="font-mono text-2xl md:text-3xl lg:text-4xl font-bold text-green-700" id="statGroomSide">0</div>
+                            <div class="text-[10px] md:text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Groom Side<br><span class="normal-case text-[9px]">Pihak Lelaki</span></div>
                         </div>
-                        <div class="glass-card p-5 text-center stat-pulse" style="animation-delay: 0.6s;">
-                            <div class="font-mono text-3xl md:text-4xl font-bold text-emerald-700" id="statBrideSide">0</div>
-                            <div class="text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Bride Side<br><span class="normal-case text-[10px]">Pihak Pengantin Perempuan</span></div>
+                        <div class="glass-card p-4 md:p-5 text-center stat-pulse" style="animation-delay: 0.6s;">
+                            <div class="font-mono text-2xl md:text-3xl lg:text-4xl font-bold text-emerald-700" id="statBrideSide">0</div>
+                            <div class="text-[10px] md:text-xs font-semibold text-gray-500 mt-1 uppercase tracking-wide">Bride Side<br><span class="normal-case text-[9px]">Pihak Perempuan</span></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Statistics Section (Visible on Home) -->
-            <section id="stats" class="py-[80px] md:py-[120px]" style="background: linear-gradient(180deg, transparent 0%, rgba(128,0,32,0.03) 50%, transparent 100%);">
-                <div class="max-w-[1400px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
-                    <div class="text-center mb-12 reveal">
-                        <span class="badge mb-4 inline-block">Live Statistics<br><span class="text-[9px] normal-case opacity-80">Statistik Langsung</span></span>
-                        <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+            <!-- FULL STATISTICS SECTION - ADMIN ONLY (Hidden from Public) -->
+            <section id="stats" class="py-[60px] md:py-[120px] admin-stats-only" style="background: linear-gradient(180deg, transparent 0%, rgba(128,0,32,0.03) 50%, transparent 100%);">
+                <div class="max-w-[1400px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px]">
+                    <div class="text-center mb-8 md:mb-12 reveal">
+                        <span class="badge mb-3 md:mb-4 inline-block text-[10px]">Live Statistics<br><span class="text-[8px] normal-case opacity-80">Statistik Langsung</span></span>
+                        <h2 class="font-serif text-[28px] md:text-[40px] lg:text-[56px] font-bold leading-tight mb-3 md:mb-4">
                             Attendance Overview<br>
-                            <span class="text-2xl md:text-3xl font-normal text-gray-500">Gambaran Kehadiran</span>
+                            <span class="text-lg md:text-2xl lg:text-3xl font-normal text-gray-500">Gambaran Kehadiran</span>
                         </h2>
-                        <p class="text-lg text-gray-600">Real-time guest statistics updated automatically<br><span class="text-sm">Statistik tetamu dikemaskini secara automatik</span></p>
+                        <p class="text-base md:text-lg text-gray-600">Real-time guest statistics updated automatically<br><span class="text-xs md:text-sm">Statistik tetamu dikemaskini secara automatik</span></p>
                     </div>
 
                     <!-- Main Stats Grid -->
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
-                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-1">
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Total Capacity<br><span class="normal-case text-[10px]">Kapasiti Jumlah</span></div>
-                            <div class="font-mono text-4xl md:text-5xl font-bold" style="color: var(--primary-color);">500</div>
-                            <div class="text-xs text-gray-400 mt-1">Maximum Pax<br><span class="normal-case">Maksimum Orang</span></div>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
+                        <div class="glass-card p-4 md:p-6 lg:p-8 text-center reveal stagger-1">
+                            <div class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Total Capacity<br><span class="normal-case text-[9px] md:text-[10px]">Kapasiti Jumlah</span></div>
+                            <div class="font-mono text-3xl md:text-4xl lg:text-5xl font-bold" style="color: var(--primary-color);">500</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">Maximum Pax<br><span class="normal-case">Maksimum Orang</span></div>
                         </div>
-                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-2">
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Confirmed Guests<br><span class="normal-case text-[10px]">Tetamu Sah</span></div>
-                            <div class="font-mono text-4xl md:text-5xl font-bold" style="color: var(--primary-color);" id="statsConfirmed">0</div>
-                            <div class="text-xs text-gray-400 mt-1">RSVP Confirmed<br><span class="normal-case">RSVP Disahkan</span></div>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 text-center reveal stagger-2">
+                            <div class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Confirmed Guests<br><span class="normal-case text-[9px] md:text-[10px]">Tetamu Sah</span></div>
+                            <div class="font-mono text-3xl md:text-4xl lg:text-5xl font-bold" style="color: var(--primary-color);" id="statsConfirmed">0</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">RSVP Confirmed<br><span class="normal-case">RSVP Disahkan</span></div>
                         </div>
-                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-3">
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Checked In<br><span class="normal-case text-[10px]">Daftar Masuk</span></div>
-                            <div class="font-mono text-4xl md:text-5xl font-bold text-blue-600" id="statsCheckedIn">0</div>
-                            <div class="text-xs text-gray-400 mt-1">Arrived<br><span class="normal-case">Tiba</span></div>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 text-center reveal stagger-3">
+                            <div class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Checked In<br><span class="normal-case text-[9px] md:text-[10px]">Daftar Masuk</span></div>
+                            <div class="font-mono text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600" id="statsCheckedIn">0</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">Arrived<br><span class="normal-case">Tiba</span></div>
                         </div>
-                        <div class="glass-card p-6 md:p-8 text-center reveal stagger-4">
-                            <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Remaining Seats<br><span class="normal-case text-[10px]">Baki Tempat</span></div>
-                            <div class="font-mono text-4xl md:text-5xl font-bold text-green-600" id="statsRemainingSeats">500</div>
-                            <div class="text-xs text-gray-400 mt-1">Available<br><span class="normal-case">Tersedia</span></div>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 text-center reveal stagger-4">
+                            <div class="text-xs md:text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Remaining Seats<br><span class="normal-case text-[9px] md:text-[10px]">Baki Tempat</span></div>
+                            <div class="font-mono text-3xl md:text-4xl lg:text-5xl font-bold text-green-600" id="statsRemainingSeats">500</div>
+                            <div class="text-[10px] md:text-xs text-gray-400 mt-1">Available<br><span class="normal-case">Tersedia</span></div>
                         </div>
                     </div>
 
                     <!-- Progress Bars -->
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="glass-card p-6 md:p-8 reveal stagger-5">
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="font-bold">Overall Capacity<br><span class="text-xs font-normal text-gray-500">Kapasiti Keseluruhan</span></span>
-                                <span class="font-mono font-bold" style="color: var(--primary-color);" id="overallPercent">0%</span>
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                        <div class="glass-card p-4 md:p-6 lg:p-8 reveal stagger-5">
+                            <div class="flex justify-between items-center mb-2 md:mb-3">
+                                <span class="font-bold text-sm md:text-base">Overall Capacity<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Kapasiti Keseluruhan</span></span>
+                                <span class="font-mono font-bold text-sm md:text-base" style="color: var(--primary-color);" id="overallPercent">0%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" id="overallProgress" style="width: 0%;"></div>
                             </div>
-                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                            <div class="flex justify-between text-[10px] md:text-xs text-gray-500 mt-2">
                                 <span>0</span>
                                 <span>500 pax</span>
                             </div>
                         </div>
 
-                        <div class="glass-card p-6 md:p-8 reveal stagger-6">
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="font-bold">Check-in Rate<br><span class="text-xs font-normal text-gray-500">Kadar Daftar Masuk</span></span>
-                                <span class="font-mono font-bold text-blue-600" id="checkinPercent">0%</span>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 reveal stagger-6">
+                            <div class="flex justify-between items-center mb-2 md:mb-3">
+                                <span class="font-bold text-sm md:text-base">Check-in Rate<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Kadar Daftar Masuk</span></span>
+                                <span class="font-mono font-bold text-sm md:text-base text-blue-600" id="checkinPercent">0%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" id="checkinProgress" style="width: 0%; background: linear-gradient(90deg, #2563eb, #60a5fa);"></div>
                             </div>
-                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                            <div class="flex justify-between text-[10px] md:text-xs text-gray-500 mt-2">
                                 <span>0 checked in</span>
                                 <span>of confirmed</span>
                             </div>
@@ -888,21 +979,21 @@
                     </div>
 
                     <!-- Side Breakdown -->
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
                         <!-- Groom Side -->
-                        <div class="glass-card p-6 md:p-8 reveal">
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="w-12 h-12 rounded-xl bg-[#800020] flex items-center justify-center text-white font-bold text-lg shadow-lg">G</div>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 reveal">
+                            <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#800020] flex items-center justify-center text-white font-bold text-sm md:text-lg shadow-lg">G</div>
                                 <div>
-                                    <h3 class="font-bold text-lg">Groom Side<br><span class="text-sm font-normal text-gray-500">Pihak Pengantin Lelaki</span></h3>
-                                    <p class="text-sm text-gray-500">Maximum: 250 pax<br><span class="text-xs">Maksimum: 250 orang</span></p>
+                                    <h3 class="font-bold text-base md:text-lg">Groom Side<br><span class="text-xs md:text-sm font-normal text-gray-500">Pihak Pengantin Lelaki</span></h3>
+                                    <p class="text-[10px] md:text-sm text-gray-500">Maximum: 250 pax<br><span class="text-[9px]">Maksimum: 250 orang</span></p>
                                 </div>
                             </div>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-3 md:space-y-4">
                                 <div>
-                                    <div class="flex justify-between text-sm mb-1">
-                                        <span class="text-gray-600">Confirmed<br><span class="text-[10px]">Disahkan</span></span>
+                                    <div class="flex justify-between text-xs md:text-sm mb-1">
+                                        <span class="text-gray-600">Confirmed<br><span class="text-[9px]">Disahkan</span></span>
                                         <span class="font-mono font-bold" id="groomConfirmedNum">0 / 250</span>
                                     </div>
                                     <div class="progress-bar">
@@ -910,37 +1001,37 @@
                                     </div>
                                 </div>
                                 
-                                <div class="grid grid-cols-3 gap-3 pt-4">
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomAdults">0</div>
-                                        <div class="text-xs text-gray-500">Adults<br><span class="text-[9px]">Dewasa</span></div>
+                                <div class="grid grid-cols-3 gap-2 md:gap-3 pt-3 md:pt-4">
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="groomAdults">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Adults<br><span class="text-[8px]">Dewasa</span></div>
                                     </div>
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomKids">0</div>
-                                        <div class="text-xs text-gray-500">Kids<br><span class="text-[9px]">Kanak-kanak</span></div>
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="groomKids">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Kids<br><span class="text-[8px]">Kanak-kanak</span></div>
                                     </div>
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="groomBabies">0</div>
-                                        <div class="text-xs text-gray-500">Babies<br><span class="text-[9px]">Bayi</span></div>
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="groomBabies">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Babies<br><span class="text-[8px]">Bayi</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Bride Side -->
-                        <div class="glass-card p-6 md:p-8 reveal">
-                            <div class="flex items-center gap-3 mb-6">
-                                <div class="w-12 h-12 rounded-xl bg-[#426637] flex items-center justify-center text-white font-bold text-lg shadow-lg">B</div>
+                        <div class="glass-card p-4 md:p-6 lg:p-8 reveal">
+                            <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                                <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#426637] flex items-center justify-center text-white font-bold text-sm md:text-lg shadow-lg">B</div>
                                 <div>
-                                    <h3 class="font-bold text-lg">Bride Side<br><span class="text-sm font-normal text-gray-500">Pihak Pengantin Perempuan</span></h3>
-                                    <p class="text-sm text-gray-500">Maximum: 250 pax<br><span class="text-xs">Maksimum: 250 orang</span></p>
+                                    <h3 class="font-bold text-base md:text-lg">Bride Side<br><span class="text-xs md:text-sm font-normal text-gray-500">Pihak Pengantin Perempuan</span></h3>
+                                    <p class="text-[10px] md:text-sm text-gray-500">Maximum: 250 pax<br><span class="text-[9px]">Maksimum: 250 orang</span></p>
                                 </div>
                             </div>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-3 md:space-y-4">
                                 <div>
-                                    <div class="flex justify-between text-sm mb-1">
-                                        <span class="text-gray-600">Confirmed<br><span class="text-[10px]">Disahkan</span></span>
+                                    <div class="flex justify-between text-xs md:text-sm mb-1">
+                                        <span class="text-gray-600">Confirmed<br><span class="text-[9px]">Disahkan</span></span>
                                         <span class="font-mono font-bold" id="brideConfirmedNum">0 / 250</span>
                                     </div>
                                     <div class="progress-bar">
@@ -948,18 +1039,18 @@
                                     </div>
                                 </div>
                                 
-                                <div class="grid grid-cols-3 gap-3 pt-4">
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideAdults">0</div>
-                                        <div class="text-xs text-gray-500">Adults<br><span class="text-[9px]">Dewasa</span></div>
+                                <div class="grid grid-cols-3 gap-2 md:gap-3 pt-3 md:pt-4">
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="brideAdults">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Adults<br><span class="text-[8px]">Dewasa</span></div>
                                     </div>
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideKids">0</div>
-                                        <div class="text-xs text-gray-500">Kids<br><span class="text-[9px]">Kanak-kanak</span></div>
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="brideKids">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Kids<br><span class="text-[8px]">Kanak-kanak</span></div>
                                     </div>
-                                    <div class="text-center p-3 rounded-xl bg-white/50">
-                                        <div class="font-mono text-xl font-bold text-gray-800" id="brideBabies">0</div>
-                                        <div class="text-xs text-gray-500">Babies<br><span class="text-[9px]">Bayi</span></div>
+                                    <div class="text-center p-2 md:p-3 rounded-xl bg-white/50">
+                                        <div class="font-mono text-lg md:text-xl font-bold text-gray-800" id="brideBabies">0</div>
+                                        <div class="text-[9px] md:text-xs text-gray-500">Babies<br><span class="text-[8px]">Bayi</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -969,74 +1060,74 @@
             </section>
 
             <!-- Dress Code Section -->
-            <section id="dresscode" class="py-[80px] md:py-[120px]">
-                <div class="max-w-[1200px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px]">
-                    <div class="text-center mb-12 reveal">
-                        <span class="badge mb-4 inline-block">Attire Guide<br><span class="text-[9px] normal-case opacity-80">Panduan Berpakaian</span></span>
-                        <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+            <section id="dresscode" class="py-[60px] md:py-[120px]">
+                <div class="max-w-[1200px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px]">
+                    <div class="text-center mb-8 md:mb-12 reveal">
+                        <span class="badge mb-3 md:mb-4 inline-block text-[10px]">Attire Guide<br><span class="text-[8px] normal-case opacity-80">Panduan Berpakaian</span></span>
+                        <h2 class="font-serif text-[28px] md:text-[40px] lg:text-[56px] font-bold leading-tight mb-3 md:mb-4">
                             Dress Code & Mood Board<br>
-                            <span class="text-2xl md:text-3xl font-normal text-gray-500">Kod Pakaian & Papan Warna</span>
+                            <span class="text-lg md:text-2xl lg:text-3xl font-normal text-gray-500">Kod Pakaian & Papan Warna</span>
                         </h2>
-                        <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
+                        <p class="text-base md:text-lg text-gray-600 max-w-[600px] mx-auto px-4">
                             We kindly request our guests to dress in harmony with our wedding color palette.<br>
-                            <span class="text-sm">Kami memohon tetamu kami berpakaian selaras dengan palet warna perkahwinan kami.</span>
+                            <span class="text-xs md:text-sm">Kami memohon tetamu kami berpakaian selaras dengan palet warna perkahwinan kami.</span>
                         </p>
                     </div>
 
-                    <div class="glass-card p-8 md:p-12 reveal">
-                        <h3 class="font-bold text-xl mb-6 text-center">Color Palette<br><span class="text-sm font-normal text-gray-500">Palet Warna</span></h3>
+                    <div class="glass-card p-6 md:p-8 lg:p-12 reveal">
+                        <h3 class="font-bold text-lg md:text-xl mb-4 md:mb-6 text-center">Color Palette<br><span class="text-sm font-normal text-gray-500">Palet Warna</span></h3>
                         
-                        <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-10">
+                        <div class="flex flex-wrap justify-center gap-3 md:gap-6 mb-8 md:mb-10">
                             <div class="text-center">
-                                <div class="color-swatch bg-[#FDF8F3] border-2 border-gray-200" title="Cream"></div>
-                                <p class="text-xs font-semibold mt-2">Cream<br><span class="text-[10px] text-gray-400">Krim</span></p>
-                                <p class="text-xs text-gray-400">#FDF8F3</p>
+                                <div class="color-swatch bg-[#FDF8F3] border-2 border-gray-200 mx-auto" title="Cream"></div>
+                                <p class="text-[10px] md:text-xs font-semibold mt-2">Cream<br><span class="text-[9px] text-gray-400">Krim</span></p>
+                                <p class="text-[10px] text-gray-400">#FDF8F3</p>
                             </div>
                             <div class="text-center">
-                                <div class="color-swatch bg-[#E8DCC8]" title="Beige"></div>
-                                <p class="text-xs font-semibold mt-2">Beige<br><span class="text-[10px] text-gray-400">Beige</span></p>
-                                <p class="text-xs text-gray-400">#E8DCC8</p>
+                                <div class="color-swatch bg-[#E8DCC8] mx-auto" title="Beige"></div>
+                                <p class="text-[10px] md:text-xs font-semibold mt-2">Beige<br><span class="text-[9px] text-gray-400">Beige</span></p>
+                                <p class="text-[10px] text-gray-400">#E8DCC8</p>
                             </div>
                             <div class="text-center">
-                                <div class="color-swatch bg-[#426637]" title="Sage Green"></div>
-                                <p class="text-xs font-semibold mt-2">Sage Green<br><span class="text-[10px] text-gray-400">Hijau Sage</span></p>
-                                <p class="text-xs text-gray-400">#426637</p>
+                                <div class="color-swatch bg-[#426637] mx-auto" title="Sage Green"></div>
+                                <p class="text-[10px] md:text-xs font-semibold mt-2">Sage Green<br><span class="text-[9px] text-gray-400">Hijau Sage</span></p>
+                                <p class="text-[10px] text-gray-400">#426637</p>
                             </div>
                             <div class="text-center">
-                                <div class="color-swatch bg-[#800020]" title="Burgundy"></div>
-                                <p class="text-xs font-semibold mt-2">Burgundy<br><span class="text-[10px] text-gray-400">Marun</span></p>
-                                <p class="text-xs text-gray-400">#800020</p>
+                                <div class="color-swatch bg-[#800020] mx-auto" title="Burgundy"></div>
+                                <p class="text-[10px] md:text-xs font-semibold mt-2">Burgundy<br><span class="text-[9px] text-gray-400">Marun</span></p>
+                                <p class="text-[10px] text-gray-400">#800020</p>
                             </div>
                             <div class="text-center">
-                                <div class="color-swatch bg-[#D4AF37]" title="Champagne Gold"></div>
-                                <p class="text-xs font-semibold mt-2">Gold<br><span class="text-[10px] text-gray-400">Emas</span></p>
-                                <p class="text-xs text-gray-400">#D4AF37</p>
+                                <div class="color-swatch bg-[#D4AF37] mx-auto" title="Champagne Gold"></div>
+                                <p class="text-[10px] md:text-xs font-semibold mt-2">Gold<br><span class="text-[9px] text-gray-400">Emas</span></p>
+                                <p class="text-[10px] text-gray-400">#D4AF37</p>
                             </div>
                         </div>
 
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="p-6 rounded-2xl bg-white/40">
-                                <h4 class="font-bold mb-3 flex items-center gap-2">
-                                    <svg class="w-5 h-5" style="color: var(--primary-color);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                    Recommended Attire<br><span class="text-xs font-normal text-gray-500">Pakaian Dicadangkan</span>
+                        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                            <div class="p-4 md:p-6 rounded-xl md:rounded-2xl bg-white/40">
+                                <h4 class="font-bold text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5" style="color: var(--primary-color);" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                    Recommended Attire<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Pakaian Dicadangkan</span>
                                 </h4>
-                                <ul class="space-y-2 text-sm text-gray-600">
-                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Formal or Semi-formal wear<br><span class="text-xs">Formal atau separa formal</span></li>
-                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Traditional Malay attire encouraged (Baju Melayu/Kebaya)<br><span class="text-xs">Pakaian tradisional Melayu digalakkan</span></li>
-                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Colors from the palette above preferred<br><span class="text-xs">Warna dari palet di atas digalakkan</span></li>
-                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Modest and elegant dressing<br><span class="text-xs">Berpakaian sopan dan elegan</span></li>
+                                <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Formal or Semi-formal wear<br><span class="text-[10px]">Formal atau separa formal</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Traditional Malay attire encouraged<br><span class="text-[10px]">Pakaian tradisional Melayu digalakkan</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Colors from palette above preferred<br><span class="text-[10px]">Warna dari palet di atas digalakkan</span></li>
+                                    <li class="flex items-start gap-2"><span style="color: var(--primary-color);">•</span> Modest and elegant dressing<br><span class="text-[10px]">Berpakaian sopan dan elegan</span></li>
                                 </ul>
                             </div>
-                            <div class="p-6 rounded-2xl bg-white/40">
-                                <h4 class="font-bold mb-3 flex items-center gap-2">
-                                    <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg>
-                                    Please Avoid<br><span class="text-xs font-normal text-gray-500">Sila Elakkan</span>
+                            <div class="p-4 md:p-6 rounded-xl md:rounded-2xl bg-white/40">
+                                <h4 class="font-bold text-sm md:text-base mb-2 md:mb-3 flex items-center gap-2">
+                                    <svg class="w-4 h-4 md:w-5 md:h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/></svg>
+                                    Please Avoid<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Sila Elakkan</span>
                                 </h4>
-                                <ul class="space-y-2 text-sm text-gray-600">
-                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> White clothing (reserved for bride)<br><span class="text-xs">Pakaian putih (dikhaskan untuk pengantin perempuan)</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Excessively casual wear (slippers, shorts)<br><span class="text-xs">Pakaian terlalu kasual (selipar, seluar pendek)</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Neon or overly bright colors<br><span class="text-xs">Warna neon atau terlalu terang</span></li>
-                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Revealing or inappropriate outfits<br><span class="text-xs">Pakaian yang mendedahkan atau tidak sesuai</span></li>
+                                <ul class="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> White clothing (reserved for bride)<br><span class="text-[10px]">Pakaian putih (dikhaskan untuk pengantin)</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Excessively casual wear<br><span class="text-[10px]">Pakaian terlalu kasual</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Neon or overly bright colors<br><span class="text-[10px]">Warna neon atau terlalu terang</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-red-500">•</span> Revealing or inappropriate outfits<br><span class="text-[10px]">Pakaian yang tidak sesuai</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -1046,30 +1137,30 @@
         </section>
 
         <!-- RSVP VIEW (Step-by-Step Wizard) -->
-        <section id="view-rsvp" class="route-view pt-[72px] min-h-screen">
-            <div class="max-w-[1200px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
+        <section id="view-rsvp" class="route-view pt-[60px] md:pt-[72px] min-h-screen">
+            <div class="max-w-[1200px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-[40px] md:py-[60px] lg:py-[100px]">
                 
                 <!-- Header -->
-                <div class="text-center mb-12">
-                    <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 mb-6 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        Back to Home<br><span class="text-xs">Kembali ke Utama</span>
+                <div class="text-center mb-8 md:mb-12">
+                    <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-xs md:text-sm font-medium text-gray-500 hover:text-gray-800 mb-4 md:mb-6 transition-colors">
+                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                        Back to Home<br><span class="text-[10px]">Kembali ke Utama</span>
                     </button>
-                    <span class="badge mb-4 inline-block">Reservation<br><span class="text-[9px] normal-case opacity-80">Tempahan</span></span>
-                    <h2 class="font-serif text-[40px] md:text-[56px] font-bold leading-tight mb-4">
+                    <span class="badge mb-3 md:mb-4 inline-block text-[10px]">Reservation<br><span class="text-[8px] normal-case opacity-80">Tempahan</span></span>
+                    <h2 class="font-serif text-[28px] md:text-[40px] lg:text-[56px] font-bold leading-tight mb-3 md:mb-4">
                         Reserve Your Seat<br>
-                        <span class="text-2xl md:text-3xl font-normal text-gray-500">Tempah Tempat Duduk Anda</span>
+                        <span class="text-lg md:text-2xl lg:text-3xl font-normal text-gray-500">Tempah Tempat Duduk Anda</span>
                     </h2>
-                    <p class="text-lg text-gray-600 max-w-[600px] mx-auto">
-                        Complete the following steps to confirm your attendance at our wedding reception.<br>
-                        <span class="text-sm">Lengkapkan langkah berikut untuk mengesahkan kehadiran anda di majlis perkahwinan kami.</span>
+                    <p class="text-base md:text-lg text-gray-600 max-w-[600px] mx-auto px-4">
+                        Complete the following steps to confirm your attendance.<br>
+                        <span class="text-xs md:text-sm">Lengkapkan langkah berikut untuk mengesahkan kehadiran anda.</span>
                     </p>
                 </div>
 
                 <!-- Wizard Container -->
                 <div class="wizard-container">
                     <!-- Progress Indicator -->
-                    <div class="step-indicator mb-12">
+                    <div class="step-indicator mb-8 md:mb-12">
                         <div class="step-dot active" data-step="1"></div>
                         <div class="step-dot" data-step="2"></div>
                         <div class="step-dot" data-step="3"></div>
@@ -1078,34 +1169,34 @@
 
                     <!-- Step 1: Invitation Code -->
                     <div class="wizard-step active" id="step1">
-                        <div class="glass-card-static p-8 md:p-12 text-center">
-                            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-xl">
+                        <div class="glass-card-static p-6 md:p-8 lg:p-12 text-center wizard-padding">
+                            <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 md:mb-6 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-xl">
                                 1
                             </div>
-                            <h3 class="font-serif text-2xl md:text-3xl font-bold mb-3">Enter Your Invitation Code<br><span class="text-lg font-normal text-gray-500">Masukkan Kod Undangan Anda</span></h3>
-                            <p class="text-gray-500 mb-8 max-w-md mx-auto">
-                                Please enter the unique invitation code provided to you. This helps us identify your reservation.<br>
-                                <span class="text-sm">Sila masukkan kod undangan unik yang diberikan kepada anda. Ini membantu kami mengenal pasti tempahan anda.</span>
+                            <h3 class="font-serif text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">Enter Your Invitation Code<br><span class="text-sm md:text-lg font-normal text-gray-500">Masukkan Kod Undangan Anda</span></h3>
+                            <p class="text-gray-500 mb-6 md:mb-8 max-w-md mx-auto text-sm md:text-base px-4">
+                                Please enter the unique invitation code provided to you.<br>
+                                <span class="text-xs md:text-sm">Sila masukkan kod undangan unik yang diberikan kepada anda.</span>
                             </p>
                             
                             <div class="max-w-md mx-auto space-y-4">
                                 <input type="text" id="wizardInviteCode" 
-                                    class="input-field focus-ring text-center text-lg font-mono tracking-widest uppercase" 
-                                    placeholder="DD2027XXX or NN2027XXX"
+                                    class="input-field focus-ring text-center text-base md:text-lg font-mono tracking-widest uppercase" 
+                                    placeholder="DD2027XXX"
                                     maxlength="20"
                                     autocomplete="off">
                                 
-                                <div id="codeLookupResult" class="hidden p-4 rounded-xl text-left text-sm"></div>
+                                <div id="codeLookupResult" class="hidden p-3 md:p-4 rounded-xl text-left text-xs md:text-sm"></div>
                                 
-                                <div class="flex gap-3 pt-4">
-                                    <button onclick="verifyInvitationCode()" id="verifyCodeBtn" class="btn-primary flex-1 py-4 text-base">
+                                <div class="flex gap-2 md:gap-3 pt-2 md:pt-4">
+                                    <button onclick="verifyInvitationCode()" id="verifyCodeBtn" class="btn-primary flex-1 py-3 md:py-4 text-sm md:text-base">
                                         Verify Code →<br><span class="text-xs font-normal opacity-90">Sahkan Kod</span>
                                     </button>
                                 </div>
                                 
-                                <p class="text-xs text-gray-400 mt-4">
-                                    Don't have a code? Contact the wedding organizer.<br>
-                                    <span>Tiada kod? Hubungi penganjur perkahwinan.</span>
+                                <p class="text-[10px] md:text-xs text-gray-400 mt-3 md:mt-4 px-4">
+                                    Don't have a code? Contact the organizer.<br>
+                                    <span>Tiada kod? Hubungi penganjur.</span>
                                 </p>
                             </div>
                         </div>
@@ -1113,29 +1204,29 @@
 
                     <!-- Step 2: Family Details -->
                     <div class="wizard-step" id="step2">
-                        <div class="glass-card-static p-8 md:p-12">
-                            <div class="text-center mb-8">
-                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                        <div class="glass-card-static p-6 md:p-8 lg:p-12 wizard-padding">
+                            <div class="text-center mb-6 md:mb-8">
+                                <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-3 md:mb-4 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-lg">
                                     2
                                 </div>
-                                <h3 class="font-serif text-2xl font-bold mb-2">Family Details<br><span class="text-lg font-normal text-gray-500">Butiran Keluarga</span></h3>
-                                <p class="text-gray-500">Tell us about your family group<br><span class="text-sm">Beritahu kami tentang kumpulan keluarga anda</span></p>
+                                <h3 class="font-serif text-xl md:text-2xl font-bold mb-2">Family Details<br><span class="text-sm md:text-lg font-normal text-gray-500">Butiran Keluarga</span></h3>
+                                <p class="text-gray-500 text-sm md:text-base">Tell us about your family group<br><span class="text-xs">Beritahu kami tentang kumpulan keluarga anda</span></p>
                             </div>
 
-                            <div class="max-w-lg mx-auto space-y-6">
+                            <div class="max-w-lg mx-auto space-y-4 md:space-y-6">
                                 <div>
-                                    <label class="block text-sm font-bold mb-2" for="wizardFamilyName">Family Name *<br><span class="text-xs font-normal text-gray-500">Nama Keluarga</span></label>
-                                    <input type="text" id="wizardFamilyName" class="input-field focus-ring" placeholder="e.g., Ahmad Family / Keluarga Ahmad">
+                                    <label class="block text-xs md:text-sm font-bold mb-2" for="wizardFamilyName">Family Name *<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Nama Keluarga</span></label>
+                                    <input type="text" id="wizardFamilyName" class="input-field focus-ring text-sm md:text-base" placeholder="e.g., Ahmad Family">
                                 </div>
 
                                 <div>
-                                    <label class="block text-sm font-bold mb-2" for="wizardContact">Contact Number *<br><span class="text-xs font-normal text-gray-500">Nombor Hubungi</span></label>
-                                    <input type="tel" id="wizardContact" class="input-field focus-ring" placeholder="+60 12-345 6789">
+                                    <label class="block text-xs md:text-sm font-bold mb-2" for="wizardContact">Contact Number *<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Nombor Hubungi</span></label>
+                                    <input type="tel" id="wizardContact" class="input-field focus-ring text-sm md:text-base" placeholder="+60 12-345 6789">
                                 </div>
 
-                                <div class="pt-4 flex gap-3">
-                                    <button onclick="goToStep(1)" class="btn-secondary py-3 flex-1">← Back<br><span class="text-xs font-normal">Kembali</span></button>
-                                    <button onclick="goToStep(3)" class="btn-primary py-3 flex-1">Continue →<br><span class="text-xs font-normal opacity-90">Teruskan</span></button>
+                                <div class="pt-4 flex gap-2 md:gap-3">
+                                    <button onclick="goToStep(1)" class="btn-secondary py-2.5 md:py-3 flex-1 text-sm">← Back<br><span class="text-[10px] font-normal">Kembali</span></button>
+                                    <button onclick="goToStep(3)" class="btn-primary py-2.5 md:py-3 flex-1 text-sm">Continue →<br><span class="text-[10px] font-normal opacity-90">Teruskan</span></button>
                                 </div>
                             </div>
                         </div>
@@ -1143,116 +1234,113 @@
 
                     <!-- Step 3: Side Selection & Guests -->
                     <div class="wizard-step" id="step3">
-                        <div class="glass-card-static p-8 md:p-12">
-                            <div class="text-center mb-8">
-                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                        <div class="glass-card-static p-6 md:p-8 lg:p-12 wizard-padding">
+                            <div class="text-center mb-6 md:mb-8">
+                                <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-3 md:mb-4 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-lg">
                                     3
                                 </div>
-                                <h3 class="font-serif text-2xl font-bold mb-2">Side & Guest Count<br><span class="text-lg font-normal text-gray-500">Pihak & Bilangan Tetamu</span></h3>
-                                <p class="text-gray-500">Select which side you're attending from and number of guests<br><span class="text-sm">Pilih pihak mana anda hadiri dan bilangan tetamu</span></p>
+                                <h3 class="font-serif text-xl md:text-2xl font-bold mb-2">Side & Guest Count<br><span class="text-sm md:text-lg font-normal text-gray-500">Pihak & Bilangan Tetamu</span></h3>
+                                <p class="text-gray-500 text-sm md:text-base">Select which side you're attending from<br><span class="text-xs">Pilih pihak mana anda hadiri</span></p>
                             </div>
 
-                            <div class="max-w-lg mx-auto space-y-8">
+                            <div class="max-w-lg mx-auto space-y-6 md:space-y-8">
                                 <!-- Side Selection -->
                                 <div>
-                                    <label class="block text-sm font-bold mb-3">Which side are you from? *<br><span class="text-xs font-normal text-gray-500">Anda dari pihak mana?</span></label>
-                                    <div class="grid grid-cols-2 gap-4">
+                                    <label class="block text-xs md:text-sm font-bold mb-2 md:mb-3">Which side are you from? *<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Anda dari pihak mana?</span></label>
+                                    <div class="grid grid-cols-2 gap-3 md:gap-4">
                                         <label class="cursor-pointer">
                                             <input type="radio" name="wizardSide" value="groom" class="sr-only peer" checked>
-                                            <div class="option-card option-card-groom glass-card-static p-5 text-center rounded-2xl transition-all">
-                                                <div class="w-14 h-14 rounded-full bg-[#800020] mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl shadow-lg">G</div>
-                                                <span class="font-bold text-base">Groom's Side<br><span class="text-xs font-normal text-gray-500">Pihak Pengantin Lelaki</span></span>
-                                                <p class="text-xs text-gray-500 mt-1">Danial's Family & Friends</p>
+                                            <div class="option-card option-card-groom glass-card-static p-4 md:p-5 text-center rounded-xl md:rounded-2xl transition-all">
+                                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#800020] mx-auto mb-2 md:mb-3 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg">G</div>
+                                                <span class="font-bold text-sm md:text-base">Groom's Side<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Pihak Lelaki</span></span>
+                                                <p class="text-[10px] md:text-xs text-gray-500 mt-1">Danial's Family</p>
                                             </div>
                                         </label>
                                         <label class="cursor-pointer">
                                             <input type="radio" name="wizardSide" value="bride" class="sr-only peer">
-                                            <div class="option-card option-card-bride glass-card-static p-5 text-center rounded-2xl transition-all">
-                                                <div class="w-14 h-14 rounded-full bg-[#426637] mx-auto mb-3 flex items-center justify-center text-white font-bold text-xl shadow-lg">B</div>
-                                                <span class="font-bold text-base">Bride's Side<br><span class="text-xs font-normal text-gray-500">Pihak Pengantin Perempuan</span></span>
-                                                <p class="text-xs text-gray-500 mt-1">Bella's Family & Friends</p>
+                                            <div class="option-card option-card-bride glass-card-static p-4 md:p-5 text-center rounded-xl md:rounded-2xl transition-all">
+                                                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#426637] mx-auto mb-2 md:mb-3 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg">B</div>
+                                                <span class="font-bold text-sm md:text-base">Bride's Side<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Pihak Perempuan</span></span>
+                                                <p class="text-[10px] md:text-xs text-gray-500 mt-1">Bella's Family</p>
                                             </div>
                                         </label>
                                     </div>
                                 </div>
 
-                                <!-- Attendance Status - Changed to Card Selection with Icons -->
+                                <!-- Attendance Status -->
                                 <div>
-                                    <label class="block text-sm font-bold mb-3">Attendance Status *<br><span class="text-xs font-normal text-gray-500">Status Kehadiran</span></label>
-                                    <div class="grid grid-cols-2 gap-4">
+                                    <label class="block text-xs md:text-sm font-bold mb-2 md:mb-3">Attendance Status *<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Status Kehadiran</span></label>
+                                    <div class="grid grid-cols-2 gap-3 md:gap-4">
                                         <label class="cursor-pointer">
                                             <input type="radio" name="wizardStatusCard" value="confirmed" class="sr-only peer" checked onchange="handleStatusChange('confirmed')">
-                                            <div class="option-card glass-card-static p-5 text-center rounded-2xl transition-all border-2 border-transparent peer-checked:border-green-500 peer-checked:bg-green-50">
-                                                <svg class="w-10 h-10 mx-auto mb-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div class="option-card glass-card-static p-4 md:p-5 text-center rounded-xl md:rounded-2xl transition-all border-2 border-transparent peer-checked:border-green-500 peer-checked:bg-green-50">
+                                                <svg class="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 md:mb-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"/>
                                                 </svg>
-                                                <span class="font-bold text-base text-green-700">Yes, I will attend<br><span class="text-xs font-normal text-green-600">Ya, saya akan hadir</span></span>
+                                                <span class="font-bold text-sm md:text-base text-green-700">Yes, I will attend<br><span class="text-[10px] md:text-xs font-normal text-green-600">Ya, saya akan hadir</span></span>
                                             </div>
                                         </label>
                                         <label class="cursor-pointer">
                                             <input type="radio" name="wizardStatusCard" value="declined" class="sr-only peer" onchange="handleStatusChange('declined')">
-                                            <div class="option-card glass-card-static p-5 text-center rounded-2xl transition-all border-2 border-transparent peer-checked:border-red-500 peer-checked:bg-red-50">
-                                                <svg class="w-10 h-10 mx-auto mb-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div class="option-card glass-card-static p-4 md:p-5 text-center rounded-xl md:rounded-2xl transition-all border-2 border-transparent peer-checked:border-red-500 peer-checked:bg-red-50">
+                                                <svg class="w-8 h-8 md:w-10 md:h-10 mx-auto mb-1 md:mb-2 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                                     <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"/>
                                                 </svg>
-                                                <span class="font-bold text-base text-red-700">Sorry, cannot attend<br><span class="text-xs font-normal text-red-600">Maaf, tidak dapat hadir</span></span>
+                                                <span class="font-bold text-sm md:text-base text-red-700">Cannot attend<br><span class="text-[10px] md:text-xs font-normal text-red-600">Tidak dapat hadir</span></span>
                                             </div>
                                         </label>
                                     </div>
-                                    <!-- Hidden select to maintain compatibility -->
                                     <select id="wizardStatus" class="hidden">
                                         <option value="confirmed">Yes</option>
                                         <option value="declined">No</option>
                                     </select>
                                 </div>
 
-                                <!-- Guest Counts (Only show if confirmed) -->
+                                <!-- Guest Counts -->
                                 <div id="guestCountSection" class="guest-section-enabled">
-                                    <label class="block text-sm font-bold mb-3">Number of Guests<br><span class="text-xs font-normal text-gray-500">Bilangan Tetamu</span></label>
+                                    <label class="block text-xs md:text-sm font-bold mb-2 md:mb-3">Number of Guests<br><span class="text-[10px] md:text-xs font-normal text-gray-500">Bilangan Tetamu</span></label>
                                     
-                                    <!-- Quota Info Display -->
-                                    <div class="quota-display mb-4">
-                                        <div class="text-xs text-gray-500 mb-1">Quota / Baki Tempat</div>
+                                    <div class="quota-display mb-3 md:mb-4">
+                                        <div class="text-[10px] md:text-xs text-gray-500 mb-1">Quota / Baki Tempat</div>
                                         <div class="flex items-center justify-center gap-2">
-                                            <span id="currentGuestCount" class="quota-number">1</span>
-                                            <span class="text-2xl text-gray-400">/</span>
-                                            <span id="maxQuotaDisplay" class="quota-number text-gray-400">8</span>
+                                            <span id="currentGuestCount" class="quota-number text-xl md:text-2xl">1</span>
+                                            <span class="text-xl md:text-2xl text-gray-400">/</span>
+                                            <span id="maxQuotaDisplay" class="quota-number text-xl md:text-2xl text-gray-400">8</span>
                                         </div>
-                                        <div class="text-xs mt-1">
+                                        <div class="text-[10px] md:text-xs mt-1">
                                             <span id="remainingQuotaText" class="font-semibold text-green-600">7 seats remaining</span>
-                                            <span class="text-gray-400"> | <span class="bm-text inline">tempat tinggal</span></span>
                                         </div>
                                     </div>
 
-                                    <div class="grid grid-cols-3 gap-4">
+                                    <div class="grid grid-cols-3 gap-2 md:gap-4">
                                         <div class="text-center">
-                                            <label class="text-xs text-gray-500 mb-1 block">Adults<br><span class="text-[9px]">Dewasa</span></label>
-                                            <input type="number" id="wizardAdults" class="input-field focus-ring text-center text-xl font-mono" min="0" max="50" value="1">
+                                            <label class="text-[10px] md:text-xs text-gray-500 mb-1 block">Adults<br><span class="text-[9px]">Dewasa</span></label>
+                                            <input type="number" id="wizardAdults" class="input-field focus-ring text-center text-lg md:text-xl font-mono" min="0" max="50" value="1">
                                         </div>
                                         <div class="text-center">
-                                            <label class="text-xs text-gray-500 mb-1 block">Kids (5-12)<br><span class="text-[9px]">Kanak-kanak</span></label>
-                                            <input type="number" id="wizardKids" class="input-field focus-ring text-center text-xl font-mono" min="0" max="20" value="0">
+                                            <label class="text-[10px] md:text-xs text-gray-500 mb-1 block">Kids (5-12)<br><span class="text-[9px]">Kanak-kanak</span></label>
+                                            <input type="number" id="wizardKids" class="input-field focus-ring text-center text-lg md:text-xl font-mono" min="0" max="20" value="0">
                                         </div>
                                         <div class="text-center">
-                                            <label class="text-xs text-gray-500 mb-1 block">Babies (&lt;5)<br><span class="text-[9px]">Bayi</span></label>
-                                            <input type="number" id="wizardBabies" class="input-field focus-ring text-center text-xl font-mono" min="0" max="10" value="0">
+                                            <label class="text-[10px] md:text-xs text-gray-500 mb-1 block">Babies (&lt;5)<br><span class="text-[9px]">Bayi</span></label>
+                                            <input type="number" id="wizardBabies" class="input-field focus-ring text-center text-lg md:text-xl font-mono" min="0" max="10" value="0">
                                         </div>
                                     </div>
                                     
-                                    <div class="mt-4 glass p-4 rounded-xl text-center">
-                                        <span class="text-sm text-gray-600">Total Guests / Jumlah Tetamu: </span>
-                                        <span id="wizardTotalDisplay" class="font-mono text-3xl font-bold" style="color: var(--primary-color);">1</span>
+                                    <div class="mt-3 md:mt-4 glass p-3 md:p-4 rounded-xl text-center">
+                                        <span class="text-xs md:text-sm text-gray-600">Total Guests / Jumlah Tetamu: </span>
+                                        <span id="wizardTotalDisplay" class="font-mono text-2xl md:text-3xl font-bold" style="color: var(--primary-color);">1</span>
                                     </div>
                                     
-                                    <p id="quotaWarning" class="text-xs text-orange-600 mt-2 text-center hidden font-semibold"></p>
+                                    <p id="quotaWarning" class="text-[10px] md:text-xs text-orange-600 mt-2 text-center hidden font-semibold"></p>
                                 </div>
 
-                                <div class="flex gap-3 pt-4">
-                                    <button onclick="goToStep(2)" class="btn-secondary py-3 flex-1">← Back<br><span class="text-xs font-normal">Kembali</span></button>
-                                    <button onclick="validateAndGoToStep4()" id="reviewBtn" class="btn-primary py-3 flex-1">
-                                        Review →<br><span class="text-xs font-normal opacity-90">Semak</span>
+                                <div class="flex gap-2 md:gap-3 pt-4">
+                                    <button onclick="goToStep(2)" class="btn-secondary py-2.5 md:py-3 flex-1 text-sm">← Back<br><span class="text-[10px] font-normal">Kembali</span></button>
+                                    <button onclick="validateAndGoToStep4()" id="reviewBtn" class="btn-primary py-2.5 md:py-3 flex-1 text-sm">
+                                        Review →<br><span class="text-[10px] font-normal opacity-90">Semak</span>
                                     </button>
                                 </div>
                             </div>
@@ -1261,63 +1349,63 @@
 
                     <!-- Step 4: Confirmation & QR Code -->
                     <div class="wizard-step" id="step4">
-                        <div class="glass-card-static p-8 md:p-12">
-                            <div class="text-center mb-8">
-                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                        <div class="glass-card-static p-6 md:p-8 lg:p-12 wizard-padding">
+                            <div class="text-center mb-6 md:mb-8">
+                                <div class="w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-green-500 to-green-600 mx-auto mb-3 md:mb-4 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-lg">
                                     ✓
                                 </div>
-                                <h3 class="font-serif text-2xl font-bold mb-2">Confirmation<br><span class="text-lg font-normal text-gray-500">Pengesahan</span></h3>
-                                <p class="text-gray-500">Review your details and get your QR code<br><span class="text-sm">Semak butiran anda dan dapatkan kod QR anda</span></p>
+                                <h3 class="font-serif text-xl md:text-2xl font-bold mb-2">Confirmation<br><span class="text-sm md:text-lg font-normal text-gray-500">Pengesahan</span></h3>
+                                <p class="text-gray-500 text-sm md:text-base">Review your details and get your QR code<br><span class="text-xs">Semak butiran dan dapatkan kod QR</span></p>
                             </div>
 
                             <!-- Summary Card -->
-                            <div class="max-w-lg mx-auto mb-8 p-6 rounded-2xl bg-white/50 border border-white/60 space-y-3">
-                                <div class="flex justify-between items-center pb-3 border-b border-gray-200">
-                                    <span class="text-sm text-gray-500">Invitation Code<br><span class="text-[10px]">Kod Undangan</span></span>
-                                    <span id="summaryCode" class="code-display text-lg">-</span>
+                            <div class="max-w-lg mx-auto mb-6 md:mb-8 p-4 md:p-6 rounded-xl md:rounded-2xl bg-white/50 border border-white/60 space-y-2 md:space-y-3 text-sm md:text-base">
+                                <div class="flex justify-between items-center pb-2 md:pb-3 border-b border-gray-200">
+                                    <span class="text-xs md:text-sm text-gray-500">Invitation Code<br><span class="text-[9px]">Kod Undangan</span></span>
+                                    <span id="summaryCode" class="code-display text-sm md:text-lg">-</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500">Family Name<br><span class="text-[10px]">Nama Keluarga</span></span>
-                                    <span id="summaryFamily" class="font-semibold">-</span>
+                                    <span class="text-xs md:text-sm text-gray-500">Family Name<br><span class="text-[9px]">Nama Keluarga</span></span>
+                                    <span id="summaryFamily" class="font-semibold text-sm md:text-base">-</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500">Contact<br><span class="text-[10px]">Hubungi</span></span>
-                                    <span id="summaryContact" class="font-semibold">-</span>
+                                    <span class="text-xs md:text-sm text-gray-500">Contact<br><span class="text-[9px]">Hubungi</span></span>
+                                    <span id="summaryContact" class="font-semibold text-sm md:text-base">-</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500">Side<br><span class="text-[10px]">Pihak</span></span>
-                                    <span id="summarySide" class="font-semibold">-</span>
+                                    <span class="text-xs md:text-sm text-gray-500">Side<br><span class="text-[9px]">Pihak</span></span>
+                                    <span id="summarySide" class="font-semibold text-sm md:text-base">-</span>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-500">Status<br><span class="text-[10px]">Status</span></span>
-                                    <span id="summaryStatus" class="status-badge status-confirmed">-</span>
+                                    <span class="text-xs md:text-sm text-gray-500">Status<br><span class="text-[9px]">Status</span></span>
+                                    <span id="summaryStatus" class="status-badge status-confirmed text-[9px] md:text-[11px]">-</span>
                                 </div>
-                                <div class="flex justify-between items-center pt-3 border-t border-gray-200">
-                                    <span class="text-sm font-bold text-gray-700">Total Guests<br><span class="text-[10px] font-normal">Jumlah Tetamu</span></span>
-                                    <span id="summaryGuests" class="font-mono text-xl font-bold" style="color: var(--primary-color);">0</span>
+                                <div class="flex justify-between items-center pt-2 md:pt-3 border-t border-gray-200">
+                                    <span class="text-xs md:text-sm font-bold text-gray-700">Total Guests<br><span class="text-[9px] font-normal">Jumlah Tetamu</span></span>
+                                    <span id="summaryGuests" class="font-mono text-lg md:text-xl font-bold" style="color: var(--primary-color);">0</span>
                                 </div>
                             </div>
 
                             <!-- QR Code Area -->
                             <div id="qrSuccessArea" class="hidden text-center">
-                                <div class="qr-container inline-block mb-6">
+                                <div class="qr-container inline-block mb-4 md:mb-6">
                                     <canvas id="qrCanvasFinal"></canvas>
                                 </div>
-                                <p class="text-sm text-green-600 font-semibold mb-6 success-pop">
+                                <p class="text-xs md:text-sm text-green-600 font-semibold mb-4 md:mb-6 success-pop">
                                     ✓ RSVP Confirmed! Save this QR code for check-in.<br>
-                                    <span class="text-xs font-normal text-gray-500">RSVP Disediakan! Simpan kod QR ini untuk daftar masuk.</span>
+                                    <span class="text-[10px] md:text-xs font-normal text-gray-500">RSVP Disediakan! Simpan kod QR untuk daftar masuk.</span>
                                 </p>
                             </div>
 
-                            <div class="flex gap-3 max-w-lg mx-auto">
-                                <button onclick="goToStep(3)" class="btn-secondary py-3 flex-1">← Edit<br><span class="text-xs font-normal">Edit</span></button>
-                                <button onclick="submitFinalRSVP()" id="submitFinalBtn" class="btn-primary py-3 flex-1">
-                                    Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>
+                            <div class="flex gap-2 md:gap-3 max-w-lg mx-auto">
+                                <button onclick="goToStep(3)" class="btn-secondary py-2.5 md:py-3 flex-1 text-sm">← Edit<br><span class="text-[10px] font-normal">Edit</span></button>
+                                <button onclick="submitFinalRSVP()" id="submitFinalBtn" class="btn-primary py-2.5 md:py-3 flex-1 text-sm">
+                                    Confirm RSVP<br><span class="text-[10px] font-normal opacity-90">Sahkan RSVP</span>
                                 </button>
                             </div>
                             
-                            <div class="text-center mt-6">
-                                <button onclick="navigateTo('home')" class="text-sm text-gray-500 hover:text-gray-800 underline">
+                            <div class="text-center mt-4 md:mt-6">
+                                <button onclick="navigateTo('home')" class="text-xs md:text-sm text-gray-500 hover:text-gray-800 underline">
                                     Return to Home / Kembali ke Utama
                                 </button>
                             </div>
@@ -1328,93 +1416,93 @@
         </section>
 
         <!-- ADMIN VIEW (Protected) -->
-        <section id="view-admin" class="route-view pt-[72px] min-h-screen">
-            <!-- Login Overlay (shown when not authenticated) -->
+        <section id="view-admin" class="route-view pt-[60px] md:pt-[72px] min-h-screen">
+            <!-- Login Overlay -->
             <div id="adminLoginOverlay" class="auth-overlay">
                 <div class="auth-card">
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-xl">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] mx-auto mb-4 md:mb-6 flex items-center justify-center text-white text-2xl md:text-3xl font-bold shadow-xl">
                         🔒
                     </div>
-                    <h2 class="font-serif text-3xl font-bold mb-2">Admin Access<br><span class="text-lg font-normal text-gray-500">Akses Pentadbir</span></h2>
-                    <p class="text-gray-500 mb-8">Enter credentials to access management panel<br><span class="text-sm">Masukkan kredensial untuk mengakses panel pengurusan</span></p>
+                    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-2">Admin Access<br><span class="text-sm md:text-lg font-normal text-gray-500">Akses Pentadbir</span></h2>
+                    <p class="text-gray-500 mb-6 md:mb-8 text-sm md:text-base">Enter credentials to access management panel<br><span class="text-xs md:text-sm">Masukkan kredensial untuk mengakses panel pengurusan</span></p>
                     
-                    <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <form onsubmit="handleAdminLogin(event)" class="space-y-3 md:space-y-4">
                         <div>
-                            <input type="email" id="adminEmail" class="input-field focus-ring auth-input" placeholder="Email Address / Alamat Emel" required autocomplete="email">
+                            <input type="email" id="adminEmail" class="input-field focus-ring auth-input text-sm md:text-base" placeholder="Email Address" required autocomplete="email">
                         </div>
                         <div>
-                            <input type="password" id="adminPassword" class="input-field focus-ring auth-input" placeholder="Password / Kata Laluan" required autocomplete="current-password">
+                            <input type="password" id="adminPassword" class="input-field focus-ring auth-input text-sm md:text-base" placeholder="Password" required autocomplete="current-password">
                         </div>
-                        <div id="loginError" class="hidden p-3 rounded-xl bg-red-50 text-red-700 text-sm text-left"></div>
-                        <button type="submit" class="btn-primary w-full py-4 text-base">
+                        <div id="loginError" class="hidden p-3 rounded-xl bg-red-50 text-red-700 text-xs md:text-sm text-left"></div>
+                        <button type="submit" class="btn-primary w-full py-3 md:py-4 text-sm md:text-base">
                             Unlock Dashboard →<br><span class="text-xs font-normal opacity-90">Buka Papan Pemuka</span>
                         </button>
                     </form>
                     
-                    <button onclick="navigateTo('home')" class="mt-6 text-sm text-gray-500 hover:text-gray-800 underline block mx-auto">
-                        ← Back to Public Site / Kembali ke Laman Awam
+                    <button onclick="navigateTo('home')" class="mt-4 md:mt-6 text-xs md:text-sm text-gray-500 hover:text-gray-800 underline block mx-auto">
+                        ← Back to Public Site
                     </button>
                 </div>
             </div>
 
-            <!-- Admin Dashboard (shown when authenticated) -->
+            <!-- Admin Dashboard -->
             <div id="adminDashboard" class="hidden">
-                <div class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] py-[60px] md:py-[100px]">
-                    <!-- Header with Logout -->
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8">
+                <div class="max-w-[1440px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px] py-[40px] md:py-[60px] lg:py-[100px]">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 md:mb-8">
                         <div>
-                            <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-800 mb-2 transition-colors">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                                Back to Home / Kembali ke Utama
+                            <button onclick="navigateTo('home')" class="inline-flex items-center gap-2 text-xs md:text-sm font-medium text-gray-500 hover:text-gray-800 mb-2 transition-colors">
+                                <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                                Back to Home
                             </button>
-                            <span class="badge mb-2 inline-block">Management Panel<br><span class="text-[9px] normal-case opacity-80">Panel Pengurusan</span></span>
-                            <h2 class="font-serif text-[40px] md:text-[48px] font-bold leading-tight">
+                            <span class="badge mb-2 inline-block text-[10px]">Management Panel<br><span class="text-[8px] normal-case opacity-80">Panel Pengurusan</span></span>
+                            <h2 class="font-serif text-[28px] md:text-[40px] lg:text-[48px] font-bold leading-tight">
                                 Admin Dashboard<br>
-                                <span class="text-2xl md:text-3xl font-normal text-gray-500">Papan Pemuka Pentadbir</span>
+                                <span class="text-lg md:text-2xl lg:text-3xl font-normal text-gray-500">Papan Pemuka Pentadbir</span>
                             </h2>
                         </div>
-                        <button onclick="handleAdminLogout()" class="btn-secondary text-sm py-2 px-4 rounded-xl flex items-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-                            Logout / Log Keluar
+                        <button onclick="handleAdminLogout()" class="btn-secondary text-xs md:text-sm py-2 px-3 md:px-4 rounded-xl flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                            Logout
                         </button>
                     </div>
 
                     <!-- Admin Controls -->
-                    <div class="glass-card p-6 md:p-8 mb-8 reveal">
-                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-                            <div class="flex flex-wrap items-center gap-3">
-                                <button onclick="openModal('createModal')" class="btn-primary focus-ring rounded-xl text-sm py-3">
-                                    + Create Invitation<br><span class="text-xs font-normal opacity-90">Cipta Undangan</span>
+                    <div class="glass-card p-4 md:p-6 lg:p-8 mb-6 md:mb-8 reveal">
+                        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4 mb-4 md:mb-6">
+                            <div class="flex flex-wrap items-center gap-2 md:gap-3">
+                                <button onclick="openModal('createModal')" class="btn-primary focus-ring rounded-xl text-xs md:text-sm py-2.5 md:py-3">
+                                    + Create Invitation<br><span class="text-[10px] font-normal opacity-90">Cipta Undangan</span>
                                 </button>
-                                <button onclick="exportData('csv')" class="btn-secondary focus-ring rounded-xl text-sm py-3">
+                                <button onclick="exportData('csv')" class="btn-secondary focus-ring rounded-xl text-xs md:text-sm py-2.5 md:py-3">
                                     Export CSV
                                 </button>
-                                <button onclick="exportData('excel')" class="btn-secondary focus-ring rounded-xl text-sm py-3">
+                                <button onclick="exportData('excel')" class="btn-secondary focus-ring rounded-xl text-xs md:text-sm py-2.5 md:py-3">
                                     Export Excel
                                 </button>
                             </div>
-                            <div class="flex items-center gap-3 w-full md:w-auto">
-                                <input type="text" id="searchInput" class="input-field focus-ring rounded-xl text-sm py-3" placeholder="Search by name or code... / Cari..." oninput="searchInvitations()">
+                            <div class="flex items-center gap-2 w-full md:w-auto">
+                                <input type="text" id="searchInput" class="input-field focus-ring rounded-xl text-xs md:text-sm py-2.5 md:py-3" placeholder="Search..." oninput="searchInvitations()">
                             </div>
                         </div>
 
                         <!-- Quick Stats -->
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="p-4 rounded-xl bg-white/50 text-center">
-                                <div class="font-mono text-2xl font-bold" style="color: var(--primary-color);" id="adminTotalInvitations">0</div>
-                                <div class="text-xs text-gray-500">Total Invitations<br><span class="text-[9px]">Jumlah Undangan</span></div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                            <div class="p-3 md:p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-xl md:text-2xl font-bold" style="color: var(--primary-color);" id="adminTotalInvitations">0</div>
+                                <div class="text-[9px] md:text-xs text-gray-500">Total Invitations<br><span class="text-[8px]">Jumlah Undangan</span></div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/50 text-center">
-                                <div class="font-mono text-2xl font-bold text-green-600" id="adminConfirmedCount">0</div>
-                                <div class="text-xs text-gray-500">Confirmed<br><span class="text-[9px]">Disahkan</span></div>
+                            <div class="p-3 md:p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-xl md:text-2xl font-bold text-green-600" id="adminConfirmedCount">0</div>
+                                <div class="text-[9px] md:text-xs text-gray-500">Confirmed<br><span class="text-[8px]">Disahkan</span></div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/50 text-center">
-                                <div class="font-mono text-2xl font-bold text-blue-600" id="adminCheckedInCount">0</div>
-                                <div class="text-xs text-gray-500">Checked In<br><span class="text-[9px]">Daftar Masuk</span></div>
+                            <div class="p-3 md:p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-xl md:text-2xl font-bold text-blue-600" id="adminCheckedInCount">0</div>
+                                <div class="text-[9px] md:text-xs text-gray-500">Checked In<br><span class="text-[8px]">Daftar Masuk</span></div>
                             </div>
-                            <div class="p-4 rounded-xl bg-white/50 text-center">
-                                <div class="font-mono text-2xl font-bold text-orange-600" id="adminDeclinedCount">0</div>
-                                <div class="text-xs text-gray-500">Declined<br><span class="text-[9px]">Menolak</span></div>
+                            <div class="p-3 md:p-4 rounded-xl bg-white/50 text-center">
+                                <div class="font-mono text-xl md:text-2xl font-bold text-orange-600" id="adminDeclinedCount">0</div>
+                                <div class="text-[9px] md:text-xs text-gray-500">Declined<br><span class="text-[8px]">Menolak</span></div>
                             </div>
                         </div>
                     </div>
@@ -1425,18 +1513,18 @@
                             <table class="data-table" id="invitationsTable">
                                 <thead>
                                     <tr>
-                                        <th>Code<br><span class="text-[9px] font-normal">Kod</span></th>
-                                        <th>Family Name<br><span class="text-[9px] font-normal">Nama Keluarga</span></th>
-                                        <th>Side<br><span class="text-[9px] font-normal">Pihak</span></th>
-                                        <th>Status<br><span class="text-[9px] font-normal">Status</span></th>
-                                        <th>Guests<br><span class="text-[9px] font-normal">Tetamu</span></th>
-                                        <th>Checked In<br><span class="text-[9px] font-normal">Daftar Masuk</span></th>
-                                        <th>Actions<br><span class="text-[9px] font-normal">Tindakan</span></th>
+                                        <th>Code<br><span class="text-[8px] md:text-[9px] font-normal">Kod</span></th>
+                                        <th>Family Name<br><span class="text-[8px] md:text-[9px] font-normal">Nama Keluarga</span></th>
+                                        <th>Side<br><span class="text-[8px] md:text-[9px] font-normal">Pihak</span></th>
+                                        <th>Status<br><span class="text-[8px] md:text-[9px] font-normal">Status</span></th>
+                                        <th>Guests<br><span class="text-[8px] md:text-[9px] font-normal">Tetamu</span></th>
+                                        <th>Checked In<br><span class="text-[8px] md:text-[9px] font-normal">Daftar</span></th>
+                                        <th>Actions<br><span class="text-[8px] md:text-[9px] font-normal">Tindakan</span></th>
                                     </tr>
                                 </thead>
                                 <tbody id="tableBody">
                                     <tr>
-                                        <td colspan="7" class="text-center py-8 text-gray-500">Loading data... / Memuatkan data...</td>
+                                        <td colspan="7" class="text-center py-6 md:py-8 text-gray-500 text-xs md:text-sm">Loading...</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1444,15 +1532,15 @@
                     </div>
 
                     <!-- Check-in Quick Access -->
-                    <div class="glass-card p-6 md:p-8 mt-8 reveal">
-                        <h3 class="font-bold text-xl mb-6">Quick Check-In<br><span class="text-sm font-normal text-gray-500">Daftar Masuk Pantas</span></h3>
-                        <div class="flex flex-col md:flex-row gap-4">
-                            <input type="text" id="checkinInput" class="input-field focus-ring rounded-xl flex-1" placeholder="Enter invitation code to check in... / Masukkan kod undangan untuk daftar masuk...">
-                            <button onclick="performCheckIn()" class="btn-primary focus-ring rounded-xl whitespace-nowrap">
-                                Check In Guest<br><span class="text-xs font-normal opacity-90">Daftar Masuk</span>
+                    <div class="glass-card p-4 md:p-6 lg:p-8 mt-6 md:mt-8 reveal">
+                        <h3 class="font-bold text-base md:text-xl mb-3 md:mb-6">Quick Check-In<br><span class="text-xs md:text-sm font-normal text-gray-500">Daftar Masuk Pantas</span></h3>
+                        <div class="flex flex-col md:flex-row gap-3 md:gap-4">
+                            <input type="text" id="checkinInput" class="input-field focus-ring rounded-xl text-sm md:text-base flex-1" placeholder="Enter invitation code...">
+                            <button onclick="performCheckIn()" class="btn-primary focus-ring rounded-xl whitespace-nowrap text-sm md:text-base">
+                                Check In Guest
                             </button>
                         </div>
-                        <div id="checkinResult" class="mt-4 hidden"></div>
+                        <div id="checkinResult" class="mt-3 md:mt-4 hidden"></div>
                     </div>
                 </div>
             </div>
@@ -1460,64 +1548,62 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/30" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));">
-        <div class="max-w-[1440px] mx-auto px-[40px] lg:px-[40px] md:px-[32px] sm:px-[16px] text-center text-white">
-            <p class="font-serif text-3xl font-bold mb-2">Bella & Danial</p>
-            <p class="text-white/70 text-sm">3 July 2027 | Rumah Abang Jamil Prai, Lunas Kedah<br><span class="text-xs">3 Julai 2027</span></p>
-            <p class="text-white/50 text-xs mt-6">With love and blessings<br><span>Dengan cinta dan restu</span></p>
+    <footer class="py-8 md:py-12 border-t border-white/30" style="background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));">
+        <div class="max-w-[1440px] mx-auto px-[16px] sm:px-[24px] md:px-[32px] lg:px-[40px] text-center text-white">
+            <p class="font-serif text-2xl md:text-3xl font-bold mb-2">Bella & Danial</p>
+            <p class="text-white/70 text-xs md:text-sm">3 July 2027 | Rumah Abang Jamil Prai, Lunas Kedah</p>
+            <p class="text-white/50 text-[10px] md:text-xs mt-4 md:mt-6">With love and blessings</p>
         </div>
     </footer>
 
     <!-- Create/Edit Modal -->
     <div id="createModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <div class="flex items-center justify-between mb-6">
-                <h3 id="modalTitle" class="font-serif text-2xl font-bold">Create Invitation<br><span class="text-base font-normal text-gray-500">Cipta Undangan</span></h3>
+            <div class="flex items-center justify-between mb-4 md:mb-6">
+                <h3 id="modalTitle" class="font-serif text-xl md:text-2xl font-bold">Create Invitation<br><span class="text-sm md:text-base font-normal text-gray-500">Cipta Undangan</span></h3>
                 <button onclick="closeModal('createModal')" class="p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="Close modal">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
             
-            <form id="invitationForm" class="space-y-5">
+            <form id="invitationForm" class="space-y-4 md:space-y-5">
                 <input type="hidden" id="editId" value="">
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalInviteCode">Invitation Code * <span class="text-xs font-normal text-gray-500">(Auto-generated or custom / Auto atau tersuai)</span></label>
+                    <label class="block text-xs md:text-sm font-bold mb-2" for="modalInviteCode">Invitation Code *</label>
                     <div class="flex gap-2">
-                        <input type="text" id="modalInviteCode" class="input-field focus-ring flex-1" required>
-                        <button type="button" onclick="autoGenerateCode()" class="btn-secondary px-4 rounded-xl text-sm whitespace-nowrap" title="Auto Generate">
-                            Auto
-                        </button>
+                        <input type="text" id="modalInviteCode" class="input-field focus-ring flex-1 text-sm md:text-base" required>
+                        <button type="button" onclick="autoGenerateCode()" class="btn-secondary px-3 md:px-4 rounded-xl text-xs md:text-sm whitespace-nowrap">Auto</button>
                     </div>
-                    <p class="text-xs text-gray-400 mt-1">Format: DD2027[Name] (Groom) or NN2027[Name] (Bride)</p>
+                    <p class="text-[10px] md:text-xs text-gray-400 mt-1">Format: DD2027[Name] or NN2027[Name]</p>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalFamilyName">Family Name *<br><span class="text-xs font-normal text-gray-500">Nama Keluarga</span></label>
-                    <input type="text" id="modalFamilyName" class="input-field focus-ring" required>
+                    <label class="block text-xs md:text-sm font-bold mb-2" for="modalFamilyName">Family Name *</label>
+                    <input type="text" id="modalFamilyName" class="input-field focus-ring text-sm md:text-base" required>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalContact">Contact Number<br><span class="text-xs font-normal text-gray-500">Nombor Hubungi</span></label>
-                    <input type="tel" id="modalContact" class="input-field focus-ring">
+                    <label class="block text-xs md:text-sm font-bold mb-2" for="modalContact">Contact Number</label>
+                    <input type="tel" id="modalContact" class="input-field focus-ring text-sm md:text-base">
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalSide">Side *<br><span class="text-xs font-normal text-gray-500">Pihak</span></label>
-                    <select id="modalSide" class="input-field focus-ring" required onchange="updateCodePreview()">
-                        <option value="groom">Groom Side (DD2027) / Pihak Lelaki</option>
-                        <option value="bride">Bride Side (NN2027) / Pihak Perempuan</option>
+                    <label class="block text-xs md:text-sm font-bold mb-2" for="modalSide">Side *</label>
+                    <select id="modalSide" class="input-field focus-ring text-sm md:text-base" required onchange="updateCodePreview()">
+                        <option value="groom">Groom Side (DD2027)</option>
+                        <option value="bride">Bride Side (NN2027)</option>
                     </select>
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalQuota">Maximum Guest Quota *<br><span class="text-xs font-normal text-gray-500">Kuata Maksimum Tetamu</span></label>
-                    <input type="number" id="modalQuota" class="input-field focus-ring" min="1" max="50" value="8" required>
+                    <label class="block text-xs md:text-sm font-bold mb-2" for="modalQuota">Maximum Quota *</label>
+                    <input type="number" id="modalQuota" class="input-field focus-ring text-sm md:text-base" min="1" max="50" value="8" required>
                 </div>
                 
-                <div class="flex gap-3 pt-4">
-                    <button type="submit" class="btn-primary flex-1 focus-ring rounded-xl">Save Invitation<br><span class="text-xs font-normal opacity-90">Simpan Undangan</span></button>
-                    <button type="button" onclick="closeModal('createModal')" class="btn-secondary flex-1 focus-ring rounded-xl">Cancel<br><span class="text-xs font-normal">Batal</span></button>
+                <div class="flex gap-2 md:gap-3 pt-4">
+                    <button type="submit" class="btn-primary flex-1 focus-ring rounded-xl text-sm md:text-base">Save<br><span class="text-[10px] font-normal opacity-90">Simpan</span></button>
+                    <button type="button" onclick="closeModal('createModal')" class="btn-secondary flex-1 focus-ring rounded-xl text-sm md:text-base">Cancel<br><span class="text-[10px] font-normal">Batal</span></button>
                 </div>
             </form>
         </div>
@@ -1526,13 +1612,13 @@
     <!-- View Details Modal -->
     <div id="viewModal" class="modal-overlay" role="dialog" aria-modal="true">
         <div class="modal-content">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="font-serif text-2xl font-bold">Invitation Details<br><span class="text-base font-normal text-gray-500">Butiran Undangan</span></h3>
+            <div class="flex items-center justify-between mb-4 md:mb-6">
+                <h3 class="font-serif text-xl md:text-2xl font-bold">Details<br><span class="text-sm md:text-base font-normal text-gray-500">Butiran</span></h3>
                 <button onclick="closeModal('viewModal')" class="p-2 hover:bg-gray-100 rounded-xl transition-colors" aria-label="Close modal">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
-            <div id="viewModalContent"></div>
+            <div id="viewModalContent" class="text-sm md:text-base"></div>
         </div>
     </div>
 
@@ -1718,15 +1804,14 @@
 
         let logoClickCount = 0;
         let lastLogoClickTime = 0;
-        const ADMIN_CLICK_THRESHOLD = 3000; // 3 seconds window
+        const ADMIN_CLICK_THRESHOLD = 3000;
         const REQUIRED_CLICKS = 3;
 
         document.getElementById('mainLogo')?.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default navigation
+            e.preventDefault();
             
             const now = Date.now();
             
-            // Reset counter if too much time passed
             if (now - lastLogoClickTime > ADMIN_CLICK_THRESHOLD) {
                 logoClickCount = 1;
             } else {
@@ -1735,7 +1820,6 @@
             
             lastLogoClickTime = now;
             
-            // Visual feedback
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
@@ -1766,21 +1850,18 @@ function navigateTo(view) {
     if (view === 'admin') {
         document.getElementById('view-admin').classList.add('active');
         
-        // CRITICAL FIX: Check session again here (handles refresh/hash navigation)
+        // Check session again here (handles refresh/hash navigation)
         if (sessionStorage.getItem('isAdminAuth') === 'true') {
             isAdminAuthenticated = true;
+            updateAdminUI(); // Update UI to show/hide stats
         }
         
         if (!isAdminAuthenticated) {
-            // Show Login Form
             document.getElementById('adminLoginOverlay').classList.remove('hidden');
             document.getElementById('adminDashboard').classList.add('hidden');
         } else {
-            // Show Dashboard Directly (Skip Login)
             document.getElementById('adminLoginOverlay').classList.add('hidden');
             document.getElementById('adminDashboard').classList.remove('hidden');
-            
-            // CRITICAL: Load data when showing dashboard (fixes empty table on refresh)
             loadInvitationsTable();
         }
     } else if (view === 'rsvp') {
@@ -1792,6 +1873,17 @@ function navigateTo(view) {
     
     window.scrollTo({ top: 0, behavior: 'smooth' });
     window.location.hash = view;
+}
+
+// Function to update admin-specific UI elements (show/hide stats)
+function updateAdminUI() {
+    if (isAdminAuthenticated) {
+        document.body.classList.add('is-admin');
+        console.log('✅ Admin mode active - Statistics visible');
+    } else {
+        document.body.classList.remove('is-admin');
+        console.log('🔒 Public mode - Statistics hidden');
+    }
 }
 
         // Handle browser back/forward
@@ -1835,17 +1927,19 @@ function navigateTo(view) {
 
             if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
                 isAdminAuthenticated = true;
-                // Save to session storage (persists until browser/tab closed)
-                localStorage.setItem('isAdminAuth', 'true');
+                sessionStorage.setItem('isAdminAuth', 'true');
                 sessionStorage.setItem('adminEmail', email);
                 sessionStorage.setItem('adminLoginTime', new Date().toISOString());
+                
+                // Update UI to show admin-only content
+                updateAdminUI();
                 
                 document.getElementById('adminLoginOverlay').classList.add('hidden');
                 document.getElementById('adminDashboard').classList.remove('hidden');
                 errorEl.classList.add('hidden');
                 loadInvitationsTable();
             } else {
-                errorEl.innerHTML = 'Invalid credentials. Please try again.<br>Kredensial tidak sah. Sila cuba lagi.';
+                errorEl.innerHTML = 'Invalid credentials. Please try again.';
                 errorEl.classList.remove('hidden');
                 document.getElementById('adminPassword').value = '';
             }
@@ -1853,10 +1947,13 @@ function navigateTo(view) {
 
         function handleAdminLogout() {
             isAdminAuthenticated = false;
-            // Clear session
             sessionStorage.removeItem('isAdminAuth');
             sessionStorage.removeItem('adminEmail');
             sessionStorage.removeItem('adminLoginTime');
+            
+            // Update UI to hide admin-only content
+            updateAdminUI();
+            
             navigateTo('home');
         }
 
@@ -1864,11 +1961,13 @@ function navigateTo(view) {
         function checkAdminSession() {
             if (sessionStorage.getItem('isAdminAuth') === 'true') {
                 isAdminAuthenticated = true;
+                updateAdminUI(); // Apply admin UI state immediately
                 console.log('Admin session restored from storage');
+            } else {
+                updateAdminUI(); // Ensure public state is applied
             }
         }
         
-        // Run immediately
         checkAdminSession();
 
         // ============================================
@@ -1944,21 +2043,18 @@ function navigateTo(view) {
             kids: 0,
             babies: 0,
             quota: 8,
-            existingRecord: null // Store if code already exists
+            existingRecord: null
         };
 
         function goToStep(step) {
-            // Hide current step
             document.getElementById(`step${currentWizardStep}`).classList.remove('active');
             document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.remove('active');
             document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.add('completed');
 
-            // Show new step
             currentWizardStep = step;
             document.getElementById(`step${currentWizardStep}`).classList.add('active');
             document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).addClass('active');
 
-            // Special handling for step 4 (review)
             if (step === 4) populateSummary();
             
             window.scrollTo({ top: 200, behavior: 'smooth' });
@@ -1969,19 +2065,15 @@ function navigateTo(view) {
                 case 1:
                     const code = document.getElementById('wizardInviteCode').value.trim().toUpperCase();
                     if (!code) {
-                        showCodeError('Please enter an invitation code. Sila masukkan kod undangan.');
+                        showCodeError('Please enter an invitation code.');
                         return false;
                     }
                     return true;
                 case 2:
                     const name = document.getElementById('wizardFamilyName').value.trim();
                     const contact = document.getElementById('wizardContact').value.trim();
-                    if (!name) {
-                        alert('Please enter family name. Sila masukkan nama keluarga.');
-                        return false;
-                    }
-                    if (!contact) {
-                        alert('Please enter contact number. Sila masukkan nombor hubungi.');
+                    if (!name || !contact) {
+                        alert('Please fill in all required fields.');
                         return false;
                     }
                     return true;
@@ -1992,41 +2084,34 @@ function navigateTo(view) {
             }
         }
 
-        // New function: Validate and go to step 4 (with quota check)
         function validateAndGoToStep4() {
-            // First validate basic fields
             if (!validateCurrentStep()) return;
 
-            // Check quota
             const adults = parseInt(document.getElementById('wizardAdults').value) || 0;
             const kids = parseInt(document.getElementById('wizardKids').value) || 0;
             const babies = parseInt(document.getElementById('wizardBabies').value) || 0;
             const total = adults + kids + babies;
 
             if (total > wizardData.quota) {
-                // Shake the warning
                 const warning = document.getElementById('quotaWarning');
                 warning.classList.remove('hidden');
                 warning.style.animation = 'shake 0.5s ease';
                 setTimeout(() => warning.style.animation = '', 500);
                 
-                // Disable button briefly to show feedback
                 const btn = document.getElementById('reviewBtn');
                 btn.disabled = true;
-                btn.textContent = '⚠️ Quota Exceeded!';
+                btn.innerHTML = '⚠️ Exceeded!';
                 setTimeout(() => {
                     btn.disabled = false;
-                    btn.innerHTML = 'Review →<br><span class="text-xs font-normal opacity-90">Semak</span>';
+                    btn.innerHTML = 'Review →<br><span class="text-[10px] font-normal opacity-90">Semak</span>';
                 }, 1500);
                 
                 return;
             }
 
-            // All good, proceed
             goToStep(4);
         }
 
-        // Handle status change from card selection
         function handleStatusChange(status) {
             document.getElementById('wizardStatus').value = status;
             wizardData.status = status;
@@ -2034,36 +2119,24 @@ function navigateTo(view) {
             const guestSection = document.getElementById('guestCountSection');
             
             if (status === 'declined') {
-                // Grey out and disable guest section
                 guestSection.classList.remove('guest-section-enabled');
                 guestSection.classList.add('guest-section-disabled');
-                
-                // Reset counts to 0
                 document.getElementById('wizardAdults').value = 0;
                 document.getElementById('wizardKids').value = 0;
                 document.getElementById('wizardBabies').value = 0;
-                
-                // Disable inputs
                 document.getElementById('wizardAdults').disabled = true;
                 document.getElementById('wizardKids').disabled = true;
                 document.getElementById('wizardBabies').disabled = true;
-                
                 calculateWizardTotal();
             } else {
-                // Re-enable guest section
                 guestSection.classList.remove('guest-section-disabled');
                 guestSection.classList.add('guest-section-enabled');
-                
-                // Enable inputs
                 document.getElementById('wizardAdults').disabled = false;
                 document.getElementById('wizardKids').disabled = false;
                 document.getElementById('wizardBabies').disabled = false;
-                
-                // Set minimum 1 adult if currently 0
                 if (parseInt(document.getElementById('wizardAdults').value) === 0) {
                     document.getElementById('wizardAdults').value = 1;
                 }
-                
                 calculateWizardTotal();
             }
         }
@@ -2075,12 +2148,12 @@ function navigateTo(view) {
             const verifyBtn = document.getElementById('verifyCodeBtn');
             
             if (!code) {
-                showCodeError('Please enter an invitation code. Sila masukkan kod undangan.');
+                showCodeError('Please enter an invitation code.');
                 return;
             }
 
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = '<div class="text-blue-600 flex items-center gap-2"><svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Verifying code... / Menyemak kod...</div>';
+            resultDiv.innerHTML = '<div class="text-blue-600 flex items-center gap-2 text-xs md:text-sm"><svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Verifying...</div>';
             verifyBtn.disabled = true;
 
             const allData = await window.FireDB.getAll();
@@ -2092,66 +2165,57 @@ function navigateTo(view) {
                 wizardData.quota = invitation.quota || 8;
                 wizardData.side = invitation.side || 'groom';
                 
-                // CHECK IF ALREADY CONFIRMED OR SUBMITTED
                 if (invitation.status === 'confirmed' || invitation.status === 'submitted') {
                     resultDiv.className = 'warning-box text-left';
                     resultDiv.innerHTML = `
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-yellow-100 mx-auto mb-3 flex items-center justify-center text-yellow-600 text-2xl font-bold">⚠️</div>
-                            <h4 class="font-bold text-yellow-800 text-lg mb-2">Status Already Confirmed</h4>
-                            <p class="text-yellow-700 text-sm mb-4">Your reservation has been submitted.</p>
+                        <div class="text-center mb-3 md:mb-4">
+                            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-100 mx-auto mb-2 md:mb-3 flex items-center justify-center text-yellow-600 text-lg md:text-xl font-bold">⚠️</div>
+                            <h4 class="font-bold text-yellow-800 text-sm md:text-base mb-1 md:mb-2">Already Confirmed</h4>
+                            <p class="text-yellow-700 text-xs md:text-sm mb-3 md:mb-4">Your reservation has been submitted.</p>
                         </div>
-                        <div class="bg-white/60 rounded-lg p-4 space-y-2 text-sm">
-                            <div class="flex justify-between"><span class="text-gray-600">Code / Kod:</span><strong>${invitation.inviteCode}</strong></div>
-                            <div class="flex justify-between"><span class="text-gray-600">Family / Keluarga:</span><strong>${invitation.familyName || '-'}</strong></div>
-                            <div class="flex justify-between"><span class="text-gray-600">Guests / Tetamu:</span><strong>${invitation.totalGuests || 0}</strong></div>
+                        <div class="bg-white/60 rounded-lg p-3 md:p-4 space-y-1.5 md:space-y-2 text-xs md:text-sm">
+                            <div class="flex justify-between"><span class="text-gray-600">Code:</span><strong>${invitation.inviteCode}</strong></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Family:</span><strong>${invitation.familyName || '-'}</strong></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Guests:</span><strong>${invitation.totalGuests || 0}</strong></div>
                             <div class="flex justify-between"><span class="text-gray-600">Status:</span><span class="status-badge status-confirmed">${invitation.status}</span></div>
                         </div>
-                        <div class="mt-4 pt-4 border-t border-yellow-300 text-center">
-                            <p class="text-sm text-yellow-800 font-semibold mb-2">
-                                ✉️ If you unable to attend, please inform Danial:<br>
-                                <a href="tel:+60122600969" class="text-blue-600 underline font-bold text-lg">012-260-0969</a>
+                        <div class="mt-3 md:mt-4 pt-2 md:pt-3 border-t border-yellow-300 text-center">
+                            <p class="text-xs md:text-sm text-yellow-800 font-semibold mb-2">
+                                ✉️ If unable to attend, contact:<br>
+                                <a href="tel:+60122600969" class="text-blue-600 underline font-bold text-sm md:text-base">012-260-0969</a>
                             </p>
-                            <p class="text-xs text-yellow-600">Sekiranya anda tidak dapat hadir, sila maklumkan kepada Danial.</p>
                         </div>
-                        <button onclick="resetWizard()" class="mt-4 w-full btn-secondary text-sm py-2">Try Different Code / Cuba Kod Lain</button>
+                        <button onclick="resetWizard()" class="mt-3 md:mt-4 w-full btn-secondary text-xs md:text-sm py-2 rounded-lg">Try Different Code</button>
                     `;
                     verifyBtn.disabled = false;
                     return;
                 }
                 
-                // Pre-fill if exists
                 if (invitation.familyName) document.getElementById('wizardFamilyName').value = invitation.familyName;
                 if (invitation.contactNumber) document.getElementById('wizardContact').value = invitation.contactNumber;
-
-                // Update quota display immediately
                 updateQuotaDisplay();
 
                 resultDiv.className = 'info-box text-left';
                 resultDiv.innerHTML = `
                     <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                        <strong class="text-green-800">✓ Code Found! / Kod Ditemui!</strong>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <strong class="text-green-800 text-xs md:text-sm">✓ Code Found!</strong>
                     </div>
-                    <div class="text-sm text-green-700 space-y-1 ml-7">
-                        <p>Quota: <strong>${wizardData.quota} guests</strong> / Kuota: <strong>${wizardData.quota} orang tetamu</strong></p>
-                        <p>Side: <strong>${wizardData.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</strong></p>
-                        ${invitation.status === 'declined' ? '<p class="text-orange-600 font-semibold">Note: Previously declined. You may update your response.</p>' : ''}
+                    <div class="text-xs md:text-sm text-green-700 space-y-1 ml-6 md:ml-7">
+                        <p>Quota: <strong>${wizardData.quota} guests</strong></p>
+                        <p>Side: <strong>${wizardData.side === 'groom' ? 'Groom' : 'Bride'}</strong></p>
                     </div>
-                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue → / Teruskan →</button>
+                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue →</button>
                 `;
                 
-                // Set side radio
                 setTimeout(() => {
                     document.querySelector(`input[name="wizardSide"][value="${wizardData.side}"]`).checked = true;
                     setTheme(wizardData.side);
                 }, 100);
             } else {
-                // Allow new registration with this code format
                 wizardData.existingRecord = null;
                 wizardData.inviteCode = code;
                 
-                // Detect side from code prefix
                 if (code.startsWith('DD')) {
                     wizardData.side = 'groom';
                     document.querySelector(`input[name="wizardSide"][value="groom"]`).checked = true;
@@ -2162,21 +2226,19 @@ function navigateTo(view) {
                     setTheme('bride');
                 }
 
-                // Default quota for new codes
                 wizardData.quota = 8;
                 updateQuotaDisplay();
 
                 resultDiv.className = 'info-box text-left';
                 resultDiv.innerHTML = `
                     <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                        <strong class="text-blue-800">New Registration / Pendaftaran Baharu</strong>
+                        <svg class="w-4 h-4 md:w-5 md:h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <strong class="text-blue-800 text-xs md:text-sm">New Registration</strong>
                     </div>
-                    <div class="text-sm text-blue-700 space-y-1 ml-7">
-                        <p>No existing record found. You can proceed with new registration.</p>
-                        <p class="text-xs">Tiada rekod sedia ada. Anda boleh teruskan dengan pendaftaran baharu.</p>
+                    <div class="text-xs md:text-sm text-blue-700 ml-6 md:ml-7">
+                        <p>No existing record. Proceed with new registration.</p>
                     </div>
-                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue → / Teruskan →</button>
+                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue →</button>
                 `;
             }
             
@@ -2186,11 +2248,10 @@ function navigateTo(view) {
         function showCodeError(msg) {
             const resultDiv = document.getElementById('codeLookupResult');
             resultDiv.classList.remove('hidden');
-            resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-red-50 text-red-700 border border-red-200';
+            resultDiv.className = 'p-3 md:p-4 rounded-xl text-left text-xs md:text-sm bg-red-50 text-red-700 border border-red-200';
             resultDiv.innerHTML = `<strong>Error:</strong> ${msg}`;
         }
 
-        // Guest count calculation
         const wizardAdultsInput = document.getElementById('wizardAdults');
         const wizardKidsInput = document.getElementById('wizardKids');
         const wizardBabiesInput = document.getElementById('wizardBabies');
@@ -2202,23 +2263,18 @@ function navigateTo(view) {
             const babies = parseInt(wizardBabiesInput.value) || 0;
             const total = adults + kids + babies;
             wizardTotalDisplay.textContent = total;
-            
-            // Update quota display
             updateQuotaDisplay(total);
             
-            // Check quota warning
             const quotaWarning = document.getElementById('quotaWarning');
             const reviewBtn = document.getElementById('reviewBtn');
             
             if (total > wizardData.quota) {
-                quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota} guests<br><span class="text-[10px]">Melebihi Kuota ${wizardData.quota} orang tetamu</span>`;
+                quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota}`;
                 quotaWarning.classList.remove('hidden');
                 reviewBtn.disabled = true;
-                reviewBtn.title = 'Please reduce guest count to proceed';
             } else {
                 quotaWarning.classList.add('hidden');
                 reviewBtn.disabled = false;
-                reviewBtn.title = '';
             }
         }
 
@@ -2237,14 +2293,14 @@ function navigateTo(view) {
             
             const remainingText = document.getElementById('remainingQuotaText');
             if (remaining <= 0) {
-                remainingText.textContent = 'Quota reached! / Kuota penuh!';
-                remainingText.className = 'font-semibold text-red-600';
+                remainingText.textContent = 'Quota reached!';
+                remainingText.className = 'font-semibold text-red-600 text-[10px] md:text-xs';
             } else if (remaining <= 2) {
-                remainingText.textContent = `${remaining} seat(s) remaining / ${remaining} tempat tinggal`;
-                remainingText.className = 'font-semibold text-orange-600';
+                remainingText.textContent = `${remaining} seat(s) remaining`;
+                remainingText.className = 'font-semibold text-orange-600 text-[10px] md:text-xs';
             } else {
-                remainingText.textContent = `${remaining} seats remaining / ${remaining} tempat tinggal`;
-                remainingText.className = 'font-semibold text-green-600';
+                remainingText.textContent = `${remaining} seats remaining`;
+                remainingText.className = 'font-semibold text-green-600 text-[10px] md:text-xs';
             }
         }
 
@@ -2252,7 +2308,6 @@ function navigateTo(view) {
         wizardKidsInput.addEventListener('input', calculateWizardTotal);
         wizardBabiesInput.addEventListener('input', calculateWizardTotal);
 
-        // Side selection changes theme
         document.querySelectorAll('input[name="wizardSide"]').forEach(input => {
             input.addEventListener('change', function() {
                 setTheme(this.value);
@@ -2272,9 +2327,9 @@ function navigateTo(view) {
             document.getElementById('summaryCode').textContent = wizardData.inviteCode;
             document.getElementById('summaryFamily').textContent = wizardData.familyName;
             document.getElementById('summaryContact').textContent = wizardData.contact;
-            document.getElementById('summarySide').textContent = wizardData.side === 'groom' ? "Groom's Side / Pihak Lelaki" : "Bride's Side / Pihak Perempuan";
-            document.getElementById('summaryStatus').textContent = wizardData.status === 'confirmed' ? 'Confirmed / Sah' : 'Declined / Tolak';
-            document.getElementById('summaryStatus').className = `status-badge ${wizardData.status === 'confirmed' ? 'status-confirmed' : 'status-pending'}`;
+            document.getElementById('summarySide').textContent = wizardData.side === 'groom' ? "Groom's Side" : "Bride's Side";
+            document.getElementById('summaryStatus').textContent = wizardData.status === 'confirmed' ? 'Confirmed' : 'Declined';
+            document.getElementById('summaryStatus').className = `status-badge ${wizardData.status === 'confirmed' ? 'status-confirmed' : 'status-pending'} text-[9px] md:text-[11px]`;
             document.getElementById('summaryGuests').textContent = wizardData.totalGuests;
         }
 
@@ -2299,29 +2354,24 @@ function navigateTo(view) {
                     rsvpedAt: new Date().toISOString()
                 };
 
-                // Check if exists (update) or create new
                 if (wizardData.existingRecord && wizardData.existingRecord.id) {
                     await window.FireDB.update(wizardData.existingRecord.id, finalData);
                 } else {
                     await window.FireDB.add(finalData);
                 }
 
-                // Generate QR
                 generateQRCode(finalData);
-                
                 document.getElementById('qrSuccessArea').classList.remove('hidden');
-                btn.innerHTML = '✓ Submitted Successfully!<br><span class="text-xs font-normal opacity-90">Berjaya Dihantar!</span>';
+                btn.innerHTML = '✓ Submitted Successfully!<br><span class="text-[10px] font-normal opacity-90">Berjaya!</span>';
                 btn.classList.add('bg-green-600');
                 btn.disabled = true;
-                
-                // Refresh stats
                 loadInvitationsTable();
 
             } catch (error) {
                 console.error('Submission error:', error);
-                alert('Error submitting. Please try again. Ralat semakan. Sila cuba lagi.');
+                alert('Error submitting. Please try again.');
                 btn.disabled = false;
-                btn.innerHTML = 'Confirm RSVP';
+                btn.innerHTML = 'Confirm RSVP<br><span class="text-[10px] font-normal opacity-90">Sahkan</span>';
             }
         }
 
@@ -2333,7 +2383,6 @@ function navigateTo(view) {
                 existingRecord: null
             };
             
-            // Reset UI
             document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
             document.getElementById('step1').classList.add('active');
             document.querySelectorAll('.step-dot').forEach(d => {
@@ -2351,13 +2400,11 @@ function navigateTo(view) {
             document.getElementById('wizardKids').disabled = false;
             document.getElementById('wizardBabies').disabled = false;
             
-            // Reset status cards
             document.querySelectorAll('input[name="wizardStatusCard"]').forEach(radio => {
                 radio.checked = radio.value === 'confirmed';
             });
             document.getElementById('wizardStatus').value = 'confirmed';
             
-            // Re-enable guest section
             const guestSection = document.getElementById('guestCountSection');
             guestSection.classList.remove('guest-section-disabled');
             guestSection.classList.add('guest-section-enabled');
@@ -2368,12 +2415,12 @@ function navigateTo(view) {
             
             const submitBtn = document.getElementById('submitFinalBtn');
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>';
+            submitBtn.innerHTML = 'Confirm RSVP<br><span class="text-[10px] font-normal opacity-90">Sahkan</span>';
             submitBtn.classList.remove('bg-green-600');
             
             const reviewBtn = document.getElementById('reviewBtn');
             reviewBtn.disabled = false;
-            reviewBtn.innerHTML = 'Review →<br><span class="text-xs font-normal opacity-90">Semak</span>';
+            reviewBtn.innerHTML = 'Review →<br><span class="text-[10px] font-normal opacity-90">Semak</span>';
             
             calculateWizardTotal();
             setTheme('groom');
@@ -2395,7 +2442,7 @@ function navigateTo(view) {
                 guests: data.totalGuests,
                 timestamp: new Date().toISOString()
             }), {
-                width: 200,
+                width: 180,
                 margin: 2,
                 color: { dark: qrColor, light: '#ffffff' }
             }, function(error) {
@@ -2428,6 +2475,7 @@ function navigateTo(view) {
             const brideKids = brideSide.reduce((sum, inv) => sum + (inv.kids || 0), 0);
             const brideBabies = brideSide.reduce((sum, inv) => sum + (inv.babies || 0), 0);
             
+            // Update all stat displays
             animateValue('statTotalConfirmed', totalConfirmed);
             animateValue('statRemaining', Math.max(0, MAX_CAPACITY - totalConfirmed));
             animateValue('statGroomSide', groomTotal);
@@ -2436,6 +2484,7 @@ function navigateTo(view) {
             animateValue('statsCheckedIn', totalCheckedIn);
             animateValue('statsRemainingSeats', Math.max(0, MAX_CAPACITY - totalConfirmed));
             
+            // Percentages
             const overallPercent = Math.round((totalConfirmed / MAX_CAPACITY) * 100);
             const checkinPercent = totalConfirmed > 0 ? Math.round((totalCheckedIn / totalConfirmed) * 100) : 0;
             const groomPercent = Math.round((groomTotal / MAX_PER_SIDE) * 100);
@@ -2449,12 +2498,16 @@ function navigateTo(view) {
             document.getElementById('brideConfirmedNum').textContent = `${brideTotal} / ${MAX_PER_SIDE}`;
             document.getElementById('groomProgress').style.width = groomPercent + '%';
             document.getElementById('brideProgress').style.width = bridePercent + '%';
+            
+            // Side breakdown numbers
             document.getElementById('groomAdults').textContent = groomAdults;
             document.getElementById('groomKids').textContent = groomKids;
             document.getElementById('groomBabies').textContent = groomBabies;
             document.getElementById('brideAdults').textContent = brideAdults;
             document.getElementById('brideKids').textContent = brideKids;
             document.getElementById('brideBabies').textContent = brideBabies;
+            
+            // Admin quick stats
             document.getElementById('adminTotalInvitations').textContent = data.length;
             document.getElementById('adminConfirmedCount').textContent = confirmed.length;
             document.getElementById('adminCheckedInCount').textContent = checkedIn.length;
@@ -2491,19 +2544,21 @@ function navigateTo(view) {
 
         function renderTable(data) {
             const tbody = document.getElementById('tableBody');
+            if (!tbody) return;
+            
             if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-8 text-gray-500">No invitations found / Tiada undangan dijumpai</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-6 md:py-8 text-gray-500 text-xs md:text-sm">No invitations found</td></tr>';
                 return;
             }
             
             tbody.innerHTML = data.map(inv => `
                 <tr>
-                    <td><code class="text-xs bg-gray-100 px-2 py-1 rounded">${inv.inviteCode || '-'}</code></td>
-                    <td class="font-medium">${inv.familyName || '-'}</td>
+                    <td><code class="text-[10px] md:text-xs bg-gray-100 px-1.5 md:px-2 py-0.5 rounded">${inv.inviteCode || '-'}</code></td>
+                    <td class="font-medium text-xs md:text-sm">${inv.familyName || '-'}</td>
                     <td>
                         <span class="inline-flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full ${inv.side === 'groom' ? 'bg-[#800020]' : 'bg-[#426637]'}"></span>
-                            ${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}
+                            <span class="text-[10px] md:text-xs">${inv.side === 'groom' ? 'Groom' : 'Bride'}</span>
                         </span>
                     </td>
                     <td>
@@ -2513,18 +2568,18 @@ function navigateTo(view) {
                             inv.status === 'declined' ? 'status-pending' : 'status-pending'
                         }">${inv.status || 'pending'}</span>
                     </td>
-                    <td class="font-mono">${inv.totalGuests || 0}</td>
-                    <td>${inv.checkedIn ? '<span class="text-green-600 font-bold">Yes / Ya</span>' : '<span class="text-gray-400">No / Tidak</span>'}</td>
+                    <td class="font-mono text-xs md:text-sm">${inv.totalGuests || 0}</td>
+                    <td>${inv.checkedIn ? '<span class="text-green-600 font-bold text-xs">Yes</span>' : '<span class="text-gray-400 text-xs">No</span>'}</td>
                     <td>
-                        <div class="flex items-center gap-2">
-                            <button onclick="viewInvitation('${inv.id}')" class="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="View / Lihat">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        <div class="flex items-center gap-1">
+                            <button onclick="viewInvitation('${inv.id}')" class="p-1.5 hover:bg-gray-100 rounded-lg transition-colors" title="View">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                             </button>
-                            <button onclick="editInvitation('${inv.id}')" class="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Edit / Edit">
-                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            <button onclick="editInvitation('${inv.id}')" class="p-1.5 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                                <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                             </button>
-                            <button onclick="deleteInvitation('${inv.id}', '${inv.familyName || ''}')" class="p-2 hover:bg-red-50 rounded-lg transition-colors" title="Delete / Padam">
-                                <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                            <button onclick="deleteInvitation('${inv.id}', '${(inv.familyName || '').replace(/'/g, "\'")}')" class="p-1.5 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                                <svg class="w-3.5 h-3.5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                             </button>
                         </div>
                     </td>
@@ -2546,7 +2601,7 @@ function navigateTo(view) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
             if (modalId === 'createModal') {
-                document.getElementById('modalTitle').innerHTML = 'Create Invitation<br><span class="text-base font-normal text-gray-500">Cipta Undangan</span>';
+                document.getElementById('modalTitle').innerHTML = 'Create Invitation<br><span class="text-sm md:text-base font-normal text-gray-500">Cipta Undangan</span>';
                 document.getElementById('invitationForm').reset();
                 document.getElementById('editId').value = '';
             }
@@ -2557,7 +2612,7 @@ function navigateTo(view) {
             document.body.style.overflow = '';
         }
 
-        document.getElementById('invitationForm').addEventListener('submit', async function(e) {
+        document.getElementById('invitationForm')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             const data = {
                 inviteCode: document.getElementById('modalInviteCode').value.trim().toUpperCase(),
@@ -2581,101 +2636,98 @@ function navigateTo(view) {
         });
 
         // Copy to Clipboard Function
-function copyToClipboard(text) {
-    if (!text) return;
-    
-    navigator.clipboard.writeText(text).then(() => {
-        // Show temporary tooltip or alert
-        const toast = document.createElement('div');
-        toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-[200] text-sm animate-pulse';
-        toast.textContent = `Copied: ${text}`;
-        document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.remove();
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy:', err);
-        // Fallback for older browsers
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
-        alert(`Copied: ${text}`);
-    });
-}
+        function copyToClipboard(text) {
+            if (!text) return;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-3 py-2 rounded-lg shadow-lg z-[200] text-xs animate-pulse';
+                toast.textContent = `Copied: ${text}`;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.remove();
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                alert(`Copied: ${text}`);
+            });
+        }
 
-async function viewInvitation(id) {
-    const allData = await window.FireDB.getAll();
-    const inv = allData.find(item => item.id === id);
-    if (!inv) return;
-    
-    document.getElementById('viewModalContent').innerHTML = `
-        <div class="space-y-4">
-            <div class="grid grid-cols-2 gap-4">
-                <div><span class="text-xs text-gray-500">Code / Kod</span><p class="font-mono font-bold">${inv.inviteCode || '-'}</p></div>
-                <div><span class="text-xs text-gray-500">Family / Keluarga</span><p class="font-bold">${inv.familyName || '-'}</p></div>
-                <div>
-                    <span class="text-xs text-gray-500">Phone Number<br><span class="text-[9px]">Nombor Telefon</span></span>
-                    <p class="font-bold flex items-center gap-1">
-                        ${inv.contactNumber || inv.contact || '-'}
-                        ${inv.contactNumber || inv.contact ? `
-                            <a href="tel:${inv.contactNumber || inv.contact}" 
-                               class="ml-1 p-1 hover:bg-green-100 rounded-full transition-colors" 
-                               title="Call / Panggil"
-                               onclick="event.stopPropagation();">
-                                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
-                            </a>
-                            <button onclick="copyToClipboard('${inv.contactNumber || inv.contact}')" 
-                                    class="ml-1 p-1 hover:bg-blue-100 rounded-full transition-colors" 
-                                    title="Copy / Salin"
-                                    onclick="event.stopPropagation();">
-                                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                                </svg>
-                            </button>
-                        ` : ''}
-                    </p>
-                </div>
-                <div><span class="text-xs text-gray-500">Side / Pihak</span><p>${inv.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</p></div>
-            </div>
+        async function viewInvitation(id) {
+            const allData = await window.FireDB.getAll();
+            const inv = allData.find(item => item.id === id);
+            if (!inv) return;
             
-            <!-- Rest of your existing code remains below -->
-            <div class="grid grid-cols-3 gap-4 pt-4 border-t">
-                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.adults || 0}</div><div class="text-xs text-gray-500">Adults / Dewasa</div></div>
-                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.kids || 0}</div><div class="text-xs text-gray-500">Kids / Kanak-kanak</div></div>
-                <div class="text-center p-3 rounded-xl bg-gray-50"><div class="font-mono text-xl font-bold">${inv.babies || 0}</div><div class="text-xs text-gray-500">Babies / Bayi</div></div>
-            </div>
-            
-            <div class="pt-4 border-t space-y-2">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Quota / Kuota</span>
-                    <span class="font-bold">${inv.quota || 8} guests maximum</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Total Guests / Jumlah Tetamu</span>
-                    <span class="font-mono font-bold text-lg" style="color: var(--primary-color);">${inv.totalGuests || 0}</span>
-                </div>
-            </div>
+            document.getElementById('viewModalContent').innerHTML = `
+                <div class="space-y-3 md:space-y-4">
+                    <div class="grid grid-cols-2 gap-3 md:gap-4">
+                        <div><span class="text-[10px] md:text-xs text-gray-500">Code</span><p class="font-mono font-bold text-sm md:text-base">${inv.inviteCode || '-'}</p></div>
+                        <div><span class="text-[10px] md:text-xs text-gray-500">Family</span><p class="font-bold text-sm md:text-base">${inv.familyName || '-'}</p></div>
+                        <div>
+                            <span class="text-[10px] md:text-xs text-gray-500">Phone</span>
+                            <p class="font-bold text-sm md:text-base flex items-center gap-1 flex-wrap">
+                                ${inv.contactNumber || inv.contact || '-'}
+                                ${(inv.contactNumber || inv.contact) ? `
+                                    <a href="tel:${inv.contactNumber || inv.contact}" 
+                                       class="ml-1 p-1 hover:bg-green-100 rounded-full transition-colors inline-flex"
+                                       title="Call"
+                                       onclick="event.stopPropagation();">
+                                        <svg class="w-3.5 h-3.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                        </svg>
+                                    </a>
+                                    <button onclick="copyToClipboard('${inv.contactNumber || inv.contact}')" 
+                                            class="p-1 hover:bg-blue-100 rounded-full transition-colors inline-flex"
+                                            title="Copy"
+                                            onclick="event.stopPropagation();">
+                                        <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                        </svg>
+                                    </button>
+                                ` : ''}
+                            </p>
+                        </div>
+                        <div><span class="text-[10px] md:text-xs text-gray-500">Side</span><p class="text-sm md:text-base">${inv.side === 'groom' ? 'Groom' : 'Bride'}</p></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-2 md:gap-4 pt-3 border-t">
+                        <div class="text-center p-2 md:p-3 rounded-xl bg-gray-50"><div class="font-mono text-lg md:text-xl font-bold">${inv.adults || 0}</div><div class="text-[9px] md:text-xs text-gray-500">Adults</div></div>
+                        <div class="text-center p-2 md:p-3 rounded-xl bg-gray-50"><div class="font-mono text-lg md:text-xl font-bold">${inv.kids || 0}</div><div class="text-[9px] md:text-xs text-gray-500">Kids</div></div>
+                        <div class="text-center p-2 md:p-3 rounded-xl bg-gray-50"><div class="font-mono text-lg md:text-xl font-bold">${inv.babies || 0}</div><div class="text-[9px] md:text-xs text-gray-500">Babies</div></div>
+                    </div>
+                    
+                    <div class="pt-3 border-t space-y-2 text-sm md:text-base">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] md:text-xs text-gray-500">Quota</span>
+                            <span class="font-bold">${inv.quota || 8} max</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] md:text-xs text-gray-500">Total Guests</span>
+                            <span class="font-mono font-bold text-lg md:text-xl" style="color: var(--primary-color);">${inv.totalGuests || 0}</span>
+                        </div>
+                    </div>
 
-            ${inv.checkedIn ? '<div class="mt-4 p-3 rounded-xl bg-green-50 text-green-700 text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Checked In / Telah Daftar Masuk</div>' : ''}
-            
-            ${inv.rsvpedAt ? `<div class="mt-2 text-xs text-gray-400 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>RSVP submitted: ${new Date(inv.rsvpedAt).toLocaleString('en-MY', { dateStyle: 'medium', timeStyle: 'short' })}</div>` : ''}
-        </div>
-    `;
-    openModal('viewModal');
-}
+                    ${inv.checkedIn ? '<div class="mt-3 p-2 md:p-3 rounded-xl bg-green-50 text-green-700 text-xs md:text-sm font-medium flex items-center gap-2"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Checked In</div>' : ''}
+                    
+                    ${inv.rsvpedAt ? `<div class="mt-2 text-[10px] md:text-xs text-gray-400 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>RSVP: ${new Date(inv.rsvpedAt).toLocaleString()}</div>` : ''}
+                </div>
+            `;
+            openModal('viewModal');
+        }
 
         async function editInvitation(id) {
             const allData = await window.FireDB.getAll();
             const inv = allData.find(item => item.id === id);
             if (!inv) return;
             
-            document.getElementById('modalTitle').innerHTML = 'Edit Invitation<br><span class="text-base font-normal text-gray-500">Edit Undangan</span>';
+            document.getElementById('modalTitle').innerHTML = 'Edit Invitation<br><span class="text-sm md:text-base font-normal text-gray-500">Edit Undangan</span>';
             document.getElementById('editId').value = id;
             document.getElementById('modalInviteCode').value = inv.inviteCode || '';
             document.getElementById('modalFamilyName').value = inv.familyName || '';
@@ -2686,14 +2738,13 @@ async function viewInvitation(id) {
         }
 
         async function deleteInvitation(id, name) {
-            if (!confirm(`Delete invitation for "${name}"?
-Padam undangan untuk "${name}"?`)) return;
+            if (!confirm(`Delete "${name}"?`)) return;
             await window.FireDB.remove(id);
             loadInvitationsTable();
         }
 
         function exportData(format) {
-            const headers = ['Code', 'Family Name', 'Contact', 'Side', 'Status', 'Adults', 'Kids', 'Babies', 'Total', 'Checked In', 'RSVP Date'];
+            const headers = ['Code', 'Family Name', 'Contact', 'Side', 'Status', 'Adults', 'Kids', 'Babies', 'Total', 'Checked In', 'Date'];
             const rows = allInvitations.map(inv => [
                 inv.inviteCode || '', 
                 inv.familyName || '', 
@@ -2712,7 +2763,7 @@ Padam undangan untuk "${name}"?`)) return;
                 ? [headers.join(','), ...rows.map(r => r.join(','))].join('')
                 : [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('');
             
-            downloadFile(content, `wedding_invitations_${new Date().toISOString().split('T')[0]}.${format === 'csv' ? 'csv' : 'xls'}`, format === 'csv' ? 'text/csv' : 'application/vnd.ms-excel');
+            downloadFile(content, `wedding_${new Date().toISOString().split('T')[0]}.${format}`, format === 'csv' ? 'text/csv' : 'application/vnd.ms-excel');
         }
 
         function downloadFile(content, filename, mimeType) {
@@ -2730,7 +2781,7 @@ Padam undangan untuk "${name}"?`)) return;
             const resultDiv = document.getElementById('checkinResult');
             
             if (!code) {
-                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm">Please enter an invitation code.<br>Sila masukkan kod undangan.</div>';
+                resultDiv.innerHTML = '<div class="p-3 md:p-4 rounded-xl bg-yellow-50 text-yellow-700 text-xs md:text-sm">Please enter an invitation code.</div>';
                 resultDiv.classList.remove('hidden'); 
                 return;
             }
@@ -2739,19 +2790,19 @@ Padam undangan untuk "${name}"?`)) return;
             const invitation = allData.find(inv => inv.inviteCode?.toUpperCase() === code);
             
             if (!invitation) {
-                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-red-50 text-red-700 text-sm">Invitation not found.<br>Undangan tidak dijumpai.</div>';
+                resultDiv.innerHTML = '<div class="p-3 md:p-4 rounded-xl bg-red-50 text-red-700 text-xs md:text-sm">Not found.</div>';
                 resultDiv.classList.remove('hidden'); 
                 return;
             }
             
             if (invitation.status !== 'confirmed') {
-                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm"><strong>${invitation.familyName}</strong> - This invitation has not been confirmed yet.<br><strong>${invitation.familyName}</strong> - Undangan ini belum disahkan.</div>`;
+                resultDiv.innerHTML = `<div class="p-3 md:p-4 rounded-xl bg-yellow-50 text-yellow-700 text-xs md:text-sm"><strong>${invitation.familyName}</strong> - Not confirmed yet.</div>`;
                 resultDiv.classList.remove('hidden'); 
                 return;
             }
             
             if (invitation.checkedIn) {
-                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-blue-50 text-blue-700 text-sm"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) was already checked in at ${invitation.checkinTime ? new Date(invitation.checkinTime).toLocaleTimeString() : ''}.<br><strong>${invitation.familyName}</strong> telah daftar masuk sebelum ini.</div>`;
+                resultDiv.innerHTML = `<div class="p-3 md:p-4 rounded-xl bg-blue-50 text-blue-700 text-xs md:text-sm"><strong>${invitation.familyName}</strong> already checked in.</div>`;
                 resultDiv.classList.remove('hidden'); 
                 return;
             }
@@ -2762,24 +2813,20 @@ Padam undangan untuk "${name}"?`)) return;
             });
             
             resultDiv.innerHTML = `
-                <div class="success-pop p-4 rounded-xl bg-green-50 text-green-700 text-sm border border-green-200">
-                    <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <div class="success-pop p-3 md:p-4 rounded-xl bg-green-50 text-green-700 text-xs md:text-sm border border-green-200">
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         <strong class="text-green-800">Check-in Successful!</strong>
                     </div>
-                    <p><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) has been checked in successfully!</p>
-                    <p class="text-green-600 mt-1"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} tetamu) telah berjaya daftar masuk!</p>
-                    <p class="text-xs text-green-600 mt-2">Time: ${new Date().toLocaleTimeString()}</p>
+                    <p><strong>${invitation.familyName}</strong> (${invitation.totalGuests}) checked in!</p>
+                    <p class="text-green-600 mt-1 text-[10px]">Time: ${new Date().toLocaleTimeString()}</p>
                 </div>
             `;
             resultDiv.classList.remove('hidden');
             document.getElementById('checkinInput').value = '';
             loadInvitationsTable();
             
-            // Auto-hide after 5 seconds
-            setTimeout(() => {
-                resultDiv.classList.add('hidden');
-            }, 5000);
+            setTimeout(() => resultDiv.classList.add('hidden'), 5000);
         }
 
         // ============================================
@@ -2792,7 +2839,6 @@ Padam undangan untuk "${name}"?`)) return;
             this.setAttribute('aria-expanded', menu.classList.contains('open'));
         });
 
-        // Close mobile menu when clicking nav links
         document.querySelectorAll('#mobileMenu .nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 document.getElementById('mobileMenu').classList.remove('open');
@@ -2819,55 +2865,42 @@ Padam undangan untuk "${name}"?`)) return;
 // INITIALIZATION
 // ============================================
 
-// 1. Check Admin Session FIRST (before any routing)
+// 1. Check Admin Session FIRST
 checkAdminSession();
 
 // 2. Set Theme
 setTheme('groom');
 
-// 3. Initialize Route from URL Hash (handles F5 refresh on #admin page)
+// 3. Initialize Route from URL Hash
 if (window.location.hash) {
     const hash = window.location.hash.replace('#', '');
-    // Small delay to ensure DOM is ready for admin dashboard rendering
-    setTimeout(() => {
-        navigateTo(hash);
-    }, 100);
+    setTimeout(() => navigateTo(hash), 100);
 } else {
-    // Default to home if no hash
     navigateTo('home');
 }
 
-// 4. Initial Data Load (for home page stats)
+// 4. Initial Data Load
 loadInvitationsTable();
 
-// 5. Set up real-time listener if available
+// 5. Real-time Listener
 if (window.FireDB.onSnapshot) {
     window.FireDB.onSnapshot((data) => {
         allInvitations = data;
         renderTable(data);
         updateStatistics(data);
         
-        // Auto-refresh admin table if visible
         if (currentView === 'admin' && isAdminAuthenticated) {
             renderTable(data);
         }
-        
-        console.log('Real-time update received:', data.length, 'records');
     });
 }
 
-console.log('Wedding Reception System v2.1 Initialized [Persistent Auth Enabled]');
+console.log('Wedding Reception System v2.2 Initialized [Mobile Optimized | Admin-Only Stats]');
 console.log('Routes: #home | #rsvp | #admin');
 console.log('Secret: Click "B & D" logo 3x for admin access');
-console.log('Session persistence: Active (refresh-safe)');
 
         // Initialize wizard calculations
         calculateWizardTotal();
-        
-        console.log('Wedding Reception System v2.1 Initialized');
-        console.log('Routes: #home | #rsvp | #admin');
-        console.log('Secret: Click "B & D" logo 3x for admin access');
-        console.log('Session persistence enabled for admin login');
 
     </script>
 </body>
