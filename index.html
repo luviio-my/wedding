@@ -165,6 +165,13 @@
             overflow: hidden;
         }
 
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none;
+        }
+
         .btn-primary::before {
             content: '';
             position: absolute;
@@ -173,12 +180,12 @@
             transition: left 0.5s ease;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px color-mix(in srgb, var(--primary-color) 50%, transparent);
         }
 
-        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover:not(:disabled)::before { left: 100%; }
 
         .btn-secondary {
             background: rgba(255, 255, 255, 0.5);
@@ -221,6 +228,12 @@
         .input-field.error {
             border-color: #dc2626;
             animation: shake 0.5s ease;
+        }
+
+        .input-field:disabled {
+            background: rgba(200, 200, 200, 0.3);
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
         @keyframes shake {
@@ -553,6 +566,21 @@
             box-shadow: 0 8px 24px color-mix(in srgb, #426637 15%, transparent);
         }
 
+        /* Disabled/Greyed State for Guest Section */
+        .guest-section-disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(50%);
+            transition: all 0.3s ease;
+        }
+
+        .guest-section-enabled {
+            opacity: 1;
+            pointer-events: auto;
+            filter: grayscale(0%);
+            transition: all 0.3s ease;
+        }
+
         /* Admin Login Overlay */
         .auth-overlay {
             position: fixed;
@@ -640,6 +668,24 @@
         .logo-secret:hover {
             opacity: 0.8;
         }
+
+        /* Already Confirmed Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -657,7 +703,6 @@
                     <a href="#rsvp" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">RSVP<br><span class="bm-text text-[10px]">Tempah</span></a>
                     <a href="#stats" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Statistics<br><span class="bm-text text-[10px]">Statistik</span></a>
                     <a href="#dresscode" class="nav-link font-dm text-sm font-medium hover:opacity-70 transition-opacity">Dress Code<br><span class="bm-text text-[10px]">Kod Pakaian</span></a>
-                    <!-- Admin link hidden - access via logo click -->
                 </div>
 
                 <div class="flex items-center gap-3">
@@ -1047,12 +1092,13 @@
                                 <input type="text" id="wizardInviteCode" 
                                     class="input-field focus-ring text-center text-lg font-mono tracking-widest uppercase" 
                                     placeholder="DD2027XXX or NN2027XXX"
-                                    maxlength="20">
+                                    maxlength="20"
+                                    autocomplete="off">
                                 
                                 <div id="codeLookupResult" class="hidden p-4 rounded-xl text-left text-sm"></div>
                                 
                                 <div class="flex gap-3 pt-4">
-                                    <button onclick="verifyInvitationCode()" class="btn-primary flex-1 py-4 text-base">
+                                    <button onclick="verifyInvitationCode()" id="verifyCodeBtn" class="btn-primary flex-1 py-4 text-base">
                                         Verify Code →<br><span class="text-xs font-normal opacity-90">Sahkan Kod</span>
                                     </button>
                                 </div>
@@ -1163,7 +1209,7 @@
                                 </div>
 
                                 <!-- Guest Counts (Only show if confirmed) -->
-                                <div id="guestCountSection">
+                                <div id="guestCountSection" class="guest-section-enabled">
                                     <label class="block text-sm font-bold mb-3">Number of Guests<br><span class="text-xs font-normal text-gray-500">Bilangan Tetamu</span></label>
                                     
                                     <!-- Quota Info Display -->
@@ -1205,7 +1251,9 @@
 
                                 <div class="flex gap-3 pt-4">
                                     <button onclick="goToStep(2)" class="btn-secondary py-3 flex-1">← Back<br><span class="text-xs font-normal">Kembali</span></button>
-                                    <button onclick="goToStep(4)" class="btn-primary py-3 flex-1">Review →<br><span class="text-xs font-normal opacity-90">Semak</span></button>
+                                    <button onclick="validateAndGoToStep4()" id="reviewBtn" class="btn-primary py-3 flex-1">
+                                        Review →<br><span class="text-xs font-normal opacity-90">Semak</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1696,10 +1744,8 @@
             if (logoClickCount >= REQUIRED_CLICKS) {
                 navigateTo('admin');
                 logoClickCount = 0;
-                // Optional: Show subtle notification
                 console.log('🔓 Admin mode activated via secret click sequence');
             } else if (logoClickCount > 1) {
-                // Optional: Show hint near cursor or console
                 console.log(`Admin access: ${logoClickCount}/${REQUIRED_CLICKS} clicks`);
             }
         });
@@ -1753,7 +1799,6 @@
         // Nav link handlers
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
-                // Don't intercept the main logo click here (handled separately for secret admin)
                 if (this.id === 'mainLogo') return;
                 
                 e.preventDefault();
@@ -1763,7 +1808,7 @@
         });
 
         // ============================================
-        // ADMIN AUTHENTICATION
+        // ADMIN AUTHENTICATION (Session Persistence)
         // ============================================
 
         const ADMIN_CREDENTIALS = {
@@ -1779,13 +1824,17 @@
 
             if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
                 isAdminAuthenticated = true;
+                // Save to session storage (persists until browser/tab closed)
                 sessionStorage.setItem('isAdminAuth', 'true');
+                sessionStorage.setItem('adminEmail', email);
+                sessionStorage.setItem('adminLoginTime', new Date().toISOString());
+                
                 document.getElementById('adminLoginOverlay').classList.add('hidden');
                 document.getElementById('adminDashboard').classList.remove('hidden');
                 errorEl.classList.add('hidden');
                 loadInvitationsTable();
             } else {
-                errorEl.textContent = 'Invalid credentials. Please try again.Kredensial tidak sah. Sila cuba lagi.';
+                errorEl.innerHTML = 'Invalid credentials. Please try again.<br>Kredensial tidak sah. Sila cuba lagi.';
                 errorEl.classList.remove('hidden');
                 document.getElementById('adminPassword').value = '';
             }
@@ -1793,14 +1842,23 @@
 
         function handleAdminLogout() {
             isAdminAuthenticated = false;
+            // Clear session
             sessionStorage.removeItem('isAdminAuth');
+            sessionStorage.removeItem('adminEmail');
+            sessionStorage.removeItem('adminLoginTime');
             navigateTo('home');
         }
 
         // Check session on load
-        if (sessionStorage.getItem('isAdminAuth') === 'true') {
-            isAdminAuthenticated = true;
+        function checkAdminSession() {
+            if (sessionStorage.getItem('isAdminAuth') === 'true') {
+                isAdminAuthenticated = true;
+                console.log('Admin session restored from storage');
+            }
         }
+        
+        // Run immediately
+        checkAdminSession();
 
         // ============================================
         // CODE GENERATION (DD2027 / NN2027)
@@ -1874,15 +1932,11 @@
             adults: 1,
             kids: 0,
             babies: 0,
-            quota: 8
+            quota: 8,
+            existingRecord: null // Store if code already exists
         };
 
         function goToStep(step) {
-            // Validation before proceeding
-            if (step > currentWizardStep) {
-                if (!validateCurrentStep()) return;
-            }
-
             // Hide current step
             document.getElementById(`step${currentWizardStep}`).classList.remove('active');
             document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.remove('active');
@@ -1891,7 +1945,7 @@
             // Show new step
             currentWizardStep = step;
             document.getElementById(`step${currentWizardStep}`).classList.add('active');
-            document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).classList.add('active');
+            document.querySelector(`.step-dot[data-step="${currentWizardStep}"]`).addClass('active');
 
             // Special handling for step 4 (review)
             if (step === 4) populateSummary();
@@ -1916,7 +1970,7 @@
                         return false;
                     }
                     if (!contact) {
-                        alert('Please enter contact number.Sila masukkan nombor hubungi.');
+                        alert('Please enter contact number. Sila masukkan nombor hubungi.');
                         return false;
                     }
                     return true;
@@ -1927,25 +1981,78 @@
             }
         }
 
+        // New function: Validate and go to step 4 (with quota check)
+        function validateAndGoToStep4() {
+            // First validate basic fields
+            if (!validateCurrentStep()) return;
+
+            // Check quota
+            const adults = parseInt(document.getElementById('wizardAdults').value) || 0;
+            const kids = parseInt(document.getElementById('wizardKids').value) || 0;
+            const babies = parseInt(document.getElementById('wizardBabies').value) || 0;
+            const total = adults + kids + babies;
+
+            if (total > wizardData.quota) {
+                // Shake the warning
+                const warning = document.getElementById('quotaWarning');
+                warning.classList.remove('hidden');
+                warning.style.animation = 'shake 0.5s ease';
+                setTimeout(() => warning.style.animation = '', 500);
+                
+                // Disable button briefly to show feedback
+                const btn = document.getElementById('reviewBtn');
+                btn.disabled = true;
+                btn.textContent = '⚠️ Quota Exceeded!';
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Review →<br><span class="text-xs font-normal opacity-90">Semak</span>';
+                }, 1500);
+                
+                return;
+            }
+
+            // All good, proceed
+            goToStep(4);
+        }
+
         // Handle status change from card selection
         function handleStatusChange(status) {
             document.getElementById('wizardStatus').value = status;
             wizardData.status = status;
             
             const guestSection = document.getElementById('guestCountSection');
+            
             if (status === 'declined') {
-                guestSection.style.opacity = '0.5';
-                guestSection.style.pointerEvents = 'none';
+                // Grey out and disable guest section
+                guestSection.classList.remove('guest-section-enabled');
+                guestSection.classList.add('guest-section-disabled');
+                
+                // Reset counts to 0
                 document.getElementById('wizardAdults').value = 0;
                 document.getElementById('wizardKids').value = 0;
                 document.getElementById('wizardBabies').value = 0;
+                
+                // Disable inputs
+                document.getElementById('wizardAdults').disabled = true;
+                document.getElementById('wizardKids').disabled = true;
+                document.getElementById('wizardBabies').disabled = true;
+                
                 calculateWizardTotal();
             } else {
-                guestSection.style.opacity = '1';
-                guestSection.style.pointerEvents = 'auto';
+                // Re-enable guest section
+                guestSection.classList.remove('guest-section-disabled');
+                guestSection.classList.add('guest-section-enabled');
+                
+                // Enable inputs
+                document.getElementById('wizardAdults').disabled = false;
+                document.getElementById('wizardKids').disabled = false;
+                document.getElementById('wizardBabies').disabled = false;
+                
+                // Set minimum 1 adult if currently 0
                 if (parseInt(document.getElementById('wizardAdults').value) === 0) {
                     document.getElementById('wizardAdults').value = 1;
                 }
+                
                 calculateWizardTotal();
             }
         }
@@ -1954,6 +2061,7 @@
             const codeInput = document.getElementById('wizardInviteCode');
             const code = codeInput.value.trim().toUpperCase();
             const resultDiv = document.getElementById('codeLookupResult');
+            const verifyBtn = document.getElementById('verifyCodeBtn');
             
             if (!code) {
                 showCodeError('Please enter an invitation code. Sila masukkan kod undangan.');
@@ -1961,15 +2069,45 @@
             }
 
             resultDiv.classList.remove('hidden');
-            resultDiv.innerHTML = '<div class="text-blue-600">Verifying code... / Menyemak kod...</div>';
+            resultDiv.innerHTML = '<div class="text-blue-600 flex items-center gap-2"><svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg> Verifying code... / Menyemak kod...</div>';
+            verifyBtn.disabled = true;
 
             const allData = await window.FireDB.getAll();
             const invitation = allData.find(inv => inv.inviteCode?.toUpperCase() === code);
 
             if (invitation) {
+                wizardData.existingRecord = invitation;
                 wizardData.inviteCode = code;
                 wizardData.quota = invitation.quota || 8;
                 wizardData.side = invitation.side || 'groom';
+                
+                // CHECK IF ALREADY CONFIRMED OR SUBMITTED
+                if (invitation.status === 'confirmed' || invitation.status === 'submitted') {
+                    resultDiv.className = 'warning-box text-left';
+                    resultDiv.innerHTML = `
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-yellow-100 mx-auto mb-3 flex items-center justify-center text-yellow-600 text-2xl font-bold">⚠️</div>
+                            <h4 class="font-bold text-yellow-800 text-lg mb-2">Status Already Confirmed</h4>
+                            <p class="text-yellow-700 text-sm mb-4">Your reservation has been submitted.</p>
+                        </div>
+                        <div class="bg-white/60 rounded-lg p-4 space-y-2 text-sm">
+                            <div class="flex justify-between"><span class="text-gray-600">Code / Kod:</span><strong>${invitation.inviteCode}</strong></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Family / Keluarga:</span><strong>${invitation.familyName || '-'}</strong></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Guests / Tetamu:</span><strong>${invitation.totalGuests || 0}</strong></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Status:</span><span class="status-badge status-confirmed">${invitation.status}</span></div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-yellow-300 text-center">
+                            <p class="text-sm text-yellow-800 font-semibold mb-2">
+                                ✉️ If you unable to attend, please inform Danial:<br>
+                                <a href="tel:+60122600969" class="text-blue-600 underline font-bold text-lg">012-260-0969</a>
+                            </p>
+                            <p class="text-xs text-yellow-600">Sekiranya anda tidak dapat hadir, sila maklumkan kepada Danial.</p>
+                        </div>
+                        <button onclick="resetWizard()" class="mt-4 w-full btn-secondary text-sm py-2">Try Different Code / Cuba Kod Lain</button>
+                    `;
+                    verifyBtn.disabled = false;
+                    return;
+                }
                 
                 // Pre-fill if exists
                 if (invitation.familyName) document.getElementById('wizardFamilyName').value = invitation.familyName;
@@ -1978,12 +2116,18 @@
                 // Update quota display immediately
                 updateQuotaDisplay();
 
-                resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-green-50 text-green-700 border border-green-200';
+                resultDiv.className = 'info-box text-left';
                 resultDiv.innerHTML = `
-                    <strong>✓ Code Found! / Kod Ditemui!</strong><br>
-                    Quota: ${wizardData.quota} guests / Kuasa: ${wizardData.quota} orang tetamu<br>
-                    Side: ${wizardData.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}<br>
-                    <button onclick="goToStep(2)" class="mt-2 btn-primary text-xs py-2 px-4 rounded-lg">Continue → / Teruskan →</button>
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <strong class="text-green-800">✓ Code Found! / Kod Ditemui!</strong>
+                    </div>
+                    <div class="text-sm text-green-700 space-y-1 ml-7">
+                        <p>Quota: <strong>${wizardData.quota} guests</strong> / Kuasa: <strong>${wizardData.quota} orang tetamu</strong></p>
+                        <p>Side: <strong>${wizardData.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</strong></p>
+                        ${invitation.status === 'declined' ? '<p class="text-orange-600 font-semibold">Note: Previously declined. You may update your response.</p>' : ''}
+                    </div>
+                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue → / Teruskan →</button>
                 `;
                 
                 // Set side radio
@@ -1993,6 +2137,7 @@
                 }, 100);
             } else {
                 // Allow new registration with this code format
+                wizardData.existingRecord = null;
                 wizardData.inviteCode = code;
                 
                 // Detect side from code prefix
@@ -2010,14 +2155,21 @@
                 wizardData.quota = 8;
                 updateQuotaDisplay();
 
-                resultDiv.className = 'p-4 rounded-xl text-left text-sm bg-yellow-50 text-yellow-700 border border-yellow-200';
+                resultDiv.className = 'info-box text-left';
                 resultDiv.innerHTML = `
-                    <strong>New Registration / Pendaftaran Baharu</strong><br>
-                    No existing record found. You can proceed with new registration.<br>
-                    <span class="text-xs">Tiada rekod sedia ada. Anda boleh teruskan dengan pendaftaran baharu.</span><br>
-                    <button onclick="goToStep(2)" class="mt-2 btn-primary text-xs py-2 px-4 rounded-lg">Continue → / Teruskan →</button>
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        <strong class="text-blue-800">New Registration / Pendaftaran Baharu</strong>
+                    </div>
+                    <div class="text-sm text-blue-700 space-y-1 ml-7">
+                        <p>No existing record found. You can proceed with new registration.</p>
+                        <p class="text-xs">Tiada rekod sedia ada. Anda boleh teruskan dengan pendaftaran baharu.</p>
+                    </div>
+                    <button onclick="goToStep(2)" class="mt-3 w-full btn-primary text-xs py-2 rounded-lg">Continue → / Teruskan →</button>
                 `;
             }
+            
+            verifyBtn.disabled = false;
         }
 
         function showCodeError(msg) {
@@ -2045,11 +2197,17 @@
             
             // Check quota warning
             const quotaWarning = document.getElementById('quotaWarning');
+            const reviewBtn = document.getElementById('reviewBtn');
+            
             if (total > wizardData.quota) {
                 quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota} guests<br><span class="text-[10px]">Melebihi kuasa ${wizardData.quota} orang tetamu</span>`;
                 quotaWarning.classList.remove('hidden');
+                reviewBtn.disabled = true;
+                reviewBtn.title = 'Please reduce guest count to proceed';
             } else {
                 quotaWarning.classList.add('hidden');
+                reviewBtn.disabled = false;
+                reviewBtn.title = '';
             }
         }
 
@@ -2112,7 +2270,7 @@
         async function submitFinalRSVP() {
             const btn = document.getElementById('submitFinalBtn');
             btn.disabled = true;
-            btn.textContent = 'Submitting... / Menghantar...';
+            btn.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>Submitting...</span>';
 
             try {
                 const finalData = {
@@ -2130,12 +2288,9 @@
                     rsvpedAt: new Date().toISOString()
                 };
 
-                // Check if exists
-                const allData = await window.FireDB.getAll();
-                const existingIndex = allData.findIndex(inv => inv.inviteCode?.toUpperCase() === finalData.inviteCode);
-
-                if (existingIndex !== -1) {
-                    await window.FireDB.update(allData[existingIndex].id, finalData);
+                // Check if exists (update) or create new
+                if (wizardData.existingRecord && wizardData.existingRecord.id) {
+                    await window.FireDB.update(wizardData.existingRecord.id, finalData);
                 } else {
                     await window.FireDB.add(finalData);
                 }
@@ -2144,8 +2299,9 @@
                 generateQRCode(finalData);
                 
                 document.getElementById('qrSuccessArea').classList.remove('hidden');
-                btn.textContent = '✓ Submitted Successfully! ✓ Berjaya Dihantar!';
+                btn.innerHTML = '✓ Submitted Successfully!<br><span class="text-xs font-normal opacity-90">Berjaya Dihantar!</span>';
                 btn.classList.add('bg-green-600');
+                btn.disabled = true;
                 
                 // Refresh stats
                 loadInvitationsTable();
@@ -2154,7 +2310,7 @@
                 console.error('Submission error:', error);
                 alert('Error submitting. Please try again. Ralat semakan. Sila cuba lagi.');
                 btn.disabled = false;
-                btn.textContent = 'Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>';
+                btn.innerHTML = 'Confirm RSVP';
             }
         }
 
@@ -2162,7 +2318,8 @@
             currentWizardStep = 1;
             wizardData = {
                 inviteCode: '', familyName: '', contact: '', side: 'groom',
-                status: 'confirmed', adults: 1, kids: 0, babies: 0, quota: 8
+                status: 'confirmed', adults: 1, kids: 0, babies: 0, quota: 8,
+                existingRecord: null
             };
             
             // Reset UI
@@ -2179,6 +2336,9 @@
             document.getElementById('wizardAdults').value = 1;
             document.getElementById('wizardKids').value = 0;
             document.getElementById('wizardBabies').value = 0;
+            document.getElementById('wizardAdults').disabled = false;
+            document.getElementById('wizardKids').disabled = false;
+            document.getElementById('wizardBabies').disabled = false;
             
             // Reset status cards
             document.querySelectorAll('input[name="wizardStatusCard"]').forEach(radio => {
@@ -2186,15 +2346,23 @@
             });
             document.getElementById('wizardStatus').value = 'confirmed';
             
+            // Re-enable guest section
+            const guestSection = document.getElementById('guestCountSection');
+            guestSection.classList.remove('guest-section-disabled');
+            guestSection.classList.add('guest-section-enabled');
+            
             document.getElementById('codeLookupResult').classList.add('hidden');
             document.getElementById('qrSuccessArea').classList.add('hidden');
-            document.getElementById('guestCountSection').style.opacity = '1';
-            document.getElementById('guestCountSection').style.pointerEvents = 'auto';
+            document.getElementById('quotaWarning').classList.add('hidden');
             
             const submitBtn = document.getElementById('submitFinalBtn');
             submitBtn.disabled = false;
             submitBtn.innerHTML = 'Confirm RSVP<br><span class="text-xs font-normal opacity-90">Sahkan RSVP</span>';
             submitBtn.classList.remove('bg-green-600');
+            
+            const reviewBtn = document.getElementById('reviewBtn');
+            reviewBtn.disabled = false;
+            reviewBtn.innerHTML = 'Review →<br><span class="text-xs font-normal opacity-90">Semak</span>';
             
             calculateWizardTotal();
             setTheme('groom');
@@ -2421,6 +2589,7 @@
                     </div>
                     <div class="pt-4 border-t"><span class="text-xs text-gray-500">Quota / Kuasa</span><p class="font-bold">${inv.quota || 8} guests maximum / maksimum orang tetamu</p></div>
                     ${inv.checkedIn ? '<div class="mt-4 p-3 rounded-xl bg-green-50 text-green-700 text-sm font-medium">Checked In / Telah Daftar Masuk</div>' : ''}
+                    ${inv.rsvpedAt ? `<div class="mt-2 text-xs text-gray-400">RSVP submitted: ${new Date(inv.rsvpedAt).toLocaleString()}</div>` : ''}
                 </div>
             `;
             openModal('viewModal');
@@ -2449,25 +2618,35 @@ Padam undangan untuk "${name}"?`)) return;
         }
 
         function exportData(format) {
-            const headers = ['Code', 'Family Name', 'Contact', 'Side', 'Status', 'Adults', 'Kids', 'Babies', 'Total', 'Checked In'];
+            const headers = ['Code', 'Family Name', 'Contact', 'Side', 'Status', 'Adults', 'Kids', 'Babies', 'Total', 'Checked In', 'RSVP Date'];
             const rows = allInvitations.map(inv => [
-                inv.inviteCode || '', inv.familyName || '', inv.contactNumber || '', inv.side || '',
-                inv.status || '', inv.adults || 0, inv.kids || 0, inv.babies || 0, inv.totalGuests || 0,
-                inv.checkedIn ? 'Yes' : 'No'
+                inv.inviteCode || '', 
+                inv.familyName || '', 
+                inv.contactNumber || '', 
+                inv.side || '',
+                inv.status || '', 
+                inv.adults || 0, 
+                inv.kids || 0, 
+                inv.babies || 0, 
+                inv.totalGuests || 0,
+                inv.checkedIn ? 'Yes' : 'No',
+                inv.rsvpedAt ? new Date(inv.rsvpedAt).toLocaleString() : ''
             ]);
             
             let content = format === 'csv' 
                 ? [headers.join(','), ...rows.map(r => r.join(','))].join('')
                 : [headers.join('\t'), ...rows.map(r => r.join('\t'))].join('');
             
-            downloadFile(content, `wedding_invitations.${format === 'csv' ? 'csv' : 'xls'}`, format === 'csv' ? 'text/csv' : 'application/vnd.ms-excel');
+            downloadFile(content, `wedding_invitations_${new Date().toISOString().split('T')[0]}.${format === 'csv' ? 'csv' : 'xls'}`, format === 'csv' ? 'text/csv' : 'application/vnd.ms-excel');
         }
 
         function downloadFile(content, filename, mimeType) {
             const blob = new Blob([content], { type: mimeType });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = filename; a.click();
+            a.href = url; 
+            a.download = filename; 
+            a.click();
             URL.revokeObjectURL(url);
         }
 
@@ -2477,7 +2656,8 @@ Padam undangan untuk "${name}"?`)) return;
             
             if (!code) {
                 resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm">Please enter an invitation code.<br>Sila masukkan kod undangan.</div>';
-                resultDiv.classList.remove('hidden'); return;
+                resultDiv.classList.remove('hidden'); 
+                return;
             }
             
             const allData = await window.FireDB.getAll();
@@ -2485,24 +2665,46 @@ Padam undangan untuk "${name}"?`)) return;
             
             if (!invitation) {
                 resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-red-50 text-red-700 text-sm">Invitation not found.<br>Undangan tidak dijumpai.</div>';
-                resultDiv.classList.remove('hidden'); return;
+                resultDiv.classList.remove('hidden'); 
+                return;
             }
             
             if (invitation.status !== 'confirmed') {
-                resultDiv.innerHTML = '<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm">This invitation has not been confirmed yet.<br>Undangan ini belum disahkan.</div>';
-                resultDiv.classList.remove('hidden'); return;
+                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-yellow-50 text-yellow-700 text-sm"><strong>${invitation.familyName}</strong> - This invitation has not been confirmed yet.<br><strong>${invitation.familyName}</strong> - Undangan ini belum disahkan.</div>`;
+                resultDiv.classList.remove('hidden'); 
+                return;
             }
             
             if (invitation.checkedIn) {
-                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-blue-50 text-blue-700 text-sm"><strong>${invitation.familyName}</strong> was already checked in.<br><strong>${invitation.familyName}</strong> telah daftar masuk sebelum ini.</div>`;
-                resultDiv.classList.remove('hidden'); return;
+                resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-blue-50 text-blue-700 text-sm"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) was already checked in at ${invitation.checkinTime ? new Date(invitation.checkinTime).toLocaleTimeString() : ''}.<br><strong>${invitation.familyName}</strong> telah daftar masuk sebelum ini.</div>`;
+                resultDiv.classList.remove('hidden'); 
+                return;
             }
             
-            await window.FireDB.update(invitation.id, { checkedIn: true, checkinTime: new Date().toISOString() });
-            resultDiv.innerHTML = `<div class="p-4 rounded-xl bg-green-50 text-green-700 text-sm"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) has been checked in successfully!<br><strong>${invitation.familyName}</strong> (${invitation.totalGuests} tetamu) telah berjaya daftar masuk!</div>`;
+            await window.FireDB.update(invitation.id, { 
+                checkedIn: true, 
+                checkinTime: new Date().toISOString() 
+            });
+            
+            resultDiv.innerHTML = `
+                <div class="success-pop p-4 rounded-xl bg-green-50 text-green-700 text-sm border border-green-200">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <strong class="text-green-800">Check-in Successful!</strong>
+                    </div>
+                    <p><strong>${invitation.familyName}</strong> (${invitation.totalGuests} guests/orang) has been checked in successfully!</p>
+                    <p class="text-green-600 mt-1"><strong>${invitation.familyName}</strong> (${invitation.totalGuests} tetamu) telah berjaya daftar masuk!</p>
+                    <p class="text-xs text-green-600 mt-2">Time: ${new Date().toLocaleTimeString()}</p>
+                </div>
+            `;
             resultDiv.classList.remove('hidden');
             document.getElementById('checkinInput').value = '';
             loadInvitationsTable();
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                resultDiv.classList.add('hidden');
+            }, 5000);
         }
 
         // ============================================
@@ -2513,6 +2715,13 @@ Padam undangan untuk "${name}"?`)) return;
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('open');
             this.setAttribute('aria-expanded', menu.classList.contains('open'));
+        });
+
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('#mobileMenu .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('open');
+            });
         });
 
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -2544,6 +2753,9 @@ Padam undangan untuk "${name}"?`)) return;
                 allInvitations = data;
                 renderTable(data);
                 updateStatistics(data);
+                
+                // If on RSVP page and data changes, we could refresh wizard state here if needed
+                console.log('Real-time update received:', data.length, 'records');
             });
         }
 
@@ -2553,6 +2765,8 @@ Padam undangan untuk "${name}"?`)) return;
         console.log('Wedding Reception System v2.1 Initialized');
         console.log('Routes: #home | #rsvp | #admin');
         console.log('Secret: Click "B & D" logo 3x for admin access');
+        console.log('Session persistence enabled for admin login');
+
     </script>
 </body>
 </html>
