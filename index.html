@@ -1511,7 +1511,7 @@
                 </div>
                 
                 <div>
-                    <label class="block text-sm font-bold mb-2" for="modalQuota">Maximum Guest Quota *<br><span class="text-xs font-normal text-gray-500">Kuasa Maksimum Tetamu</span></label>
+                    <label class="block text-sm font-bold mb-2" for="modalQuota">Maximum Guest Quota *<br><span class="text-xs font-normal text-gray-500">Kuata Maksimum Tetamu</span></label>
                     <input type="number" id="modalQuota" class="input-field focus-ring" min="1" max="50" value="8" required>
                 </div>
                 
@@ -2134,7 +2134,7 @@ function navigateTo(view) {
                         <strong class="text-green-800">✓ Code Found! / Kod Ditemui!</strong>
                     </div>
                     <div class="text-sm text-green-700 space-y-1 ml-7">
-                        <p>Quota: <strong>${wizardData.quota} guests</strong> / Kuasa: <strong>${wizardData.quota} orang tetamu</strong></p>
+                        <p>Quota: <strong>${wizardData.quota} guests</strong> / Kuota: <strong>${wizardData.quota} orang tetamu</strong></p>
                         <p>Side: <strong>${wizardData.side === 'groom' ? 'Groom / Lelaki' : 'Bride / Perempuan'}</strong></p>
                         ${invitation.status === 'declined' ? '<p class="text-orange-600 font-semibold">Note: Previously declined. You may update your response.</p>' : ''}
                     </div>
@@ -2211,7 +2211,7 @@ function navigateTo(view) {
             const reviewBtn = document.getElementById('reviewBtn');
             
             if (total > wizardData.quota) {
-                quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota} guests<br><span class="text-[10px]">Melebihi kuasa ${wizardData.quota} orang tetamu</span>`;
+                quotaWarning.innerHTML = `⚠️ Exceeds quota of ${wizardData.quota} guests<br><span class="text-[10px]">Melebihi Kuota ${wizardData.quota} orang tetamu</span>`;
                 quotaWarning.classList.remove('hidden');
                 reviewBtn.disabled = true;
                 reviewBtn.title = 'Please reduce guest count to proceed';
@@ -2237,7 +2237,7 @@ function navigateTo(view) {
             
             const remainingText = document.getElementById('remainingQuotaText');
             if (remaining <= 0) {
-                remainingText.textContent = 'Quota reached! / Kuasa penuh!';
+                remainingText.textContent = 'Quota reached! / Kuota penuh!';
                 remainingText.className = 'font-semibold text-red-600';
             } else if (remaining <= 2) {
                 remainingText.textContent = `${remaining} seat(s) remaining / ${remaining} tempat tinggal`;
@@ -2653,7 +2653,7 @@ async function viewInvitation(id) {
             
             <div class="pt-4 border-t space-y-2">
                 <div class="flex justify-between items-center">
-                    <span class="text-xs text-gray-500">Quota / Kuasa</span>
+                    <span class="text-xs text-gray-500">Quota / Kuota</span>
                     <span class="font-bold">${inv.quota || 8} guests maximum</span>
                 </div>
                 <div class="flex justify-between items-center">
